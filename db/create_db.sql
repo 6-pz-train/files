@@ -29,7 +29,7 @@ create table LOCO
 /*==============================================================*/
 create table LOCO_DATA
 (
-   ID_LOCO_DATA         unsigned bigint not null auto_increment,
+   ID_LOCO_DATA         bigint unsigned not null auto_increment,
    ID_LOCO              char(10) not null,
    RECORD_TIME_LOCO_DATA timestamp not null,
    NAPR_ACCUM_BATR_SEC_A tinyint,
