@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.annotation.security.RunAs;
 import java.util.List;
@@ -14,9 +15,10 @@ import java.util.List;
 /**
  * Created by anatoliy on 23.04.14.
  */
-@Ignore
+//@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration()
+@WebAppConfiguration
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring-servlet.xml"})
 public class LocoDaoImplTest {
 
     @Autowired

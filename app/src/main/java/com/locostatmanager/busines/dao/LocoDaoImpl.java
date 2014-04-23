@@ -1,6 +1,7 @@
-package com.locostatmanager.busines.dao.entities;
+package com.locostatmanager.busines.dao;
 
 import com.locostatmanager.busines.dao.LocoDao;
+import com.locostatmanager.busines.dao.entities.SensorEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -12,13 +13,7 @@ import java.util.List;
  * Created by anatoliy on 23.04.14.
  */
 
-@Repository
 public class LocoDaoImpl extends JdbcDaoSupport implements LocoDao {
-
-    @Autowired
-    public void setDataSourceInject(DataSource dataSource){
-        super.setDataSource(dataSource);
-    }
 
     public void addSensor(SensorEntity entity) {
         getJdbcTemplate().update("insert into sql337514.Sensor (NAME, DESCRIPTION, UNIT_OF_MEASURE) values (?,?,?)",
