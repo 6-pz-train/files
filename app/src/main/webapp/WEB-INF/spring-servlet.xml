@@ -84,6 +84,10 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
+    <bean id="locoDao" class="com.locostatmanager.busines.dao.LocoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
     <context:property-placeholder location="classpath*:jdbc.properties"/>
 
 
