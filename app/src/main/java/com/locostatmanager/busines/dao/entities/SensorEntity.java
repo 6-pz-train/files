@@ -1,19 +1,17 @@
 package com.locostatmanager.busines.dao.entities;
 
-import javax.persistence.*;
+
 
 /**
  * Created by anatoliy on 22.04.14.
  */
-@Entity
-@Table(name = "Sensor", schema = "", catalog = "sql337514")
+
 public class SensorEntity {
     private String name;
     private String description;
     private String unitOfMeasure;
 
-    @Id
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 50, precision = 0)
+
     public String getName() {
         return name;
     }
@@ -22,8 +20,7 @@ public class SensorEntity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "DESCRIPTION", nullable = true, insertable = true, updatable = true, length = 1024, precision = 0)
+
     public String getDescription() {
         return description;
     }
@@ -32,8 +29,7 @@ public class SensorEntity {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "UNIT_OF_MEASURE", nullable = true, insertable = true, updatable = true, length = 10, precision = 0)
+
     public String getUnitOfMeasure() {
         return unitOfMeasure;
     }
