@@ -19,7 +19,7 @@
         } else {
             $('#form_1 .fa-user').removeClass('fail').addClass('success');
             $('#form_1').removeClass('fail').removeClass('animated');
-            return false;
+            return true;
         }
     });
 
