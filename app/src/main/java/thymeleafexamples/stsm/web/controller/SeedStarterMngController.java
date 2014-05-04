@@ -19,6 +19,8 @@
  */
 package thymeleafexamples.stsm.web.controller;
 
+import com.locostatmanager.busines.dao.LocoDao;
+import com.locostatmanager.busines.dao.entities.LocoEntity;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -31,6 +33,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import thymeleafexamples.stsm.business.entities.Feature;
 import thymeleafexamples.stsm.business.entities.Row;
 import thymeleafexamples.stsm.business.entities.SeedStarter;
@@ -50,6 +54,18 @@ public class SeedStarterMngController {
     @Autowired
     private SeedStarterService seedStarterService;
     
+    @Autowired
+    private LocoDao locoDao;
+    
+    
+    @RequestMapping(value = "testAdd", method = RequestMethod.GET)
+    @ResponseBody
+    public void testAdd(String[] args) {
+        LocoEntity entity = new LocoEntity();
+        entity.setIdLoco("aa29uo3");
+        entity.setTitleLoco("AH7809-LOCOC");
+        locoDao.addLoco(entity);
+    }
     
     
     public SeedStarterMngController() {
