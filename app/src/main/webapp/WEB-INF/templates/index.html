@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard - SB Admin</title>
+    <title>Locomotive Statistics Manager</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../../css/bootstrap.css" rel="stylesheet">
@@ -16,6 +16,247 @@
     <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css">
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
+    <!--Calendar-->
+    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <!--<script type="text/javascript" src="../../js/jquery/1.8.2/jquery.min.js"></script>-->
+    <script src="../../js/jquery/1.10.2/jquery-1.10.2.js"></script>
+    <script src="../../js/bootstrap.js"></script>
+
+    <!--Calendar-->
+    <script src="../../js/moment.js"></script>
+    <script src="../../js/bootstrap-datetimepicker.js"></script>
+    <script src="../../js/bootstrap-datetimepicker.ru.js"></script>
+
+
+    <script src="../../js/chart/highcharts.js"></script>
+    <script src="../../js/chart/modules/exporting.js"></script>
+    <script src="../../js/chart/local_rus.js"></script>
+
+    <!-- Page Specific Plugins -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+    <script src="../../js/morris/chart-data-morris.js"></script>
+    <script src="../../js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="../../js/tablesorter/tables.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                language: 'ru'
+            });
+            $('#datetimepicker2').datetimepicker({
+                language: 'ru'
+            });
+            $("#datetimepicker1").on("dp.change",function (e) {
+                $('#datetimepicker2').data("DateTimePicker").setMinDate(e.date);
+            });
+            $("#datetimepicker2").on("dp.change",function (e) {
+                $('#datetimepicker1').data("DateTimePicker").setMaxDate(e.date);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    type: 'spline',
+                    zoomType: 'x'
+
+                },
+                title: {
+                    text: 'Snow depth at Vikjafjellet, Norway'
+                },
+                subtitle: {
+                    text: 'Irregular time data in Highcharts JS'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        month: '%e. %b',
+                        year: '%b'
+                    },
+                    title: {
+                        text: 'Date'
+                    }
+                },
+                yAxis: {
+                    title: {
+                        text: 'Snow depth (m)'
+                    },
+                    min: 0
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+                },
+
+                series: [
+                    {
+                        type: 'area',
+                        name: 'Winter 2007-2008',
+                        // Define the data points. All series have a dummy year
+                        // of 1970/71 in order to be compared on the same x axis. Note
+                        // that in JavaScript, months start at 0 for January, 1 for February etc.
+                        data: [
+                            [Date.UTC(1970, 9, 27), 0   ],
+                            [Date.UTC(1970, 10, 10), 0.6 ],
+                            [Date.UTC(1970, 10, 18), 0.7 ],
+                            [Date.UTC(1970, 11, 2), 0.8 ],
+                            [Date.UTC(1970, 11, 9), 0.6 ],
+                            [Date.UTC(1970, 11, 16), 0.6 ],
+                            [Date.UTC(1970, 11, 28), 0.67],
+                            [Date.UTC(1971, 0, 1), 0.81],
+                            [Date.UTC(1971, 0, 8), 0.78],
+                            [Date.UTC(1971, 0, 12), 0.98],
+                            [Date.UTC(1971, 0, 27), 1.84],
+                            [Date.UTC(1971, 1, 10), 1.80],
+                            [Date.UTC(1971, 1, 18), 1.80],
+                            [Date.UTC(1971, 1, 24), 1.92],
+                            [Date.UTC(1971, 2, 4), 2.49],
+                            [Date.UTC(1971, 2, 11), 2.79],
+                            [Date.UTC(1971, 2, 15), 2.73],
+                            [Date.UTC(1971, 2, 25), 2.61],
+                            [Date.UTC(1971, 3, 2), 2.76],
+                            [Date.UTC(1971, 3, 6), 2.82],
+                            [Date.UTC(1971, 3, 13), 2.8 ],
+                            [Date.UTC(1971, 4, 3), 2.1 ],
+                            [Date.UTC(1971, 4, 26), 1.1 ],
+                            [Date.UTC(1971, 5, 9), 0.25],
+                            [Date.UTC(1971, 5, 12), 0   ]
+                        ]
+                    },
+                    {
+                        type: 'area',
+                        name: 'Winter 2008-2009',
+                        data: [
+                            [Date.UTC(1970, 9, 18), 0   ],
+                            [Date.UTC(1970, 9, 26), 0.2 ],
+                            [Date.UTC(1970, 11, 1), 0.47],
+                            [Date.UTC(1970, 11, 11), 0.55],
+                            [Date.UTC(1970, 11, 25), 1.38],
+                            [Date.UTC(1971, 0, 8), 1.38],
+                            [Date.UTC(1971, 0, 15), 1.38],
+                            [Date.UTC(1971, 1, 1), 1.38],
+                            [Date.UTC(1971, 1, 8), 1.48],
+                            [Date.UTC(1971, 1, 21), 1.5 ],
+                            [Date.UTC(1971, 2, 12), 1.89],
+                            [Date.UTC(1971, 2, 25), 2.0 ],
+                            [Date.UTC(1971, 3, 4), 1.94],
+                            [Date.UTC(1971, 3, 9), 1.91],
+                            [Date.UTC(1971, 3, 13), 1.75],
+                            [Date.UTC(1971, 3, 19), 1.6 ],
+                            [Date.UTC(1971, 4, 25), 0.6 ],
+                            [Date.UTC(1971, 4, 31), 0.35],
+                            [Date.UTC(1971, 5, 7), 0   ]
+                        ]
+                    },
+                    {
+                        type: 'area',
+                        name: 'Winter 2009-2010',
+                        data: [
+                            [Date.UTC(1970, 9, 9), 0   ],
+                            [Date.UTC(1970, 9, 14), 0.15],
+                            [Date.UTC(1970, 10, 28), 0.35],
+                            [Date.UTC(1970, 11, 12), 0.46],
+                            [Date.UTC(1971, 0, 1), 0.59],
+                            [Date.UTC(1971, 0, 24), 0.58],
+                            [Date.UTC(1971, 1, 1), 0.62],
+                            [Date.UTC(1971, 1, 7), 0.65],
+                            [Date.UTC(1971, 1, 23), 0.77],
+                            [Date.UTC(1971, 2, 8), 0.77],
+                            [Date.UTC(1971, 2, 14), 0.79],
+                            [Date.UTC(1971, 2, 24), 0.86],
+                            [Date.UTC(1971, 3, 4), 0.8 ],
+                            [Date.UTC(1971, 3, 18), 0.94],
+                            [Date.UTC(1971, 3, 24), 0.9 ],
+                            [Date.UTC(1971, 4, 16), 0.39],
+                            [Date.UTC(1971, 4, 21), 0   ]
+                        ]
+                    }
+                ]
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        function update(){
+            $(function () {
+                $('#container').highcharts({
+                    chart: {
+                        type: 'spline'
+                    },
+                    title: {
+                        text: 'Snow depth at Vikjafjellet, Norway'
+                    },
+                    subtitle: {
+                        text: 'Irregular time data in Highcharts JS'
+                    },
+                    xAxis: {
+                        type: 'datetime',
+                        dateTimeLabelFormats: { // don't display the dummy year
+                            month: '%e. %b',
+                            year: '%b'
+                        },
+                        title: {
+                            text: 'Date'
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Snow depth (m)'
+                        },
+                        min: 0
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br>',
+                        pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+                    },
+
+                    series: [
+                        {
+                            type: 'area',
+                            name: 'Winter 2007-2008',
+                            // Define the data points. All series have a dummy year
+                            // of 1970/71 in order to be compared on the same x axis. Note
+                            // that in JavaScript, months start at 0 for January, 1 for February etc.
+                            data: [
+                                [Date.UTC(1970, 9, 27, 12, 5), 0   ],
+                                [Date.UTC(1970, 9, 27, 12, 10), 50   ],
+                                [Date.UTC(1970, 9, 27, 12, 30), 30   ]
+                            ]
+                        },
+                        {
+                            name: 'Winter 2008-2009',
+                            data: [
+                                [Date.UTC(1970, 9, 27, 12, 15), 15   ],
+                                [Date.UTC(1970, 9, 27, 12, 16), 55   ],
+                                [Date.UTC(1970, 9, 27, 12, 30), 66   ]
+                            ]
+                        },
+                        {
+                            name: 'Winter 2009-2010',
+                            data: [
+                                [Date.UTC(1970, 9, 27, 12, 32), 30   ],
+                                [Date.UTC(1970, 9, 27, 12, 44), 15   ],
+                                [Date.UTC(1970, 9, 27, 12, 55), 20   ]
+                            ]
+                        },
+                        {
+                            name: 'Winter2 2009-2010',
+                            data: [
+                                [Date.UTC(1970, 9, 27, 12, 32), 12   ],
+                                [Date.UTC(1970, 9, 27, 12, 44), 30   ],
+                                [Date.UTC(1970, 9, 27, 12, 55), 54   ]
+                            ]
+                        }
+                    ]
+                });
+            });
+        }
+    </script>
 
 </head>
 
@@ -33,13 +274,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">SB Admin</a>
+        <a class="navbar-brand" href="index.html">Locomotive Statistics Manager</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i> Главная панель</a></li>
             <li><a href="charts.html"><i class="fa fa-bar-chart-o"></i> Charts</a></li>
             <li><a href="tables.html"><i class="fa fa-table"></i> Tables</a></li>
             <li><a href="forms.html"><i class="fa fa-edit"></i> Forms</a></li>
@@ -60,64 +301,14 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right navbar-user">
-            <li class="dropdown messages-dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span
-                        class="badge">7</span> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-header">7 New Messages</li>
-                    <li class="message-preview">
-                        <a href="#">
-                            <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                            <span class="name">John Smith:</span>
-                            <span class="message">Hey there, I wanted to ask you something...</span>
-                            <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="message-preview">
-                        <a href="#">
-                            <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                            <span class="name">John Smith:</span>
-                            <span class="message">Hey there, I wanted to ask you something...</span>
-                            <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="message-preview">
-                        <a href="#">
-                            <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                            <span class="name">John Smith:</span>
-                            <span class="message">Hey there, I wanted to ask you something...</span>
-                            <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="#">View Inbox <span class="badge">7</span></a></li>
-                </ul>
-            </li>
-            <li class="dropdown alerts-dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Alerts <span
-                        class="badge">3</span> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Default <span class="label label-default">Default</span></a></li>
-                    <li><a href="#">Primary <span class="label label-primary">Primary</span></a></li>
-                    <li><a href="#">Success <span class="label label-success">Success</span></a></li>
-                    <li><a href="#">Info <span class="label label-info">Info</span></a></li>
-                    <li><a href="#">Warning <span class="label label-warning">Warning</span></a></li>
-                    <li><a href="#">Danger <span class="label label-danger">Danger</span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View All</a></li>
-                </ul>
-            </li>
             <li class="dropdown user-dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Вася Пупкин <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                    <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
-                    <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
+                    <li><a href="#"><i class="fa fa-user"></i> Профиль</a></li>
+                    <li><a href="#"><i class="fa fa-gear"></i> Настройки</a></li>
                     <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                    <li><a href="#"><i class="fa fa-power-off"></i> Выход</a></li>
                 </ul>
             </li>
         </ul>
@@ -129,18 +320,12 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h1>Dashboard
-            <small>Statistics Overview</small>
+        <h1>Главная панель
+            <small>Обзор статистики</small>
         </h1>
         <ol class="breadcrumb">
-            <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
+            <li class="active"><i class="fa fa-dashboard"></i> Главная панель</li>
         </ol>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            Welcome to SB Admin by <a class="alert-link" href="http://startbootstrap.com">Start Bootstrap</a>! Feel free
-            to use this template for your admin needs! We are using a few different plugins to handle the dynamic tables
-            and charts, so make sure you check out the necessary documentation links provided.
-        </div>
     </div>
 </div>
 <!-- /.row -->
@@ -151,12 +336,12 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <i class="fa fa-comments fa-5x"></i>
+                        <i class="fa fa-bullhorn fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">456</p>
+                        <p class="announcement-heading">15</p>
 
-                        <p class="announcement-text">New Mentions!</p>
+                        <p class="announcement-text">Локомотивы</p>
                     </div>
                 </div>
             </div>
@@ -164,7 +349,7 @@
                 <div class="panel-footer announcement-bottom">
                     <div class="row">
                         <div class="col-xs-6">
-                            View Mentions
+                            Просмотр таблицы
                         </div>
                         <div class="col-xs-6 text-right">
                             <i class="fa fa-arrow-circle-right"></i>
@@ -179,12 +364,12 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <i class="fa fa-check fa-5x"></i>
+                        <i class="fa fa-dashboard fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">12</p>
+                        <p class="announcement-heading">48</p>
 
-                        <p class="announcement-text">To-Do Items</p>
+                        <p class="announcement-text">Датчики</p>
                     </div>
                 </div>
             </div>
@@ -192,7 +377,7 @@
                 <div class="panel-footer announcement-bottom">
                     <div class="row">
                         <div class="col-xs-6">
-                            Complete Tasks
+                            Просмотр таблицы
                         </div>
                         <div class="col-xs-6 text-right">
                             <i class="fa fa-arrow-circle-right"></i>
@@ -207,12 +392,12 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <i class="fa fa-tasks fa-5x"></i>
+                        <i class="fa fa-hdd-o fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">18</p>
+                        <p class="announcement-heading">15 MB</p>
 
-                        <p class="announcement-text">Crawl Errors</p>
+                        <p class="announcement-text">Размер базы</p>
                     </div>
                 </div>
             </div>
@@ -220,7 +405,7 @@
                 <div class="panel-footer announcement-bottom">
                     <div class="row">
                         <div class="col-xs-6">
-                            Fix Issues
+                            Информация о базе
                         </div>
                         <div class="col-xs-6 text-right">
                             <i class="fa fa-arrow-circle-right"></i>
@@ -235,12 +420,12 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <i class="fa fa-comments fa-5x"></i>
+                        <i class="fa fa-download fa-5x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
-                        <p class="announcement-heading">56</p>
+                        <p class="announcement-heading">1584</p>
 
-                        <p class="announcement-text">New Orders!</p>
+                        <p class="announcement-text">Загружено записей</p>
                     </div>
                 </div>
             </div>
@@ -248,7 +433,7 @@
                 <div class="panel-footer announcement-bottom">
                     <div class="row">
                         <div class="col-xs-6">
-                            Complete Orders
+                            Подробный отчет
                         </div>
                         <div class="col-xs-6 text-right">
                             <i class="fa fa-arrow-circle-right"></i>
@@ -290,137 +475,113 @@
     <div class="col-lg-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i> Traffic Sources: October 1, 2013 -
-                    October 31, 2013</h3>
+                <h3 class="panel-title"><i class="fa fa-bullhorn"></i> Локомотивы</h3>
             </div>
             <div class="panel-body">
-                <div id="morris-chart-donut"></div>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Локомотив ЛК1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Локомотив ЛК2
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Локомотив ЛК3
+                        </label>
+                    </div>
+                </div>
+
+
                 <div class="text-right">
-                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="#"> Просмотр таблицы <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="col-lg-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-clock-o"></i> Recent Activity</h3>
+                <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики </h3>
             </div>
             <div class="panel-body">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <span class="badge">just now</span>
-                        <i class="fa fa-calendar"></i> Calendar updated
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">4 minutes ago</span>
-                        <i class="fa fa-comment"></i> Commented on a post
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">23 minutes ago</span>
-                        <i class="fa fa-truck"></i> Order 392 shipped
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">46 minutes ago</span>
-                        <i class="fa fa-money"></i> Invoice 653 has been paid
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">1 hour ago</span>
-                        <i class="fa fa-user"></i> A new user has been added
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">2 hours ago</span>
-                        <i class="fa fa-check"></i> Completed task: "pick up dry cleaning"
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">yesterday</span>
-                        <i class="fa fa-globe"></i> Saved the world
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <span class="badge">two days ago</span>
-                        <i class="fa fa-check"></i> Completed task: "fix error on sales page"
-                    </a>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Температура буксы 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Температура буксы 2
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Сила тока
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение
+                        </label>
+                    </div>
                 </div>
+
                 <div class="text-right">
-                    <a href="#">View All Activity <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="#"> Просмотр таблицы <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="col-lg-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-money"></i> Recent Transactions</h3>
+                <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Период </h3>
             </div>
             <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped tablesorter">
-                        <thead>
-                        <tr>
-                            <th>Order # <i class="fa fa-sort"></i></th>
-                            <th>Order Date <i class="fa fa-sort"></i></th>
-                            <th>Order Time <i class="fa fa-sort"></i></th>
-                            <th>Amount (USD) <i class="fa fa-sort"></i></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>3326</td>
-                            <td>10/21/2013</td>
-                            <td>3:29 PM</td>
-                            <td>$321.33</td>
-                        </tr>
-                        <tr>
-                            <td>3325</td>
-                            <td>10/21/2013</td>
-                            <td>3:20 PM</td>
-                            <td>$234.34</td>
-                        </tr>
-                        <tr>
-                            <td>3324</td>
-                            <td>10/21/2013</td>
-                            <td>3:03 PM</td>
-                            <td>$724.17</td>
-                        </tr>
-                        <tr>
-                            <td>3323</td>
-                            <td>10/21/2013</td>
-                            <td>3:00 PM</td>
-                            <td>$23.71</td>
-                        </tr>
-                        <tr>
-                            <td>3322</td>
-                            <td>10/21/2013</td>
-                            <td>2:49 PM</td>
-                            <td>$8345.23</td>
-                        </tr>
-                        <tr>
-                            <td>3321</td>
-                            <td>10/21/2013</td>
-                            <td>2:23 PM</td>
-                            <td>$245.12</td>
-                        </tr>
-                        <tr>
-                            <td>3320</td>
-                            <td>10/21/2013</td>
-                            <td>2:15 PM</td>
-                            <td>$5663.54</td>
-                        </tr>
-                        <tr>
-                            <td>3319</td>
-                            <td>10/21/2013</td>
-                            <td>2:13 PM</td>
-                            <td>$943.45</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="text-right">
-                    <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
+                <div>
+                    <div class="col-lg-12">
+                        <div class='col-lg-6'>
+                            <div class="form-group">
+                                <label for="datetimepicker1"> От: </label>
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-lg-6'>
+                            <div class="form-group">
+                                <label for="datetimepicker2"> До: </label>
+                                <div class='input-group date' id='datetimepicker2'>
+                                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
+
 </div>
 <!-- /.row -->
 
@@ -429,224 +590,6 @@
 
 </div>
 <!-- /#wrapper -->
-
-
-<!-- JavaScript -->
-<!--<script type="text/javascript" src="../../js/jquery/1.8.2/jquery.min.js"></script>-->
-<script src="../../js/jquery/1.10.2/jquery-1.10.2.js"></script>
-<script src="../../js/bootstrap.js"></script>
-
-
-<script src="../../js/chart/highcharts.js"></script>
-<script src="../../js/chart/modules/exporting.js"></script>
-<script src="../../js/chart/local_rus.js"></script>
-
-<!-- Page Specific Plugins -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-<script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-<script src="../../js/morris/chart-data-morris.js"></script>
-<script src="../../js/tablesorter/jquery.tablesorter.js"></script>
-<script src="../../js/tablesorter/tables.js"></script>
-
-<script type="text/javascript">
-    $(function () {
-        $('#container').highcharts({
-            chart: {
-                type: 'spline',
-                zoomType: 'x'
-
-            },
-            title: {
-                text: 'Snow depth at Vikjafjellet, Norway'
-            },
-            subtitle: {
-                text: 'Irregular time data in Highcharts JS'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: { // don't display the dummy year
-                    month: '%e. %b',
-                    year: '%b'
-                },
-                title: {
-                    text: 'Date'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Snow depth (m)'
-                },
-                min: 0
-            },
-            tooltip: {
-                headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
-            },
-
-            series: [
-                {
-                    type: 'area',
-                    name: 'Winter 2007-2008',
-                    // Define the data points. All series have a dummy year
-                    // of 1970/71 in order to be compared on the same x axis. Note
-                    // that in JavaScript, months start at 0 for January, 1 for February etc.
-                    data: [
-                        [Date.UTC(1970, 9, 27), 0   ],
-                        [Date.UTC(1970, 10, 10), 0.6 ],
-                        [Date.UTC(1970, 10, 18), 0.7 ],
-                        [Date.UTC(1970, 11, 2), 0.8 ],
-                        [Date.UTC(1970, 11, 9), 0.6 ],
-                        [Date.UTC(1970, 11, 16), 0.6 ],
-                        [Date.UTC(1970, 11, 28), 0.67],
-                        [Date.UTC(1971, 0, 1), 0.81],
-                        [Date.UTC(1971, 0, 8), 0.78],
-                        [Date.UTC(1971, 0, 12), 0.98],
-                        [Date.UTC(1971, 0, 27), 1.84],
-                        [Date.UTC(1971, 1, 10), 1.80],
-                        [Date.UTC(1971, 1, 18), 1.80],
-                        [Date.UTC(1971, 1, 24), 1.92],
-                        [Date.UTC(1971, 2, 4), 2.49],
-                        [Date.UTC(1971, 2, 11), 2.79],
-                        [Date.UTC(1971, 2, 15), 2.73],
-                        [Date.UTC(1971, 2, 25), 2.61],
-                        [Date.UTC(1971, 3, 2), 2.76],
-                        [Date.UTC(1971, 3, 6), 2.82],
-                        [Date.UTC(1971, 3, 13), 2.8 ],
-                        [Date.UTC(1971, 4, 3), 2.1 ],
-                        [Date.UTC(1971, 4, 26), 1.1 ],
-                        [Date.UTC(1971, 5, 9), 0.25],
-                        [Date.UTC(1971, 5, 12), 0   ]
-                    ]
-                },
-                {
-                    type: 'area',
-                    name: 'Winter 2008-2009',
-                    data: [
-                        [Date.UTC(1970, 9, 18), 0   ],
-                        [Date.UTC(1970, 9, 26), 0.2 ],
-                        [Date.UTC(1970, 11, 1), 0.47],
-                        [Date.UTC(1970, 11, 11), 0.55],
-                        [Date.UTC(1970, 11, 25), 1.38],
-                        [Date.UTC(1971, 0, 8), 1.38],
-                        [Date.UTC(1971, 0, 15), 1.38],
-                        [Date.UTC(1971, 1, 1), 1.38],
-                        [Date.UTC(1971, 1, 8), 1.48],
-                        [Date.UTC(1971, 1, 21), 1.5 ],
-                        [Date.UTC(1971, 2, 12), 1.89],
-                        [Date.UTC(1971, 2, 25), 2.0 ],
-                        [Date.UTC(1971, 3, 4), 1.94],
-                        [Date.UTC(1971, 3, 9), 1.91],
-                        [Date.UTC(1971, 3, 13), 1.75],
-                        [Date.UTC(1971, 3, 19), 1.6 ],
-                        [Date.UTC(1971, 4, 25), 0.6 ],
-                        [Date.UTC(1971, 4, 31), 0.35],
-                        [Date.UTC(1971, 5, 7), 0   ]
-                    ]
-                },
-                {
-                    type: 'area',
-                    name: 'Winter 2009-2010',
-                    data: [
-                        [Date.UTC(1970, 9, 9), 0   ],
-                        [Date.UTC(1970, 9, 14), 0.15],
-                        [Date.UTC(1970, 10, 28), 0.35],
-                        [Date.UTC(1970, 11, 12), 0.46],
-                        [Date.UTC(1971, 0, 1), 0.59],
-                        [Date.UTC(1971, 0, 24), 0.58],
-                        [Date.UTC(1971, 1, 1), 0.62],
-                        [Date.UTC(1971, 1, 7), 0.65],
-                        [Date.UTC(1971, 1, 23), 0.77],
-                        [Date.UTC(1971, 2, 8), 0.77],
-                        [Date.UTC(1971, 2, 14), 0.79],
-                        [Date.UTC(1971, 2, 24), 0.86],
-                        [Date.UTC(1971, 3, 4), 0.8 ],
-                        [Date.UTC(1971, 3, 18), 0.94],
-                        [Date.UTC(1971, 3, 24), 0.9 ],
-                        [Date.UTC(1971, 4, 16), 0.39],
-                        [Date.UTC(1971, 4, 21), 0   ]
-                    ]
-                }
-            ]
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    function update(){
-    $(function () {
-        $('#container').highcharts({
-            chart: {
-                type: 'spline'
-            },
-            title: {
-                text: 'Snow depth at Vikjafjellet, Norway'
-            },
-            subtitle: {
-                text: 'Irregular time data in Highcharts JS'
-            },
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: { // don't display the dummy year
-                    month: '%e. %b',
-                    year: '%b'
-                },
-                title: {
-                    text: 'Date'
-                }
-            },
-            yAxis: {
-                title: {
-                    text: 'Snow depth (m)'
-                },
-                min: 0
-            },
-            tooltip: {
-                headerFormat: '<b>{series.name}</b><br>',
-                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
-            },
-
-            series: [
-                {
-                    type: 'area',
-                    name: 'Winter 2007-2008',
-                    // Define the data points. All series have a dummy year
-                    // of 1970/71 in order to be compared on the same x axis. Note
-                    // that in JavaScript, months start at 0 for January, 1 for February etc.
-                    data: [
-                        [Date.UTC(1970, 9, 27, 12, 5), 0   ],
-                        [Date.UTC(1970, 9, 27, 12, 10), 50   ],
-                        [Date.UTC(1970, 9, 27, 12, 30), 30   ]
-                    ]
-                },
-                {
-                    name: 'Winter 2008-2009',
-                    data: [
-                        [Date.UTC(1970, 9, 27, 12, 15), 15   ],
-                        [Date.UTC(1970, 9, 27, 12, 16), 55   ],
-                        [Date.UTC(1970, 9, 27, 12, 30), 66   ]
-                    ]
-                },
-                {
-                    name: 'Winter 2009-2010',
-                    data: [
-                        [Date.UTC(1970, 9, 27, 12, 32), 30   ],
-                        [Date.UTC(1970, 9, 27, 12, 44), 15   ],
-                        [Date.UTC(1970, 9, 27, 12, 55), 20   ]
-                    ]
-                },
-                {
-                    name: 'Winter2 2009-2010',
-                    data: [
-                        [Date.UTC(1970, 9, 27, 12, 32), 12   ],
-                        [Date.UTC(1970, 9, 27, 12, 44), 30   ],
-                        [Date.UTC(1970, 9, 27, 12, 55), 54   ]
-                    ]
-                }
-            ]
-        });
-    });
-    }
-</script>
 
 </body>
 </html>
