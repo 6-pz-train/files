@@ -19,18 +19,20 @@
  */
 package thymeleafexamples.stsm.web.controller;
 
+import com.locostatmanager.busines.dao.entities.LocoEntity;
+import com.locostatmanager.busines.service.StatisticService;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import thymeleafexamples.stsm.business.entities.Feature;
 import thymeleafexamples.stsm.business.entities.Row;
 import thymeleafexamples.stsm.business.entities.SeedStarter;
@@ -39,56 +41,72 @@ import thymeleafexamples.stsm.business.entities.Variety;
 import thymeleafexamples.stsm.business.services.SeedStarterService;
 import thymeleafexamples.stsm.business.services.VarietyService;
 
-
 @Controller
 public class SeedStarterMngController {
 
-
     @Autowired
     private VarietyService varietyService;
-    
+
     @Autowired
     private SeedStarterService seedStarterService;
-    
-    
-    
+
+    @Autowired
+    private StatisticService service;
+
+    @RequestMapping(value = "/testIsert", method = RequestMethod.GET)
+    @ResponseBody
+    public void testAdd() {
+        
+        LocoEntity entity = new LocoEntity();
+        entity.setIdLoco("99");
+        entity.setTitleLoco("AH7809-LOCOC");
+        service.addLocomotive(entity);
+
+        LocoEntity entity1 = new LocoEntity();
+        entity1.setIdLoco("100");
+        entity1.setTitleLoco("A809-LOCOC12");
+        service.addLocomotive(entity1);
+    }
+
+    @RequestMapping(value = "/testGet", method = RequestMethod.GET)
+    @ResponseBody
+    public List<LocoEntity> testGet() {
+
+        List<LocoEntity> list = service.getAllLocomotives();
+        return list;
+    }
+
     public SeedStarterMngController() {
         super();
     }
 
-    
-    
     @ModelAttribute("allTypes")
     public List<Type> populateTypes() {
         return Arrays.asList(Type.ALL);
     }
-    
+
     @ModelAttribute("allFeatures")
     public List<Feature> populateFeatures() {
         return Arrays.asList(Feature.ALL);
     }
-    
+
     @ModelAttribute("allVarieties")
     public List<Variety> populateVarieties() {
         return this.varietyService.findAll();
     }
-    
+
     @ModelAttribute("allSeedStarters")
     public List<SeedStarter> populateSeedStarters() {
         return this.seedStarterService.findAll();
     }
-    
-    
-    
-    @RequestMapping({"/","/seedstartermng"})
+
+    @RequestMapping({"/", "/seedstartermng"})
     public String showSeedstarters(final SeedStarter seedStarter) {
         seedStarter.setDatePlanted(Calendar.getInstance().getTime());
         return "seedstartermng";
     }
-    
-    
-    
-    @RequestMapping(value="/seedstartermng", params={"save"})
+
+    @RequestMapping(value = "/seedstartermng", params = {"save"})
     public String saveSeedstarter(final SeedStarter seedStarter, final BindingResult bindingResult, final ModelMap model) {
         if (bindingResult.hasErrors()) {
             return "seedstartermng";
@@ -97,22 +115,18 @@ public class SeedStarterMngController {
         model.clear();
         return "redirect:/seedstartermng";
     }
-    
 
-    
-    @RequestMapping(value="/seedstartermng", params={"addRow"})
+    @RequestMapping(value = "/seedstartermng", params = {"addRow"})
     public String addRow(final SeedStarter seedStarter, final BindingResult bindingResult) {
         seedStarter.getRows().add(new Row());
         return "seedstartermng";
     }
-    
-    
-    @RequestMapping(value="/seedstartermng", params={"removeRow"})
+
+    @RequestMapping(value = "/seedstartermng", params = {"removeRow"})
     public String removeRow(final SeedStarter seedStarter, final BindingResult bindingResult, final HttpServletRequest req) {
         final Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
         seedStarter.getRows().remove(rowId.intValue());
         return "seedstartermng";
     }
-
 
 }
