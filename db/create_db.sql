@@ -14,8 +14,6 @@ drop table if exists LOCO_DATA;
 
 drop table if exists Sensor;
 
-drop table if exists NODE;
-
 /*==============================================================*/
 /* Table: LOCO                                                  */
 /*==============================================================*/
@@ -104,19 +102,8 @@ create index RECORD_TIME on LOCO_DATA
 create table Sensor
 (
    NAME                 char(50) not null,
-   ID_NODE              int,
    DESCRIPTION          varchar(1024),
    UNIT_OF_MEASURE      varchar(10),
    primary key (NAME)
-);
-
-/*==============================================================*/
-/* Table: NODE                                                  */
-/*==============================================================*/
-create table NODE
-(
-   ID_NODE              int not null,
-   NAME_NODE            char(256),
-   primary key (ID_NODE)
 );
 
