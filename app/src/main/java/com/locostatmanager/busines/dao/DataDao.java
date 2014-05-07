@@ -2,6 +2,7 @@ package com.locostatmanager.busines.dao;
 
 import com.locostatmanager.busines.dao.entities.LocoDataEntity;
 import com.locostatmanager.busines.dao.entities.LocoEntity;
+import com.locostatmanager.busines.exceptions.DataAccessException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -11,14 +12,14 @@ import java.util.List;
  */
 public interface DataDao {
     
-    void add(LocoDataEntity entity);
-    List<LocoDataEntity> getAll();
-    List<LocoDataEntity> getAfter(Timestamp date);
-    List<LocoDataEntity> getBefore(Timestamp date);
-    List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate);
-    List<LocoDataEntity> getAfter(Timestamp date, LocoEntity entity);
-    List<LocoDataEntity> getBefore(Timestamp date, LocoEntity entity);
-    List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate, LocoEntity entity);
-    List<LocoDataEntity> getByLocomotive(LocoEntity entity);
-    LocoDataEntity getById(String id);
+    void add(LocoDataEntity entity) throws DataAccessException;
+    List<LocoDataEntity> getAll() throws DataAccessException;
+    List<LocoDataEntity> getAfter(Timestamp date) throws DataAccessException;
+    List<LocoDataEntity> getBefore(Timestamp date) throws DataAccessException;
+    List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate) throws DataAccessException;
+    List<LocoDataEntity> getAfter(Timestamp date, LocoEntity entity) throws DataAccessException;
+    List<LocoDataEntity> getBefore(Timestamp date, LocoEntity entity) throws DataAccessException;
+    List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate, LocoEntity entity) throws DataAccessException;
+    List<LocoDataEntity> getByLocomotive(LocoEntity entity) throws DataAccessException;
+    LocoDataEntity getById(String id) throws DataAccessException;
 }

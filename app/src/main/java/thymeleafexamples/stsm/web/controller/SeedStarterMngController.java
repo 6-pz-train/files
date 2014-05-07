@@ -19,8 +19,15 @@
  */
 package thymeleafexamples.stsm.web.controller;
 
+import com.locostatmanager.busines.dao.entities.LocoDataEntity;
 import com.locostatmanager.busines.dao.entities.LocoEntity;
+import com.locostatmanager.busines.dao.entities.SensorEntity;
+import com.locostatmanager.busines.exceptions.DataAccessException;
+import com.locostatmanager.busines.exceptions.ValidationException;
+import com.locostatmanager.busines.service.LocomotiveService;
+import com.locostatmanager.busines.service.SensorService;
 import com.locostatmanager.busines.service.StatisticService;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
@@ -51,29 +58,77 @@ public class SeedStarterMngController {
     private SeedStarterService seedStarterService;
 
     @Autowired
-    private StatisticService service;
+    private LocomotiveService locomotiveService;
 
-    @RequestMapping(value = "/testIsert", method = RequestMethod.GET)
+    @Autowired
+    private SensorService sensorService;
+
+    @Autowired
+    private StatisticService statisticService;
+
+    @RequestMapping(value = "/testLoco", method = RequestMethod.GET)
     @ResponseBody
-    public void testAdd() {
-        
+    public void testLoco() throws ValidationException, DataAccessException {
+
         LocoEntity entity = new LocoEntity();
         entity.setIdLoco("99");
         entity.setTitleLoco("AH7809-LOCOC");
-        service.addLocomotive(entity);
+        locomotiveService.add(entity);
 
         LocoEntity entity1 = new LocoEntity();
         entity1.setIdLoco("100");
         entity1.setTitleLoco("A809-LOCOC12");
-        service.addLocomotive(entity1);
+        locomotiveService.add(entity1);
+
+        List<LocoEntity> list = locomotiveService.getAll();
+        LocoEntity locoEntity = locomotiveService.getById("100");
+        LocoEntity le = locomotiveService.getByTitle("AH7809-LOCOC");
+        String count = locomotiveService.getCount();
+        Integer i = 0;
     }
 
-    @RequestMapping(value = "/testGet", method = RequestMethod.GET)
+    @RequestMapping(value = "/testSensor", method = RequestMethod.GET)
     @ResponseBody
-    public List<LocoEntity> testGet() {
+    public void testSensor() throws DataAccessException, ValidationException {
 
-        List<LocoEntity> list = service.getAllLocomotives();
-        return list;
+        SensorEntity entity = new SensorEntity();
+        entity.setName("Termometr");
+        entity.setDescription("For temperature");
+        entity.setUnitOfMeasure("Celsius");
+
+        SensorEntity entity1 = new SensorEntity();
+        entity1.setName("Ampermetr");
+        entity1.setDescription("For tok");
+        entity1.setUnitOfMeasure("Amper");
+
+        sensorService.add(entity);
+        sensorService.add(entity1);
+        List<SensorEntity> list = sensorService.getAll();
+        SensorEntity sensorEntity = sensorService.getByName("Ampermetr");
+        String count = sensorService.getCount();
+        Integer i = 0;
+    }
+
+    @RequestMapping(value = "/testStat", method = RequestMethod.GET)
+    @ResponseBody
+    public void testStat() throws DataAccessException, ValidationException {
+        
+        List<LocoDataEntity> list = statisticService.getAll();
+        LocoDataEntity dataEntity = statisticService.getById("1");
+
+        LocoEntity entity = new LocoEntity();
+        entity.setIdLoco("L001dp");
+        entity.setTitleLoco("AH7809-LOCOC");
+        //locomotiveService.add(entity);
+        
+        List<LocoDataEntity> list1 = statisticService.getByLocomotive(entity);
+        
+        List<LocoDataEntity> list2 = statisticService.getAfter(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+        List<LocoDataEntity> list3 = statisticService.getBefore(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+        
+
+        String i = "";
+
     }
 
     public SeedStarterMngController() {

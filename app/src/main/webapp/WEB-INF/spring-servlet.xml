@@ -95,7 +95,7 @@
     
     <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath*:db_schema.sql"/>
-        <!--<jdbc:script location="file:///${project.basedir}/src/test/resources/init.sql"/>-->
+        <jdbc:script location="classpath*:db_test_data.sql"/>
     </jdbc:initialize-database>
         
     <!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -109,7 +109,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="locomotiveDao" class="com.locostatmanager.busines.dao.LocoDaoImpl">
+    <bean id="locomotiveDao" class="com.locostatmanager.busines.dao.LocomotiveDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
     
