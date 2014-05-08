@@ -57,48 +57,15 @@
             $('#temperDataTime1').data("DateTimePicker").setMaxDate(e.date);
         });
     });
-
-    $(function () {
-        $('#voltageDateTime1').datetimepicker({
-            language: 'ru'
-        });
-        $('#voltageDateTime2').datetimepicker({
-            language: 'ru'
-        });
-        $("#voltageDateTime1").on("dp.change", function (e) {
-            $('#voltageDateTime2').data("DateTimePicker").setMinDate(e.date);
-        });
-        $("#voltageDateTime2").on("dp.change", function (e) {
-            $('#voltageDateTime1').data("DateTimePicker").setMaxDate(e.date);
-        });
-    });
-
-    $(function () {
-        $('#amperageDateTime1').datetimepicker({
-            language: 'ru'
-        });
-        $('#amperageDateTime2').datetimepicker({
-            language: 'ru'
-        });
-        $("#amperageDateTime1").on("dp.change", function (e) {
-            $('#amperageDateTime2').data("DateTimePicker").setMinDate(e.date);
-        });
-        $("#amperageDateTime2").on("dp.change", function (e) {
-            $('#amperageDateTime1').data("DateTimePicker").setMaxDate(e.date);
-        });
-    });
-
-
-
 </script>
 
 <script type="text/javascript">
     $(function () {
-        $('.testChart').each(function(){
+        $('.testChart').each(function () {
             $(this).highcharts({
                 chart: {
                     type: 'spline',
-                    zoomType: 'x'
+                    zoomType: 'xy'
 
                 },
                 title: {
@@ -222,7 +189,8 @@
         $(function () {
             $('.testChart').highcharts({
                 chart: {
-                    type: 'spline'
+                    type: 'spline',
+                    zoomType: 'xy'
                 },
                 title: {
                     text: 'Snow depth at Vikjafjellet, Norway'
@@ -369,233 +337,233 @@
 
 <!--Панель датчиков-->
 <div class="row">
-    <div class="col-lg-6">
-        <div class="panel panel-primary" style="height: 200px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
-            </div>
-            <div class="panel-body">
+<div class="col-lg-6">
+    <div class="panel panel-primary" style="height: 200px">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
+        </div>
+        <div class="panel-body">
 
-                <div class="form-group">
-                    <div style="overflow-y: auto; height: 130px">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
+            <div class="form-group">
+                <div style="overflow-y: auto; height: 130px">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="col-lg-6">
-        <div class="panel panel-primary" style="height: 200px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
-            </div>
-            <div class="panel-body">
+<div class="col-lg-6">
+    <div class="panel panel-primary" style="height: 200px">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
+        </div>
+        <div class="panel-body">
 
-                <div class="form-group">
-                    <div style="overflow-y: auto; height: 130px">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
+            <div class="form-group">
+                <div style="overflow-y: auto; height: 130px">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="col-lg-6">
-        <div class="panel panel-primary" style="height: 200px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
-            </div>
-            <div class="panel-body">
+<div class="col-lg-6">
+    <div class="panel panel-primary" style="height: 200px">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
+        </div>
+        <div class="panel-body">
 
-                <div class="form-group">
-                    <div style="overflow-y: auto; height: 130px">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
+            <div class="form-group">
+                <div style="overflow-y: auto; height: 130px">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="col-lg-6">
-        <div class="panel panel-primary" style="height: 200px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
-            </div>
-            <div class="panel-body">
+<div class="col-lg-6">
+    <div class="panel panel-primary" style="height: 200px">
+        <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
+        </div>
+        <div class="panel-body">
 
-                <div class="form-group">
-                    <div style="overflow-y: auto; height: 130px">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
+            <div class="form-group">
+                <div style="overflow-y: auto; height: 130px">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Напряжение 1
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 <!-- /.row -->
@@ -612,14 +580,14 @@
 <!--Панель локомотивов и периода-->
 <div class="row">
     <div class="col-lg-6">
-        <div class="panel panel-primary" style="height: 200px">
+        <div class="panel panel-primary" style="height: 250px">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-bullhorn"></i> Локомотивы</h3>
             </div>
             <div class="panel-body">
 
                 <div class="form-group">
-                    <div style="overflow-y: auto; height: 130px">
+                    <div style="overflow-y: auto; height: 200px">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" value="">
@@ -667,148 +635,8 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Период </h3>
-        </div>
-        <div class="panel-body">
-            <div>
-                <div class="col-lg-12">
-                    <div class='col-lg-12'>
-                        <div class="form-group">
-                            <label for="temperDataTime1"> От: </label>
-
-                            <div class='input-group date datetimepicker1' id='temperDataTime1'>
-                                <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class='col-lg-12'>
-                        <div class="form-group">
-                            <label for="temperDataTime2"> До: </label>
-
-                            <div class='input-group date datetimepicker2' id='temperDataTime2'>
-                                <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <button class="btn btn-primary center-block" onclick="update()">Обновить график</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group center-block" style="max-width: 400px">
-            <label class="text-center center-block">Выбор локомотива</label>
-            <select class="form-control">
-                <option>Локомотив ЛК1</option>
-                <option>Локомотив ЛК2</option>
-                <option>Локомотив ЛК3</option>
-                <option>Локомотив ЛК4</option>
-                <option>Локомотив ЛК5</option>
-            </select>
-        </div>
-    </div>
-</div>
-<!-- /.row -->
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="well well-sm text-center">
-            <strong>Температура</strong>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-9">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Показатели температуры</h3>
-            </div>
-            <div class="panel-body">
-                <div class="testChart" style="max-width: 98%"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-lg-3">
-
-        <div class="panel panel-primary" style="height: 200px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики температуры</h3>
-            </div>
-            <div class="panel-body">
-
-                <div class="form-group">
-                    <div style="overflow-y: auto; height: 130px">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Температура буксы 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Температура буксы 2
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Температура буксы 2
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Температура буксы 2
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Температура буксы 2
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Температура буксы 2
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Температура воздуха на выходе
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-primary">
+    <div class="col-lg-6">
+        <div class="panel panel-primary" style="height: 250px">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Период </h3>
             </div>
@@ -844,22 +672,13 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <!-- /.row -->
 
-
+<!--График-->
 <div class="row">
     <div class="col-lg-12">
-        <div class="well well-sm text-center">
-            <strong>Напряжение</strong>
-        </div>
-    </div>
-</div>
-<!-- row -->
-<div class="row">
-    <div class="col-lg-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Показатели напряжения </h3>
@@ -869,224 +688,76 @@
             </div>
         </div>
     </div>
-
-    <div class="col-lg-3">
-
-        <div class="panel panel-primary" style="height: 200px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
-            </div>
-            <div class="panel-body">
-
-                <div class="form-group">
-                    <div style="overflow-y: auto; height: 130px">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Напряжение 1
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Период </h3>
-            </div>
-            <div class="panel-body">
-                <div>
-                    <div class="col-lg-12">
-                        <div class='col-lg-12'>
-                            <div class="form-group">
-                                <label for="voltageDateTime1"> От: </label>
-
-                                <div class='input-group date datetimepicker1' id='voltageDateTime1'>
-                                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class='col-lg-12'>
-                            <div class="form-group">
-                                <label for="voltageDateTime2"> До: </label>
-
-                                <div class='input-group date datetimepicker2' id='voltageDateTime2'>
-                                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <button class="btn btn-primary center-block" onclick="update()">Обновить график</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
-<!-- /.row -->
 
-
+<!--Таблица-->
 <div class="row">
     <div class="col-lg-12">
-        <div class="well well-sm text-center">
-            <strong>Сила тока</strong>
-        </div>
-    </div>
-</div>
-<!-- row -->
-<div class="row">
-    <div class="col-lg-9">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Показатели силы тока </h3>
+                <h3 class="panel-title"><i class="fa fa-table"></i> Подробная информация</h3>
             </div>
-            <div class="panel-body">
-                <div class="testChart" style="max-width: 98%"></div>
-            </div>
-        </div>
-    </div>
+            <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 500px">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped tablesorter">
+                        <thead>
+                        <tr>
+                            <th class="header headerSortDown">Order # <i class="fa fa-sort"></i></th>
+                            <th class="header">Order Date <i class="fa fa-sort"></i></th>
+                            <th class="header">Order Time <i class="fa fa-sort"></i></th>
+                            <th class="header">Amount (USD) <i class="fa fa-sort"></i></th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
-    <div class="col-lg-3">
 
-        <div class="panel panel-primary" style="height: 200px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики силы тока</h3>
-            </div>
-            <div class="panel-body">
-
-                <div class="form-group">
-                    <div style="overflow-y: auto; height: 130px">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Сила тока 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Сила тока 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Сила тока 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Сила тока 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Сила тока 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Сила тока 1
-                            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="">
-                                Сила тока 1
-                            </label>
-                        </div>
-                    </div>
+                        <tr>
+                            <td>3319</td>
+                            <td>10/21/2013</td>
+                            <td>2:13 PM</td>
+                            <td>$943.45</td>
+                        </tr><tr>
+                            <td>3320</td>
+                            <td>10/21/2013</td>
+                            <td>2:15 PM</td>
+                            <td>$5663.54</td>
+                        </tr><tr>
+                            <td>3321</td>
+                            <td>10/21/2013</td>
+                            <td>2:23 PM</td>
+                            <td>$245.12</td>
+                        </tr><tr>
+                            <td>3322</td>
+                            <td>10/21/2013</td>
+                            <td>2:49 PM</td>
+                            <td>$8345.23</td>
+                        </tr><tr>
+                            <td>3323</td>
+                            <td>10/21/2013</td>
+                            <td>3:00 PM</td>
+                            <td>$23.71</td>
+                        </tr><tr>
+                            <td>3324</td>
+                            <td>10/21/2013</td>
+                            <td>3:03 PM</td>
+                            <td>$724.17</td>
+                        </tr><tr>
+                            <td>3325</td>
+                            <td>10/21/2013</td>
+                            <td>3:20 PM</td>
+                            <td>$234.34</td>
+                        </tr><tr>
+                            <td>3326</td>
+                            <td>10/21/2013</td>
+                            <td>3:29 PM</td>
+                            <td>$321.33</td>
+                        </tr></tbody>
+                    </table>
                 </div>
             </div>
         </div>
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Период </h3>
-            </div>
-            <div class="panel-body">
-                <div>
-                    <div class="col-lg-12">
-                        <div class='col-lg-12'>
-                            <div class="form-group">
-                                <label for="amperageDateTime1"> От: </label>
-
-                                <div class='input-group date datetimepicker1' id='amperageDateTime1'>
-                                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class='col-lg-12'>
-                            <div class="form-group">
-                                <label for="amperageDateTime2"> До: </label>
-
-                                <div class='input-group date datetimepicker2' id='amperageDateTime2'>
-                                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <button class="btn btn-primary center-block" onclick="update()">Обновить график</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
-<!-- /.row -->
-
 
 
 </div>
