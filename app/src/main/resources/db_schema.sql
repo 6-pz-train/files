@@ -61,6 +61,7 @@ create table Sensor
    NAME                 char(50) not null,
    DESCRIPTION          varchar(1024),
    UNIT_OF_MEASURE      varchar(10),
+   UNIT_NAME            varchar(10),
    primary key (NAME)
 );
 

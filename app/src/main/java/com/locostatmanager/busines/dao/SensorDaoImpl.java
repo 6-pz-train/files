@@ -1,6 +1,7 @@
 package com.locostatmanager.busines.dao;
 
 import com.locostatmanager.busines.dao.entities.SensorEntity;
+import com.locostatmanager.busines.exceptions.DataAccessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,19 +15,40 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 public class SensorDaoImpl extends JdbcDaoSupport implements SensorDao {
 
     @Override
-    public void add(SensorEntity entity) {
-        getJdbcTemplate().update("INSERT INTO SENSOR (NAME, DESCRIPTION, UNIT_OF_MEASURE) VALUES (?,?,?)",
-                new Object[]{entity.getName(), entity.getDescription(), entity.getUnitOfMeasure()});
+    public void add(SensorEntity entity) throws DataAccessException {
+
+        try {
+            getJdbcTemplate().update("INSERT INTO SENSOR (NAME, DESCRIPTION, UNIT_OF_MEASURE) VALUES (?,?,?)",
+                    new Object[]{entity.getName(), entity.getDescription(), entity.getUnitOfMeasure()});
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
     }
 
     @Override
-    public List<SensorEntity> getAll() {
-        return getJdbcTemplate().query("SELECT * FROM SENSOR", new SensorRowMapper());
+    public List<SensorEntity> getAll() throws DataAccessException {
+        try {
+            return getJdbcTemplate().query("SELECT * FROM SENSOR", new SensorRowMapper());
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
     }
 
     @Override
-    public SensorEntity getByName(String name) {
-        return getJdbcTemplate().queryForObject("SELECT * FROM SENSOR WHERE NAME = ?", new Object[]{name}, new SensorRowMapper());
+    public SensorEntity getByName(String name) throws DataAccessException {
+        try {
+            return getJdbcTemplate().queryForObject("SELECT * FROM SENSOR WHERE NAME = ?", new Object[]{name}, new SensorRowMapper());
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+    }
+
+    public String getCount() throws DataAccessException {
+        try {
+            return getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM SENSOR", String.class);
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
     }
 
     private class SensorRowMapper implements RowMapper<SensorEntity> {

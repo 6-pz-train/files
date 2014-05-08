@@ -1,6 +1,7 @@
 package com.locostatmanager.busines.dao;
 
 import com.locostatmanager.busines.dao.entities.LocoEntity;
+import com.locostatmanager.busines.exceptions.DataAccessException;
 
 import java.util.List;
 
@@ -9,8 +10,9 @@ import java.util.List;
  */
 public interface LocomotiveDao {
 
-    void add (LocoEntity entity);
-    List<LocoEntity> getAll ();
-    LocoEntity getById (String id);
-    LocoEntity getByTitle (String title);
+    void add (LocoEntity entity) throws DataAccessException;
+    List<LocoEntity> getAll () throws DataAccessException;
+    LocoEntity getById (String id) throws DataAccessException;
+    LocoEntity getByTitle (String title) throws DataAccessException;
+    String getCount() throws DataAccessException;
 }
