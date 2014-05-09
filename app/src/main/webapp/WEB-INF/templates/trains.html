@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <title>Locomotive Statistics Manager</title>
 
@@ -10,9 +10,11 @@
 
     <!-- Add custom CSS here -->
     <link href="../../css/sb-admin.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css" th:href="@{/font-awesome/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css"
+          th:href="@{/font-awesome/css/font-awesome.min.css}"/>
     <!--Calendar-->
-    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.css}"/>
+    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet"
+          th:href="@{/css/bootstrap-datetimepicker.css}"/>
 
     <!-- JavaScript -->
     <!--<script type="text/javascript" src="../../js/jquery/1.8.2/jquery.min.js"></script>-->
@@ -46,223 +48,209 @@
 
 <div id="wrapper">
 
-<!-- Sidebar -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">Locomotive Statistics Manager</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav side-nav">
-            <li><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
-            <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a></li>
-            <li class="active"><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i> Керування локомотивами </a></li>
-            <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i> Завантаження даних </a></li>
-            <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про базу</a></li>
-            <li><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
-            <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right navbar-user">
-            <li class="dropdown user-dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Василь Пупкін
-                    <b
-                            class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i> Налаштування </a></li>
-                    <li class="divider"></li>
-                    <li><a href="login.html" th:href="@{logout.htm}"><i class="fa fa-power-off"></i> Вихід </a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-</nav>
-
-<div id="page-wrapper">
-
-    <div class="row">
-        <div class="col-lg-12">
-            <h1>Керування локомотивами
-                <small>Перегляд та керування таблицею Локомотиви</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li class="active"><a href="index.htm"><i class="fa fa-desktop"></i> Головна панель</a></li>
-                <li class="active"><i class="fa fa-bullhorn"></i> Керування локомотивами</li>
-            </ol>
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Locomotive Statistics Manager</a>
         </div>
-    </div>
-    <!-- /.row -->
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
+                <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a>
+                </li>
+                <li class="active"><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i>
+                    Керування локомотивами </a></li>
+                <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i>
+                    Завантаження даних </a></li>
+                <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
+                    базу</a></li>
+                <li><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
+                <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
+            </ul>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="well well-sm text-center">
-                <strong>Перегляд таблиці</strong>
+            <ul class="nav navbar-nav navbar-right navbar-user">
+                <li class="dropdown user-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Василь Пупкін
+                        <b
+                                class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i>
+                            Налаштування </a></li>
+                        <li class="divider"></li>
+                        <li><a href="login.html" th:href="@{logout.htm}"><i class="fa fa-power-off"></i> Вихід </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Керування локомотивами
+                    <small>Перегляд та керування таблицею Локомотиви</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li class="active"><a href="index.htm"><i class="fa fa-desktop"></i> Головна панель</a></li>
+                    <li class="active"><i class="fa fa-bullhorn"></i> Керування локомотивами</li>
+                </ol>
             </div>
         </div>
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-table"></i> Таблиця Локомотиви</h3>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="well well-sm text-center">
+                    <strong>Перегляд таблиці</strong>
                 </div>
-                <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 800px">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-striped tablesorter">
-                            <thead>
-                            <tr>
-                                <th class="header headerSortDown">№<i class="fa fa-sort"></i></th>
-                                <th class="header">Номер локомотива <i class="fa fa-sort"></i></th>
-                                <th class="header">Додаткова інформація<i class="fa fa-sort"></i></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>865 ЛК</td>
-                                <td>Текст описывающий локомотив (дополнительная информация)</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>154П ЛК</td>
-                                <td>Текст описывающий локомотив (дополнительная информация)</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>54 ЛК</td>
-                                <td>Текст описывающий локомотив (дополнительная информация)</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>887 ЛК</td>
-                                <td>Текст описывающий локомотив (дополнительная информация)</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>124У ЛК</td>
-                                <td>Текст описывающий локомотив (дополнительная информация)</td>
-                            </tr>
-                            </tbody>
-                        </table>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-table"></i> Таблиця Локомотиви</h3>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- /.row -->
-
-    <div class="row">
-
-        <div class="col-lg-6">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="well well-sm text-center">
-                        <strong>Додати локомотив</strong>
-                    </div>
-                </div>
-            </div>
-            <!--Форма добавления локомотива-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-plus"></i> Форма додавання локомотива</h3>
+                    <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 800px">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped tablesorter">
+                                <thead>
+                                <tr>
+                                    <th class="header headerSortDown">№<i class="fa fa-sort"></i></th>
+                                    <th class="header">Номер локомотива <i class="fa fa-sort"></i></th>
+                                    <th class="header">Додаткова інформація<i class="fa fa-sort"></i></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="item,iterStat : ${locomotives}">
+                                    <td th:text="${iterStat.count}">1</td>
+                                    <td th:text="${item.idLoco}">865 ЛК</td>
+                                    <td th:text="${item.titleLoco}">Текст описывающий локомотив (дополнительная
+                                        информация)
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="panel-body">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
 
-                            <form data-toggle="validator" role="form" class="form-group">
-                                <div class="form-group">
-                                    <label class="control-label" for="trainNumber">Номер локомотива</label>
+        <div class="row">
 
-                                    <div class="controls">
-                                        <input class="form-control" required type="text" maxlength="10"
-                                               id="trainNumber"/>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="well well-sm text-center">
+                            <strong>Додати локомотив</strong>
+                        </div>
+                    </div>
+                </div>
+                <!--Форма добавления локомотива-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-plus"></i> Форма додавання локомотива</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <form data-toggle="validator" role="form" class="form-group">
+                                    <div class="form-group">
+                                        <label class="control-label" for="trainNumber">Номер локомотива</label>
+
+                                        <div class="controls">
+                                            <input class="form-control" required="true" type="text" maxlength="10"
+                                                   id="trainNumber"/>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <label class="control-label" for="trainDescription">Додаткова інформація</label>
+                                    <div class="form-group">
+                                        <label class="control-label" for="trainDescription">Додаткова інформація</label>
 
-                                    <div class="controls">
-                                        <input class="form-control" type="text" id="trainDescription"/>
+                                        <div class="controls">
+                                            <input class="form-control" type="text" id="trainDescription"/>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary center-block" disabled="disabled">
-                                        Додати локомотив
-                                    </button>
-                                </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary center-block" disabled="disabled">
+                                            Додати локомотив
+                                        </button>
+                                    </div>
 
 
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="well well-sm text-center">
+                            <strong>Видалили локомотив</strong>
+                        </div>
+                    </div>
+                </div>
+                <!--Форма удаления локомотива-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-minus"></i> Форма видалення локомотива</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <form data-toggle="validator" role="form" class="form-group">
+                                    <div class="form-group">
+                                        <label>Номер локомотива</label>
+                                        <select class="form-control">
+                                            <options th:each="item : ${locomotives}">
+                                                <option th:text="${item.idLoco}">865 ЛК</option>
+                                            </options>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="confirmDelete">Для для підтвердження введіть "ВИДАЛИТИ"</label>
+                                        <input type="text" pattern="ВИДАЛИТИ" class="form-control" id="confirmDelete"
+                                               required="true"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary center-block" disabled="disabled">
+                                            Видалити локомотив
+                                        </button>
+                                    </div>
+
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-
-        <div class="col-lg-6">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="well well-sm text-center">
-                        <strong>Видалили локомотив</strong>
-                    </div>
-                </div>
-            </div>
-            <!--Форма удаления локомотива-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><i class="fa fa-minus"></i> Форма видалення локомотива</h3>
-                        </div>
-                        <div class="panel-body">
-
-                            <form data-toggle="validator" role="form" class="form-group">
-                                <div class="form-group">
-                                    <label>Номер локомотива</label>
-                                    <select class="form-control">
-                                        <option>865 ЛК</option>
-                                        <option>154П ЛК</option>
-                                        <option>54 ЛК</option>
-                                        <option>887 ЛК</option>
-                                        <option>124У ЛК</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                <label for="confirmDelete">Для для підтвердження введіть "ВИДАЛИТИ"</label>
-                                <input type="text" pattern="ВИДАЛИТИ" class="form-control" id="confirmDelete" required>
-                                </div>
-
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary center-block" disabled="disabled">
-                                        Видалити локомотив
-                                    </button>
-                                </div>
-
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- /.row -->
 
 
     </div>
-    <!-- /.row -->
-
-
-</div>
-<!-- /#page-wrapper -->
+    <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->

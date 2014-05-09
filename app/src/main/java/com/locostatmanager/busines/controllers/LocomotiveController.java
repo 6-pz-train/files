@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author dmitry
  */
 @Controller
-@RequestMapping(value = "/locomotives.htm")
+@RequestMapping(value = "/trains.htm")
 public class LocomotiveController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class LocomotiveController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getPage(Model model) {
-        return "locomotives";
+        return "trains";
     }
 
     @ModelAttribute("locomotives")
