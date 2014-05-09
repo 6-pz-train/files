@@ -51,6 +51,14 @@ public class SensorDaoImpl extends JdbcDaoSupport implements SensorDao {
         }
     }
 
+    public List<SensorEntity> getByUnitName(String unitName) throws DataAccessException {
+        try {
+            return getJdbcTemplate().query("SELECT * FROM SENSOR WHERE UNIT_NAME = ?",new Object[] {unitName}, new SensorRowMapper());
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+    }
+
     private class SensorRowMapper implements RowMapper<SensorEntity> {
 
         public SensorEntity mapRow(ResultSet rs, int i) throws SQLException {

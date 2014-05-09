@@ -21,6 +21,7 @@ public interface StatisticService {
     List<LocoDataEntity> getAfter(Timestamp date, LocoEntity entity) throws DataAccessException, ValidationException;
     List<LocoDataEntity> getBefore(Timestamp date, LocoEntity entity) throws DataAccessException, ValidationException;
     List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate, LocoEntity entity) throws DataAccessException, ValidationException;
+    List<LocoDataEntity> getBetween(String startDate, String endDate, String locomotiveId) throws DataAccessException, ValidationException;
     List<LocoDataEntity> getByLocomotive(LocoEntity entity) throws DataAccessException, ValidationException;
     LocoDataEntity getById(String id) throws DataAccessException, ValidationException;
 }

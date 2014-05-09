@@ -20,6 +20,7 @@ public interface DataDao {
     List<LocoDataEntity> getAfter(Timestamp date, LocoEntity entity) throws DataAccessException;
     List<LocoDataEntity> getBefore(Timestamp date, LocoEntity entity) throws DataAccessException;
     List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate, LocoEntity entity) throws DataAccessException;
+    List<LocoDataEntity> getBetween(String startDate, String endDate, String locomotiveId) throws DataAccessException;
     List<LocoDataEntity> getByLocomotive(LocoEntity entity) throws DataAccessException;
     LocoDataEntity getById(String id) throws DataAccessException;
 }

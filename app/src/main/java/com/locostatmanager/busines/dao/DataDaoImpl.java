@@ -228,6 +228,16 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
 
     }
 
+    public List<LocoDataEntity> getBetween(String startDate, String endDate, String locomotiveId) throws DataAccessException {
+        try {
+            return getJdbcTemplate().query("SELECT * FROM LOCO_DATA WHERE RECORD_TIME_LOCO_DATA > ? AND RECORD_TIME_LOCO_DATA < ? AND ID_LOCO = ?",
+                    new Object[]{startDate, endDate, locomotiveId},
+                    new LocoDataRowMapper());
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+    }
+
     private class LocoDataRowMapper implements RowMapper<LocoDataEntity> {
 
         public LocoDataEntity mapRow(ResultSet rs, int i) throws SQLException {

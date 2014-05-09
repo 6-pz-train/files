@@ -12,6 +12,7 @@ public interface SensorDao {
     
     void add(SensorEntity entity) throws DataAccessException;
     List<SensorEntity> getAll() throws DataAccessException;
+    List<SensorEntity> getByUnitName(String unitName) throws DataAccessException;
     SensorEntity getByName(String name) throws DataAccessException;
     String getCount() throws DataAccessException;
 }
