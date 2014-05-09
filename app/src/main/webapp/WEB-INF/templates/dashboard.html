@@ -41,6 +41,9 @@
 <script src="../../js/dialog/bootbox.js"></script>
 <script src="../../js/dialog/error.js"></script>
 
+<!--Validation form-->
+<script src="../../js/validation/validator.min.js"></script>
+
 
 <script type="text/javascript">
     $(function () {
@@ -278,31 +281,23 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li><a href="index.html"><i class="fa fa-dashboard"></i> Главная панель</a></li>
-            <li class="active"><a href="trainDashboard.html"><i class="fa fa-bullhorn"></i> Локомотив</a></li>
-            <li><a href="compareTrains.html"><i class="fa fa-edit"></i> Сравнение локомотивов</a></li>
-            <li><a href="blank-page.html"><i class="fa fa-download"></i> Обновление данных</a></li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-table"></i>
-                    Таблицы <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Локомотивы</a></li>
-                    <li><a href="#">Датчики</a></li>
-                </ul>
-            </li>
-            <li><a href="#"><i class="fa fa-hdd-o"></i> Информация о базе</a></li>
-            <li><a href="#"><i class="fa fa-info"></i> О программе</a></li>
+            <li><a href="index.html"><i class="fa fa-dashboard"></i> Головна панель </a></li>
+            <li class="active"><a href="dashboard.html"><i class="fa fa-bullhorn"></i> Статистика </a></li>
+            <li><a href="trains.html"><i class="fa fa-edit"></i> Керування локомотивами </a></li>
+            <li><a href="#"><i class="fa fa-download"></i> Завантаження даних </a></li>
+            <li><a href="#"><i class="fa fa-hdd-o"></i> Інформація про базу</a></li>
+            <li><a href="#"><i class="fa fa-hdd-o"></i> Користувачі </a></li>
+            <li><a href="#"><i class="fa fa-info"></i> Про програму </a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right navbar-user">
             <li class="dropdown user-dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Вася Пупкин <b
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Василь Пупкін <b
                         class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-user"></i> Профиль</a></li>
-                    <li><a href="#"><i class="fa fa-gear"></i> Настройки</a></li>
+                    <li><a href="#"><i class="fa fa-gear"></i> Налаштування </a></li>
                     <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-power-off"></i> Выход</a></li>
+                    <li><a href="#"><i class="fa fa-power-off"></i> Вихід </a></li>
                 </ul>
             </li>
         </ul>
@@ -315,10 +310,10 @@
 <div class="row">
     <div class="col-lg-12">
         <h1>Статистика
-            <small>Обзор статистики по локомотивам</small>
+            <small>Перегляд статистичних даних</small>
         </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i> Главная панель</a></li>
+            <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i> Головна панель</a></li>
             <li class="active"><i class="fa fa-bullhorn"></i> Статистика</li>
         </ol>
     </div>
@@ -329,7 +324,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="well well-sm text-center">
-            <strong>Выбор датчиков</strong>
+            <strong>Вибір датчиків</strong>
         </div>
     </div>
 </div>
@@ -340,7 +335,7 @@
 <div class="col-lg-6">
     <div class="panel panel-primary" style="height: 200px">
         <div class="panel-heading">
-            <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напряжения</h3>
+            <h3 class="panel-title"><i class="fa fa-dashboard"></i> Датчики напруги</h3>
         </div>
         <div class="panel-body">
 
@@ -571,7 +566,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="well well-sm text-center">
-            <strong>Выбор локомотивов и периода</strong>
+            <strong>Вибір локомотивів та періоду</strong>
         </div>
     </div>
 </div>
@@ -638,36 +633,40 @@
     <div class="col-lg-6">
         <div class="panel panel-primary" style="height: 250px">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Период </h3>
+                <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Період </h3>
             </div>
             <div class="panel-body">
                 <div>
                     <div class="col-lg-12">
-                        <div class='col-lg-12'>
-                            <div class="form-group">
-                                <label for="temperDataTime1"> От: </label>
+                        <form data-toggle="validator" role="form" id="formDate">
+                            <div class='col-lg-12'>
+                                <div class="form-group">
+                                    <label for="inputDate1"> Від: </label>
 
-                                <div class='input-group date datetimepicker1' id='temperDataTime1'>
-                                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    <div class='input-group date datetimepicker1' id='temperDataTime1'>
+                                        <input id="inputDate1" disabled pattern="\d{2}.\d{2}.\d{4} \d{2}:\d{2}" required type='text' class="form-control"/>
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
                     </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class='col-lg-12'>
-                            <div class="form-group">
-                                <label for="temperDataTime2"> До: </label>
+                            <div class='col-lg-12'>
+                                <div class="form-group">
+                                    <label for="inputDate2"> До: </label>
 
-                                <div class='input-group date datetimepicker2' id='temperDataTime2'>
-                                    <input type='text' class="form-control"/>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                                    <div class='input-group date datetimepicker2' id='temperDataTime2'>
+                                        <input id="inputDate2" disabled pattern="\d{2}.\d{2}.\d{4} \d{2}:\d{2}" required type='text' class="form-control"/>
+                                           <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <button class="btn btn-primary center-block" onclick="update()">Обновить график</button>
-                        </div>
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary center-block" onclick="update()">Оновити графік</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -681,7 +680,7 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Показатели напряжения </h3>
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Загальний графік </h3>
             </div>
             <div class="panel-body">
                 <div class="testChart" style="max-width: 98%"></div>
@@ -695,7 +694,7 @@
     <div class="col-lg-12">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-table"></i> Подробная информация</h3>
+                <h3 class="panel-title"><i class="fa fa-table"></i> Детальна інформація</h3>
             </div>
             <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 500px">
                 <div class="table-responsive">
@@ -716,42 +715,50 @@
                             <td>10/21/2013</td>
                             <td>2:13 PM</td>
                             <td>$943.45</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>3320</td>
                             <td>10/21/2013</td>
                             <td>2:15 PM</td>
                             <td>$5663.54</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>3321</td>
                             <td>10/21/2013</td>
                             <td>2:23 PM</td>
                             <td>$245.12</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>3322</td>
                             <td>10/21/2013</td>
                             <td>2:49 PM</td>
                             <td>$8345.23</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>3323</td>
                             <td>10/21/2013</td>
                             <td>3:00 PM</td>
                             <td>$23.71</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>3324</td>
                             <td>10/21/2013</td>
                             <td>3:03 PM</td>
                             <td>$724.17</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>3325</td>
                             <td>10/21/2013</td>
                             <td>3:20 PM</td>
                             <td>$234.34</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>3326</td>
                             <td>10/21/2013</td>
                             <td>3:29 PM</td>
                             <td>$321.33</td>
-                        </tr></tbody>
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
