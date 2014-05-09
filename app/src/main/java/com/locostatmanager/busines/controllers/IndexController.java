@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author dmitry
  */
 @Controller
-@RequestMapping(value = "/index.html")
+@RequestMapping(value = "/index.htm")
 public class IndexController {
 
     @Autowired
@@ -26,7 +26,7 @@ public class IndexController {
     private SensorService sensorService;
 
     public String getPage() {
-        return "index.html";
+        return "index.htm";
     }
 
     @ModelAttribute("locomotives")
