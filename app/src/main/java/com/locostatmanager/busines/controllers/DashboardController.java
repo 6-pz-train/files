@@ -6,20 +6,21 @@ import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
 import com.locostatmanager.busines.service.LocomotiveService;
 import com.locostatmanager.busines.service.SensorService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 /**
  *
  * @author dmitry
  */
 @Controller
-@RequestMapping(value = {"/", "index.htm"})
-public class IndexController {
+@RequestMapping(value = "/dashboard.htm")
+public class DashboardController {
 
     @Autowired
     private LocomotiveService locomotiveService;
@@ -28,7 +29,7 @@ public class IndexController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getPage() {
-        return "index";
+        return "dashboard";
     }
 
     @ModelAttribute("locomotives")

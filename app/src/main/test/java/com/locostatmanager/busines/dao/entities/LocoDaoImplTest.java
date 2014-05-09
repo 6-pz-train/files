@@ -1,6 +1,6 @@
 package com.locostatmanager.busines.dao.entities;
 
-import com.locostatmanager.busines.dao.LocoDao;
+import com.locostatmanager.busines.dao.SensorDao;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import javax.annotation.security.RunAs;
 import java.util.List;
 
 /**
@@ -22,10 +21,10 @@ import java.util.List;
 public class LocoDaoImplTest {
 
     @Autowired
-    LocoDao locoDao;
+    SensorDao sensorDao;
     @Test
     public void testAddSensor() throws Exception {
-        List<SensorEntity> allSensors = locoDao.getAllSensors();
+        List<SensorEntity> allSensors = sensorDao.getAll();
         System.out.println(allSensors);
     }
 

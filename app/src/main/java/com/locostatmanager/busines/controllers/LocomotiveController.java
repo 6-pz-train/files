@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author dmitry
  */
 @Controller
-@RequestMapping(value = "/locomotives.html")
+@RequestMapping(value = "/locomotives.htm")
 public class LocomotiveController {
 
     @Autowired
@@ -34,7 +34,7 @@ public class LocomotiveController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getPage(Model model) {
-        return "locomotives.html";
+        return "locomotives";
     }
 
     @ModelAttribute("locomotives")
@@ -42,24 +42,24 @@ public class LocomotiveController {
         return locomotiveService.getAll();
     }
 
-    @RequestMapping(value = "/data.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public List<LocoDataEntity> getLocodata(@RequestParam String sdate, @RequestParam String edate, @RequestParam String id) throws ParseException, DataAccessException, ValidationException {
+//    @RequestMapping(value = "/data.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public List<LocoDataEntity> getLocodata(@RequestParam String sdate, @RequestParam String edate, @RequestParam String id) throws ParseException, DataAccessException, ValidationException {
+//
+//        return statisticService.getBetween(sdate, edate, id);
+//    }
 
-        return statisticService.getBetween(sdate, edate, id);
-    }
+//    @RequestMapping(value = "/add", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public ResponseOK addLocomotive(@RequestParam String id, @RequestParam String title) throws ValidationException, DataAccessException {
+//        locomotiveService.add(id, title);
+//        return new ResponseOK();
+//    }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseOK addLocomotive(@RequestParam String id, @RequestParam String title) throws ValidationException, DataAccessException {
-        locomotiveService.add(id, title);
-        return new ResponseOK();
-    }
-
-    @RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseOK addLocomotive(@RequestParam String id) throws ValidationException, DataAccessException {
-        locomotiveService.delete(id);
-        return new ResponseOK();
-    }
+//    @RequestMapping(value = "/delete", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseBody
+//    public ResponseOK deleteLocomotive(@RequestParam String id) throws ValidationException, DataAccessException {
+//        locomotiveService.delete(id);
+//        return new ResponseOK();
+//    }
 }

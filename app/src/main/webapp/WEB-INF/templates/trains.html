@@ -1,50 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <title>Locomotive Statistics Manager</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../css/bootstrap.css" rel="stylesheet">
-
+    <link href="../../css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
 
     <!-- Add custom CSS here -->
-    <link href="../../css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css">
-    <!-- Page Specific CSS -->
+    <link href="../../css/sb-admin.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css" th:href="@{/font-awesome/css/font-awesome.min.css}"/>
     <!--Calendar-->
-    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.css}"/>
 
     <!-- JavaScript -->
     <!--<script type="text/javascript" src="../../js/jquery/1.8.2/jquery.min.js"></script>-->
-    <script src="../../js/jquery/1.10.2/jquery-1.10.2.js"></script>
-    <script src="../../js/bootstrap.js"></script>
+    <script src="../../js/jquery/1.10.2/jquery-1.10.2.js" th:src="@{/js/jquery/1.10.2/jquery-1.10.2.js}"></script>
+    <script src="../../js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
 
     <!--Calendar-->
-    <script src="../../js/moment.js"></script>
-    <script src="../../js/bootstrap-datetimepicker.js"></script>
-    <script src="../../js/bootstrap-datetimepicker.ru.js"></script>
+    <script src="../../js/moment.js" th:src="@{/js/moment.js}"></script>
+    <script src="../../js/bootstrap-datetimepicker.js" th:src="@{/js/bootstrap-datetimepicker.js}"></script>
+    <script src="../../js/bootstrap-datetimepicker.ru.js" th:src="@{/js/bootstrap-datetimepicker.ru.js}"></script>
 
 
-    <script src="../../js/chart/highcharts.js"></script>
-    <script src="../../js/chart/modules/exporting.js"></script>
-    <script src="../../js/chart/local_rus.js"></script>
+    <script src="../../js/chart/highcharts.js" th:src="@{/js/chart/highcharts.js}"></script>
+    <script src="../../js/chart/modules/exporting.js" th:src="@{/js/chart/modules/exporting.js}"></script>
+    <script src="../../js/chart/local_rus.js" th:src="@{/js/chart/local_rus.js}"></script>
 
     <!-- Page Specific Plugins -->
-    <script src="../../js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="../../js/tablesorter/tables.js"></script>
+    <script src="../../js/tablesorter/jquery.tablesorter.js" th:src="@{/js/tablesorter/jquery.tablesorter.js}"></script>
+    <script src="../../js/tablesorter/tables.js" th:src="@{/js/tablesorter/tables.js}"></script>
 
     <!--Dialogs-->
-    <script src="../../js/dialog/bootbox.js"></script>
-    <script src="../../js/dialog/error.js"></script>
+    <script src="../../js/dialog/bootbox.js" th:src="@{/js/dialog/bootbox.js}"></script>
+    <script src="../../js/dialog/error.js" th:src="@{/js/dialog/error.js}"></script>
 
     <!--Validation form-->
-    <script src="../../js/validation/validator.min.js"></script>
-
+    <script src="../../js/validation/validator.min.js" th:src="@{/js/validation/validator.min.js}"></script>
 
 </head>
 
@@ -62,23 +56,24 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li><a href="index.html"><i class="fa fa-dashboard"></i> Головна панель </a></li>
-            <li><a href="dashboard.html"><i class="fa fa-bullhorn"></i> Статистика </a></li>
-            <li class="active"><a href="trains.html"><i class="fa fa-edit"></i> Керування локомотивами </a></li>
-            <li><a href="#"><i class="fa fa-download"></i> Завантаження даних </a></li>
-            <li><a href="#"><i class="fa fa-hdd-o"></i> Інформація про базу</a></li>
-            <li><a href="#"><i class="fa fa-hdd-o"></i> Користувачі </a></li>
-            <li><a href="#"><i class="fa fa-info"></i> Про програму </a></li>
+            <li><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
+            <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a></li>
+            <li class="active"><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i> Керування локомотивами </a></li>
+            <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i> Завантаження даних </a></li>
+            <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про базу</a></li>
+            <li><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
+            <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right navbar-user">
             <li class="dropdown user-dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Василь Пупкін <b
-                        class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Василь Пупкін
+                    <b
+                            class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#"><i class="fa fa-gear"></i> Налаштування </a></li>
+                    <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i> Налаштування </a></li>
                     <li class="divider"></li>
-                    <li><a href="#"><i class="fa fa-power-off"></i> Вихід </a></li>
+                    <li><a href="login.html" th:href="@{logout.htm}"><i class="fa fa-power-off"></i> Вихід </a></li>
                 </ul>
             </li>
         </ul>
@@ -94,7 +89,7 @@
                 <small>Перегляд та керування таблицею Локомотиви</small>
             </h1>
             <ol class="breadcrumb">
-                <li class="active"><a href="index.html"><i class="fa fa-dashboard"></i> Головна панель</a></li>
+                <li class="active"><a href="index.htm"><i class="fa fa-desktop"></i> Головна панель</a></li>
                 <li class="active"><i class="fa fa-bullhorn"></i> Керування локомотивами</li>
             </ol>
         </div>

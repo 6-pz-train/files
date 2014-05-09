@@ -10,13 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
  * @author dmitry
  */
 @Controller
-@RequestMapping(value = "/db_info.html")
+@RequestMapping(value = "/dataBaseInfo.htm")
 public class DdInfoController {
 
     @Autowired
@@ -26,8 +27,9 @@ public class DdInfoController {
     @Autowired
     private SensorService sensorService;
 
+    @RequestMapping(method = RequestMethod.GET)
     public String getPage(Model model) {
-        return "db_info";
+        return "dataBaseInfo";
     }
 
     @ModelAttribute("locosCount")
