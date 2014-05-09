@@ -63,6 +63,14 @@ public class LocomotiveDaoImpl extends JdbcDaoSupport implements LocomotiveDao {
         }
     }
 
+    public void delete(String id) throws DataAccessException {
+        try {
+            getJdbcTemplate().update("DELETE FROM LOCO WHERE ID_LOCO = ?", new Object[]{id});
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+    }
+
     private class LocoRowMapper implements RowMapper<LocoEntity> {
 
         public LocoEntity mapRow(ResultSet rs, int i) throws SQLException {

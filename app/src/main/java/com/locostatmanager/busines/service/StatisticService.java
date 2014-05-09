@@ -24,4 +24,5 @@ public interface StatisticService {
     List<LocoDataEntity> getBetween(String startDate, String endDate, String locomotiveId) throws DataAccessException, ValidationException;
     List<LocoDataEntity> getByLocomotive(LocoEntity entity) throws DataAccessException, ValidationException;
     LocoDataEntity getById(String id) throws DataAccessException, ValidationException;
+    String getCount() throws DataAccessException, ValidationException;
 }

@@ -8,7 +8,6 @@ import com.locostatmanager.busines.exceptions.ValidationException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -98,5 +97,9 @@ public class StatisticServiceImpl implements StatisticService {
             throw new ValidationException(new Exception("not valid locomotive id"));
         }
         return dataDao.getBetween(startDate, endDate, locomotiveId);
+    }
+
+    public String getCount() throws DataAccessException, ValidationException {
+       return dataDao.getCount();
     }
 }

@@ -14,34 +14,33 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author dmitry
  */
-
 @Service
 public class LocomotiveServiceImpl implements LocomotiveService {
-    
+
     @Autowired
     private LocomotiveDao locomotiveDao;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void add(LocoEntity entity) throws ValidationException, DataAccessException {
-      
-            locomotiveDao.add(entity);
+
+        locomotiveDao.add(entity);
     }
 
     @Transactional
     public List<LocoEntity> getAll() throws ValidationException, DataAccessException {
-        
+
         return locomotiveDao.getAll();
     }
 
     @Transactional
     public LocoEntity getById(String id) throws ValidationException, DataAccessException {
-        
+
         return locomotiveDao.getById(id);
     }
 
     @Transactional
     public LocoEntity getByTitle(String title) throws ValidationException, DataAccessException {
-        
+
         return locomotiveDao.getByTitle(title);
     }
 
@@ -49,5 +48,27 @@ public class LocomotiveServiceImpl implements LocomotiveService {
     public String getCount() throws ValidationException, DataAccessException {
         return locomotiveDao.getCount();
     }
-    
+
+    @Transactional
+    public void add(String id, String title) throws ValidationException, DataAccessException {
+
+        if (null == id || "".equals(id)) {
+            throw new ValidationException("incorrect id");
+        } else if (null == title || "".equals(title)) {
+            throw new ValidationException("incorrect title");
+        }
+
+        LocoEntity entity = new LocoEntity();
+        entity.setIdLoco(id);
+        entity.setTitleLoco(title);
+        locomotiveDao.add(entity);
+    }
+
+    public void delete(String id) throws ValidationException, DataAccessException {
+
+        if (null == id || "".equals(id)) {
+            throw new ValidationException("incorrect id");
+        }
+        locomotiveDao.delete(id);
+    }
 }

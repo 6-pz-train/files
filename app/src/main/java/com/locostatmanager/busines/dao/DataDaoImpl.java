@@ -238,6 +238,14 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
         }
     }
 
+    public String getCount() throws DataAccessException {
+        try {
+            return getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM LOCO_DATA", String.class);
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+    }
+
     private class LocoDataRowMapper implements RowMapper<LocoDataEntity> {
 
         public LocoDataEntity mapRow(ResultSet rs, int i) throws SQLException {

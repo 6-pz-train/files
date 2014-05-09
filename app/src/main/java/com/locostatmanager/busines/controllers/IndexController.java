@@ -9,6 +9,7 @@ import com.locostatmanager.busines.service.SensorService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,7 +26,7 @@ public class IndexController {
     @Autowired
     private SensorService sensorService;
 
-    public String getPage() {
+    public String getPage(Model model) {
         return "index.htm";
     }
 
