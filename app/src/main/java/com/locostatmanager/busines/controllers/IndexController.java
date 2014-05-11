@@ -1,14 +1,17 @@
 package com.locostatmanager.busines.controllers;
 
-import com.locostatmanager.busines.dao.entities.LocoEntity;
-import com.locostatmanager.busines.dao.entities.SensorEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
+import com.locostatmanager.busines.message.LocomotiveStatistic;
 import com.locostatmanager.busines.service.LocomotiveService;
 import com.locostatmanager.busines.service.SensorService;
+import com.locostatmanager.busines.service.StatisticService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,35 +28,47 @@ public class IndexController {
     private LocomotiveService locomotiveService;
     @Autowired
     private SensorService sensorService;
+    @Autowired
+    private StatisticService statisticService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getPage() {
+    public String getPage(Model model) {
         return "index";
     }
 
-    @ModelAttribute("locomotives")
-    public List<LocoEntity> getLocomotives() throws ValidationException, DataAccessException {
-        return locomotiveService.getAll();
+    @ModelAttribute("sensorCount")
+    public String getSensorCount() throws ValidationException, DataAccessException {
+
+        return sensorService.getCount();
     }
 
-    @ModelAttribute("osnov")
-    public List<SensorEntity> getOsnov() throws DataAccessException, ValidationException {
-        return sensorService.getOsnovn();
+    @ModelAttribute("locoCount")
+    public String getLocoCount() throws ValidationException, DataAccessException {
+
+        return locomotiveService.getCount();
     }
 
-    @ModelAttribute("buks")
-    public List<SensorEntity> getBuks() throws DataAccessException, ValidationException {
-        return sensorService.getBuks();
+    @ModelAttribute("lustUpdate")
+    public String getLustUpdate() throws ValidationException, DataAccessException {
+
+        return new SimpleDateFormat("dd.MM.yyyy").format(new Date());
     }
 
-    @ModelAttribute("ptres")
-    public List<SensorEntity> getPTres() throws DataAccessException, ValidationException {
-        return sensorService.getPTres();
+    @ModelAttribute("dbSize")
+    public String getDbSize() throws ValidationException, DataAccessException {
+
+        return "176.7MB";
     }
 
-    @ModelAttribute("tdvig")
-    public List<SensorEntity> getTDvig() throws DataAccessException, ValidationException {
-        return sensorService.getTDvig();
+    @ModelAttribute("locoRatio")
+    public List<LocomotiveStatistic> getLocoRatio() throws ValidationException, DataAccessException {
+
+        return statisticService.getLocomotivesRatio();
     }
 
+    @ModelAttribute("locoPercentage")
+    public List<LocomotiveStatistic> getLocoPercentage() throws ValidationException, DataAccessException {
+
+        return statisticService.getLocomotivesPercentage();
+    }
 }

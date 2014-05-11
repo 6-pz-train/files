@@ -5,9 +5,11 @@ import com.locostatmanager.busines.dao.entities.LocoDataEntity;
 import com.locostatmanager.busines.dao.entities.LocoEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
+import com.locostatmanager.busines.message.LocomotiveStatistic;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,8 @@ public class StatisticServiceImpl implements StatisticService {
 
     @Autowired
     private DataDao dataDao;
+    @Autowired
+    private LocomotiveService locomotiveService;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void add(LocoDataEntity entity) throws DataAccessException, ValidationException {
@@ -84,7 +88,7 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     public List<LocoDataEntity> getBetween(String startDate, String endDate, String locomotiveId) throws DataAccessException, ValidationException {
-        
+
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
             dateFormat.parse(startDate);
@@ -92,7 +96,7 @@ public class StatisticServiceImpl implements StatisticService {
         } catch (ParseException e) {
             throw new ValidationException(e);
         }
-        
+
         if (null == locomotiveId || "".equals(locomotiveId)) {
             throw new ValidationException(new Exception("not valid locomotive id"));
         }
@@ -100,6 +104,37 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     public String getCount() throws DataAccessException, ValidationException {
-       return dataDao.getCount();
+        return dataDao.getCount();
+    }
+
+    @Transactional
+    public List<LocomotiveStatistic> getLocomotivesRatio() throws ValidationException, DataAccessException {
+
+        List<LocomotiveStatistic> statistics = new ArrayList<LocomotiveStatistic>();
+        List<LocoEntity> list = locomotiveService.getAll();
+
+        for (LocoEntity entity : list) {
+            LocomotiveStatistic ls = new LocomotiveStatistic();
+            ls.setLocoName(entity.getTitleLoco());
+            ls.setLocoPortion(dataDao.getRecordsCount(entity.getIdLoco()));
+            statistics.add(ls);
+        }
+        return statistics;
+    }
+
+    @Transactional
+    public List<LocomotiveStatistic> getLocomotivesPercentage() throws ValidationException, DataAccessException {
+
+        List<LocomotiveStatistic> statistics = new ArrayList<LocomotiveStatistic>();
+        List<LocoEntity> list = locomotiveService.getAll();
+        Integer recordsCount = new Integer(dataDao.getCount()) / 100;
+
+        for (LocoEntity entity : list) {
+            LocomotiveStatistic ls = new LocomotiveStatistic();
+            ls.setLocoName(entity.getTitleLoco());
+            ls.setLocoPortion(String.valueOf(recordsCount * new Integer(dataDao.getRecordsCount(entity.getIdLoco()))));
+            statistics.add(ls);
+        }
+        return statistics;
     }
 }

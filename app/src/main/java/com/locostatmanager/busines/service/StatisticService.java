@@ -4,6 +4,7 @@ import com.locostatmanager.busines.dao.entities.LocoDataEntity;
 import com.locostatmanager.busines.dao.entities.LocoEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
+import com.locostatmanager.busines.message.LocomotiveStatistic;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface StatisticService {
     List<LocoDataEntity> getByLocomotive(LocoEntity entity) throws DataAccessException, ValidationException;
     LocoDataEntity getById(String id) throws DataAccessException, ValidationException;
     String getCount() throws DataAccessException, ValidationException;
+    List<LocomotiveStatistic> getLocomotivesRatio() throws DataAccessException, ValidationException;
+    List<LocomotiveStatistic> getLocomotivesPercentage() throws DataAccessException, ValidationException;
 }

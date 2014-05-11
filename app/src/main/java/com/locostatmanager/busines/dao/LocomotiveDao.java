@@ -10,10 +10,10 @@ import java.util.List;
  */
 public interface LocomotiveDao {
 
-    void add (LocoEntity entity) throws DataAccessException;
+    void add(LocoEntity entity) throws DataAccessException;
     void delete(String id) throws DataAccessException;
-    List<LocoEntity> getAll () throws DataAccessException;
-    LocoEntity getById (String id) throws DataAccessException;
-    LocoEntity getByTitle (String title) throws DataAccessException;
+    List<LocoEntity> getAll() throws DataAccessException;
+    LocoEntity getById(String id) throws DataAccessException;
+    LocoEntity getByTitle(String title) throws DataAccessException;
     String getCount() throws DataAccessException;
 }

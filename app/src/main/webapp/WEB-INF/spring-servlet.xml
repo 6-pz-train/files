@@ -16,7 +16,6 @@
                            http://www.springframework.org/schema/context/spring-context-3.0.xsd
                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-
     <!-- **************************************************************** -->
     <!--  RESOURCE FOLDERS CONFIGURATION                                  -->
     <!--  Dispatcher configuration for serving static resources           -->
@@ -27,8 +26,6 @@
     <mvc:resources location="/font-awesome/" mapping="/font-awesome/**"/>
     <mvc:resources location="/fonts/" mapping="/fonts/**"/>
 
-
-
     <!-- **************************************************************** -->
     <!--  SPRING ANNOTATION PROCESSING                                    -->
     <!-- **************************************************************** -->
@@ -37,8 +34,6 @@
     <context:component-scan base-package="com.locostatmanager"/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-
-
     <!-- **************************************************************** -->
     <!--  MESSAGE EXTERNALIZATION/INTERNATIONALIZATION                    -->
     <!--  Standard Spring MessageSource implementation                    -->
@@ -46,8 +41,6 @@
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="Messages"/>
     </bean>
-
-
 
     <!-- **************************************************************** -->
     <!--  THYMELEAF-SPECIFIC ARTIFACTS                                    -->
@@ -78,7 +71,7 @@
     <!--                                                                  -->
     <!-- **************************************************************** -->
     <bean id="jacksonMessageConverter"
-      class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
+          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"/>
 
     <!-- **************************************************************** -->
     <!--  DATA SOURCE                                                     -->
@@ -95,18 +88,19 @@
         <jdbc:script location="classpath*:db_schema.sql"/>
         <jdbc:script location="classpath*:db_test_data.sql"/>
     </jdbc:initialize-database>
-        
-    <!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>-->
     
+    <!-- **************************************************************** -->
+    <!--  TRANSACTION MANAGER                                             -->
+    <!--  FOR HQL DATABASE                                                -->
+    <!-- **************************************************************** -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <!-- **************************************************************** -->
+    <!--  Data Object Access classes                                      -->
+    <!--  Injecting datasourc                                             -->
+    <!-- **************************************************************** -->
     <bean id="locomotiveDao" class="com.locostatmanager.busines.dao.LocomotiveDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -118,7 +112,40 @@
     <bean id="dataDao" class="com.locostatmanager.busines.dao.DataDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
+    
+    <!-- **************************************************************** -->
+    <!--  SPRING QUARTZ CONFIGURATION                                     -->
+    <!--  FOR LOAD LOCOMOTIVES DATA                                       -->
+    <!-- **************************************************************** -->
+    <bean id="loadDataTask" 
+          class="com.locostatmanager.busines.scheduler.LoadDataTask">
+    </bean>    
+    <bean name="loadDataJob"
+          class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="com.locostatmanager.busines.scheduler.LoadDataJob"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="loadDataTask" value-ref="loadDataTask" />
+            </map>
+        </property>
+    </bean>
+    <bean id="cronTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="loadDataJob" />
+        <property name="cronExpression" value="0/5 * * * * ?" />
+    </bean>
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="triggers">  
+            <list>  
+                <ref bean="cronTrigger" />  
+            </list>  
+        </property>  
+    </bean>
+    
+    <!-- **************************************************************** -->
+    <!--  Path to property                                                -->
+    <!--                                                                  -->
+    <!-- **************************************************************** -->
     <context:property-placeholder location="classpath*:jdbc.properties"/>
 
 </beans>

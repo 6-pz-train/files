@@ -238,6 +238,14 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
         }
     }
 
+    public String getRecordsCount(String LocoId) throws DataAccessException {
+        try {
+            return getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM LOCO_DATA WHERE ID_LOCO = ?", String.class, new Object[]{LocoId});
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+    }
+
     public String getCount() throws DataAccessException {
         try {
             return getJdbcTemplate().queryForObject("SELECT COUNT(*) FROM LOCO_DATA", String.class);

@@ -24,4 +24,5 @@ public interface DataDao {
     List<LocoDataEntity> getByLocomotive(LocoEntity entity) throws DataAccessException;
     LocoDataEntity getById(String id) throws DataAccessException;
     String getCount() throws DataAccessException;
+    String getRecordsCount(String LocoId) throws DataAccessException;
 }

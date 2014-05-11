@@ -18,5 +18,4 @@ public interface LocomotiveService {
     LocoEntity getById(String id) throws ValidationException, DataAccessException;
     LocoEntity getByTitle(String title) throws ValidationException, DataAccessException;
     String getCount() throws ValidationException, DataAccessException;
-    
 }
