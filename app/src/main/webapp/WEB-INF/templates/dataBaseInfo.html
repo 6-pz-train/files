@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <title>Locomotive Statistics Manager</title>
 
@@ -10,9 +10,11 @@
 
     <!-- Add custom CSS here -->
     <link href="../../css/sb-admin.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css" th:href="@{/font-awesome/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css"
+          th:href="@{/font-awesome/css/font-awesome.min.css}"/>
     <!--Calendar-->
-    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.css}"/>
+    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet"
+          th:href="@{/css/bootstrap-datetimepicker.css}"/>
 
     <!-- JavaScript -->
     <!--<script type="text/javascript" src="../../js/jquery/1.8.2/jquery.min.js"></script>-->
@@ -46,21 +48,32 @@
 
 <div id="wrapper">
 
-<!-- Sidebar -->
+    <!-- Sidebar -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">Locomotive Statistics Manager</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" th:href="@{index.htm}">Locomotive Statistics Manager</a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
-                <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a></li>
-                <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i> Керування локомотивами </a></li>
-                <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i> Завантаження даних </a></li>
-                <li class="active"><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про базу</a></li>
+                <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a>
+                </li>
+                <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i> Керування локомотивами
+                </a></li>
+                <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i>
+                    Завантаження даних </a></li>
+                <li class="active"><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i>
+                    Інформація про базу</a></li>
                 <li><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
                 <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
             </ul>
@@ -71,7 +84,8 @@
                         <b
                                 class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i> Налаштування </a></li>
+                        <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i>
+                            Налаштування </a></li>
                         <li class="divider"></li>
                         <li><a href="login.html" th:href="@{logout.htm}"><i class="fa fa-power-off"></i> Вихід </a></li>
                     </ul>
@@ -81,69 +95,69 @@
         <!-- /.navbar-collapse -->
     </nav>
 
-<div id="page-wrapper">
+    <div id="page-wrapper">
 
-    <div class="row">
-        <div class="col-lg-12">
-            <h1>Інформація про базу
-                <small>Перегляд інформації про базу даних</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li class="active"><a href="index.htm"><i class="fa fa-desktop"></i> Головна панель</a></li>
-                <li class="active"><i class="fa fa-hdd-o"></i> Інформація про базу</li>
-            </ol>
-        </div>
-    </div>
-    <!-- /.row -->
-
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="well well-sm text-center">
-                <strong>Інформація</strong>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Інформація про базу
+                    <small>Перегляд інформації про базу даних</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li class="active"><a href="index.htm"><i class="fa fa-desktop"></i> Головна панель</a></li>
+                    <li class="active"><i class="fa fa-hdd-o"></i> Інформація про базу</li>
+                </ol>
             </div>
         </div>
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-table"></i> Загальна інформація про таблиці</h3>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="well well-sm text-center">
+                    <strong>Інформація</strong>
                 </div>
-                <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 800px">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-striped tablesorter">
-                            <tbody>
-                            <tr>
-                                <td>Розмір бази даних</td>
-                                <td th:text="${dbSize}">15 МБ</td>
-                            </tr>
-                            <tr>
-                                <td>Кількість записів у таблиці Локомотиви</td>
-                                <td th:text="${locosCount}">5</td>
-                            </tr>
-                            <tr>
-                                <td>Кількість записів у таблиці Датчики</td>
-                                <td th:text="${sensorsCount}">48</td>
-                            </tr>
-                            <tr>
-                                <td>Кількість записів у таблиці Інформація про локомотив</td>
-                                <td th:text="${statCount}">1524</td>
-                            </tr>
-                            </tbody>
-                        </table>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-table"></i> Загальна інформація про таблиці</h3>
+                    </div>
+                    <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 800px">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped tablesorter">
+                                <tbody>
+                                <tr>
+                                    <td>Розмір бази даних</td>
+                                    <td th:text="${dbSize}">15 МБ</td>
+                                </tr>
+                                <tr>
+                                    <td>Кількість записів у таблиці Локомотиви</td>
+                                    <td th:text="${locosCount}">5</td>
+                                </tr>
+                                <tr>
+                                    <td>Кількість записів у таблиці Датчики</td>
+                                    <td th:text="${sensorsCount}">48</td>
+                                </tr>
+                                <tr>
+                                    <td>Кількість записів у таблиці Інформація про локомотив</td>
+                                    <td th:text="${statCount}">1524</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- /.row -->
+
+
     </div>
-    <!-- /.row -->
-
-
-</div>
-<!-- /#page-wrapper -->
+    <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->

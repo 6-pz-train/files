@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <title>Locomotive Statistics Manager</title>
 
@@ -10,9 +10,11 @@
 
     <!-- Add custom CSS here -->
     <link href="../../css/sb-admin.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css" th:href="@{/font-awesome/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css"
+          th:href="@{/font-awesome/css/font-awesome.min.css}"/>
     <!--Calendar-->
-    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.css}"/>
+    <link href="../../css/bootstrap-datetimepicker.css" rel="stylesheet"
+          th:href="@{/css/bootstrap-datetimepicker.css}"/>
 
     <!-- JavaScript -->
     <!--<script type="text/javascript" src="../../js/jquery/1.8.2/jquery.min.js"></script>-->
@@ -154,211 +156,222 @@
 
 <div id="wrapper">
 
-    <!-- Sidebar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">Locomotive Statistics Manager</a>
-        </div>
+<!-- Sidebar -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-            <ul class="nav navbar-nav side-nav">
-                <li class="active"><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
-                <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a></li>
-                <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i> Керування локомотивами </a></li>
-                <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i> Завантаження даних </a></li>
-                <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про базу</a></li>
-                <li><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
-                <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
-            </ul>
-
-            <ul class="nav navbar-nav navbar-right navbar-user">
-                <li class="dropdown user-dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Василь Пупкін
-                        <b
-                                class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i> Налаштування </a></li>
-                        <li class="divider"></li>
-                        <li><a href="login.html" th:href="@{logout.htm}"><i class="fa fa-power-off"></i> Вихід </a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </nav>
-
-    <div id="page-wrapper">
-
-        <div class="row">
-            <div class="col-lg-12">
-                <h1>Головна панель
-                    <small>Загальна інформація</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li class="active"><i class="fa fa-desktop"></i> Головна панель</li>
-                </ol>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="panel panel-warning">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <i class="fa fa-dashboard fa-5x"></i>
-                            </div>
-                            <div class="col-xs-6 text-right" style="min-height: 70px;">
-                                <p class="announcement-heading">48</p>
-
-                                <p class="announcement-text">Датчики</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="dashboard.html" th:href="@{dashboard.htm}">
-                        <div class="panel-footer announcement-bottom">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    Перейти
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-
-
-            </div>
-            <div class="col-lg-3">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <i class="fa fa-bullhorn fa-5x"></i>
-                            </div>
-                            <div class="col-xs-6 text-right" style="min-height: 70px;">
-                                <p class="announcement-heading">15</p>
-
-                                <p class="announcement-text">Локомотиви</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="trains.html" th:href="@{trains.htm}">
-                        <div class="panel-footer announcement-bottom">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    Перейти
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <i class="fa fa-download fa-5x"></i>
-                            </div>
-                            <div class="col-xs-6 text-right" style="min-height: 70px;">
-                                <p style="font-size: x-large" class="announcement-heading">09.05.2014</p>
-
-                                <p class="announcement-text">Завантаження</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="downloadData.html" th:href="@{downloadData.htm}">
-                        <div class="panel-footer announcement-bottom">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    Перейти
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <i class="fa fa-hdd-o fa-5x"></i>
-                            </div>
-                            <div class="col-xs-6 text-right" style="min-height: 70px;">
-                                <p class="announcement-heading">15 MB</p>
-
-                                <p class="announcement-text">Розмір бази</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}">
-                        <div class="panel-footer announcement-bottom">
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    Перейти
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Кількість записів</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="barStatistics" style="max-width: 98%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Кількість записів у відсотках</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="pieStatistics" style="max-width: 98%"></div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        <!-- /.row -->
-
-        <!--<div class="row">-->
-            <!--<div class="col-lg-12">-->
-                <!--<div class="panel panel-body">-->
-                    <!--<button class="btn btn-primary center-block" onclick="showErrorDialogTest()">Пример ошибки</button>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!-- /.row -->
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html" th:href="@{index.htm}">Locomotive Statistics Manager</a>
     </div>
-    <!-- /#page-wrapper -->
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li class="active"><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель
+            </a></li>
+            <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a></li>
+            <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i> Керування локомотивами </a>
+            </li>
+            <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i> Завантаження
+                даних </a></li>
+            <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
+                базу</a></li>
+            <li><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
+            <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right navbar-user">
+            <li class="dropdown user-dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Василь Пупкін
+                    <b
+                            class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i>
+                        Налаштування </a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html" th:href="@{logout.htm}"><i class="fa fa-power-off"></i> Вихід </a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>
+
+<div id="page-wrapper">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Головна панель
+                <small>Загальна інформація</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active"><i class="fa fa-desktop"></i> Головна панель</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <i class="fa fa-dashboard fa-5x"></i>
+                        </div>
+                        <div class="col-xs-6 text-right" style="min-height: 70px;">
+                            <p class="announcement-heading">48</p>
+
+                            <p class="announcement-text">Датчики</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="dashboard.html" th:href="@{dashboard.htm}">
+                    <div class="panel-footer announcement-bottom">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Перейти
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <i class="fa fa-bullhorn fa-5x"></i>
+                        </div>
+                        <div class="col-xs-6 text-right" style="min-height: 70px;">
+                            <p class="announcement-heading">15</p>
+
+                            <p class="announcement-text">Локомотиви</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="trains.html" th:href="@{trains.htm}">
+                    <div class="panel-footer announcement-bottom">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Перейти
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <i class="fa fa-download fa-5x"></i>
+                        </div>
+                        <div class="col-xs-6 text-right" style="min-height: 70px;">
+                            <p style="font-size: x-large" class="announcement-heading">09.05.2014</p>
+
+                            <p class="announcement-text">Завантаження</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="downloadData.html" th:href="@{downloadData.htm}">
+                    <div class="panel-footer announcement-bottom">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Перейти
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <i class="fa fa-hdd-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-6 text-right" style="min-height: 70px;">
+                            <p class="announcement-heading">15 MB</p>
+
+                            <p class="announcement-text">Розмір бази</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}">
+                    <div class="panel-footer announcement-bottom">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Перейти
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <i class="fa fa-arrow-circle-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Кількість записів</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="barStatistics" style="max-width: 98%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Кількість записів у відсотках</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="pieStatistics" style="max-width: 98%"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /.row -->
+
+    <!--<div class="row">-->
+    <!--<div class="col-lg-12">-->
+    <!--<div class="panel panel-body">-->
+    <!--<button class="btn btn-primary center-block" onclick="showErrorDialogTest()">Пример ошибки</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
