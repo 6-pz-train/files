@@ -40,8 +40,16 @@
     <script src="../../js/dialog/error.js" th:src="@{/js/dialog/error.js}"></script>
 
 
-    <script>
+    <script th:inline="javascript">
         /*<![CDATA[*/
+        var locoRatio = /*[[ ${locoRatio} ]]*/ '[]';
+        var categories = new Array();
+        var barData = new Array();
+        $.each(locoRatio, function(index, value) {
+            categories.push(value.locoName);
+            barData.push(value.locoPortion);
+        });
+
         $(function () {
             $('#barStatistics').highcharts({
                 chart: {
@@ -54,7 +62,7 @@
                     text: 'Інформація з бази даних'
                 },
                 xAxis: {
-                    categories: ['Локомотив 1', 'Локомотив 2', 'Локомотив 3', 'Локомотив 4', 'Локомотив 5'],
+                    categories: categories,
                     title: {
                         text: null
                     }
@@ -90,7 +98,7 @@
                 series: [
                     {
                         showInLegend: false,
-                        data: [107, 31, 635, 203, 150]
+                        data: barData
                     }
                 ]
             });
@@ -98,8 +106,13 @@
         /*]]>*/
     </script>
 
-    <script>
+    <script th:inline="javascript">
         /*<![CDATA[*/
+        var locoPercentage = /*[[ ${locoPercentage} ]]*/ [];
+        var pieData = new Array();
+        $.each(locoPercentage, function(index, value) {
+            pieData.push(new Array(value.locoName, value.locoPortion))
+        });
         $(function () {
             $('#pieStatistics').highcharts({
                 chart: {
@@ -130,18 +143,7 @@
                     {
                         type: 'pie',
                         name: 'Кількість записів',
-                        data: [
-                            ['Локомотив 1', 45.0],
-                            ['Локомотив 2', 26.8],
-                            {
-                                name: 'Локомотив 3',
-                                y: 12.8,
-                                sliced: true,
-                                selected: true
-                            },
-                            ['Локомотив 4', 8.5],
-                            ['Локомотив 5', 6.2]
-                        ]
+                        data: pieData
                     }
                 ]
             });
@@ -226,7 +228,7 @@
                             <i class="fa fa-dashboard fa-5x"></i>
                         </div>
                         <div class="col-xs-6 text-right" style="min-height: 70px;">
-                            <p class="announcement-heading">48</p>
+                            <p class="announcement-heading" th:text="${sensorCount}">48</p>
 
                             <p class="announcement-text">Датчики</p>
                         </div>
@@ -256,7 +258,7 @@
                             <i class="fa fa-bullhorn fa-5x"></i>
                         </div>
                         <div class="col-xs-6 text-right" style="min-height: 70px;">
-                            <p class="announcement-heading">15</p>
+                            <p class="announcement-heading" th:text="${locoCount}">15</p>
 
                             <p class="announcement-text">Локомотиви</p>
                         </div>
@@ -284,7 +286,7 @@
                             <i class="fa fa-download fa-5x"></i>
                         </div>
                         <div class="col-xs-6 text-right" style="min-height: 70px;">
-                            <p style="font-size: x-large" class="announcement-heading">09.05.2014</p>
+                            <p class="announcement-heading" th:text="${lastUpdate}">09.05.2014</p>
 
                             <p class="announcement-text">Завантаження</p>
                         </div>
@@ -312,7 +314,7 @@
                             <i class="fa fa-hdd-o fa-5x"></i>
                         </div>
                         <div class="col-xs-6 text-right" style="min-height: 70px;">
-                            <p class="announcement-heading">15 MB</p>
+                            <p class="announcement-heading" th:text="${dbSize}">15 MB</p>
 
                             <p class="announcement-text">Розмір бази</p>
                         </div>

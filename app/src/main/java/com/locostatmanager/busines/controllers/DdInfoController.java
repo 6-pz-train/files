@@ -43,7 +43,7 @@ public class DdInfoController {
     }
 
     @ModelAttribute("statCount")
-    public String getStatCount() throws ValidationException, DataAccessException {
+    public int getStatCount() throws ValidationException, DataAccessException {
         return statisticService.getCount();
     }
 

@@ -103,7 +103,7 @@ public class StatisticServiceImpl implements StatisticService {
         return dataDao.getBetween(startDate, endDate, locomotiveId);
     }
 
-    public String getCount() throws DataAccessException, ValidationException {
+    public int getCount() throws DataAccessException, ValidationException {
         return dataDao.getCount();
     }
 
@@ -115,7 +115,7 @@ public class StatisticServiceImpl implements StatisticService {
 
         for (LocoEntity entity : list) {
             LocomotiveStatistic ls = new LocomotiveStatistic();
-            ls.setLocoName(entity.getTitleLoco());
+            ls.setLocoName(entity.getIdLoco());
             ls.setLocoPortion(dataDao.getRecordsCount(entity.getIdLoco()));
             statistics.add(ls);
         }
@@ -127,12 +127,12 @@ public class StatisticServiceImpl implements StatisticService {
 
         List<LocomotiveStatistic> statistics = new ArrayList<LocomotiveStatistic>();
         List<LocoEntity> list = locomotiveService.getAll();
-        Integer recordsCount = new Integer(dataDao.getCount()) / 100;
+        int allRecordsCount = dataDao.getCount();
 
         for (LocoEntity entity : list) {
             LocomotiveStatistic ls = new LocomotiveStatistic();
-            ls.setLocoName(entity.getTitleLoco());
-            ls.setLocoPortion(String.valueOf(recordsCount * new Integer(dataDao.getRecordsCount(entity.getIdLoco()))));
+            ls.setLocoName(entity.getIdLoco());
+            ls.setLocoPortion( 100.00 * dataDao.getRecordsCount(entity.getIdLoco()) / allRecordsCount);
             statistics.add(ls);
         }
         return statistics;

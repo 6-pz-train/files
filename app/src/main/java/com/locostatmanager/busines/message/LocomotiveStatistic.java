@@ -7,7 +7,7 @@ package com.locostatmanager.busines.message;
 public class LocomotiveStatistic {
     
     private String locoName;
-    private String locoPortion;
+    private double locoPortion;
 
     public String getLocoName() {
         return locoName;
@@ -17,11 +17,11 @@ public class LocomotiveStatistic {
         this.locoName = locoName;
     }
 
-    public String getLocoPortion() {
+    public double getLocoPortion() {
         return locoPortion;
     }
 
-    public void setLocoPortion(String locoPortion) {
+    public void setLocoPortion(double locoPortion) {
         this.locoPortion = locoPortion;
     }   
 }

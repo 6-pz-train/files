@@ -23,6 +23,6 @@ public interface DataDao {
     List<LocoDataEntity> getBetween(String startDate, String endDate, String locomotiveId) throws DataAccessException;
     List<LocoDataEntity> getByLocomotive(LocoEntity entity) throws DataAccessException;
     LocoDataEntity getById(String id) throws DataAccessException;
-    String getCount() throws DataAccessException;
-    String getRecordsCount(String LocoId) throws DataAccessException;
+    int getCount() throws DataAccessException;
+    int getRecordsCount(String LocoId) throws DataAccessException;
 }

@@ -6,9 +6,14 @@ import com.locostatmanager.busines.message.LocomotiveStatistic;
 import com.locostatmanager.busines.service.LocomotiveService;
 import com.locostatmanager.busines.service.SensorService;
 import com.locostatmanager.busines.service.StatisticService;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +53,7 @@ public class IndexController {
         return locomotiveService.getCount();
     }
 
-    @ModelAttribute("lustUpdate")
+    @ModelAttribute("lastUpdate")
     public String getLustUpdate() throws ValidationException, DataAccessException {
 
         return new SimpleDateFormat("dd.MM.yyyy").format(new Date());
@@ -61,7 +66,7 @@ public class IndexController {
     }
 
     @ModelAttribute("locoRatio")
-    public List<LocomotiveStatistic> getLocoRatio() throws ValidationException, DataAccessException {
+    public List<LocomotiveStatistic> getLocoRatio() throws ValidationException, DataAccessException, IOException {
 
         return statisticService.getLocomotivesRatio();
     }
