@@ -67,7 +67,6 @@
         $('.testChart').each(function () {
             $(this).highcharts({
                 chart: {
-                    type: 'spline',
                     zoomType: 'xy'
 
                 },
@@ -100,7 +99,6 @@
 
                 series: [
                     {
-                        type: 'area',
                         name: 'Winter 2007-2008',
                         // Define the data points. All series have a dummy year
                         // of 1970/71 in order to be compared on the same x axis. Note
@@ -134,7 +132,6 @@
                         ]
                     },
                     {
-                        type: 'area',
                         name: 'Winter 2008-2009',
                         data: [
                             [Date.UTC(1970, 9, 18), 0   ],
@@ -159,7 +156,6 @@
                         ]
                     },
                     {
-                        type: 'area',
                         name: 'Winter 2009-2010',
                         data: [
                             [Date.UTC(1970, 9, 9), 0   ],
@@ -226,7 +222,6 @@
 
                 series: [
                     {
-                        type: 'area',
                         name: 'Winter 2007-2008',
                         // Define the data points. All series have a dummy year
                         // of 1970/71 in order to be compared on the same x axis. Note

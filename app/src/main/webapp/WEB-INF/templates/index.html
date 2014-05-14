@@ -42,7 +42,7 @@
 
     <script th:inline="javascript">
         /*<![CDATA[*/
-        var locoRatio = /*[[ ${locoRatio} ]]*/ '[]';
+        var locoRatio = /*[[ ${locoRatio} ]]*/ [{'locoName':'L001dp    ','locoPortion':3.0},{'locoName':'L001kv    ','locoPortion':1.0},{'locoName':'L001zp    ','locoPortion':1.0},{'locoName':'L002dp    ','locoPortion':1.0},{'locoName':'L003lv    ','locoPortion':1.0}];
         var categories = new Array();
         var barData = new Array();
         $.each(locoRatio, function(index, value) {
@@ -108,7 +108,7 @@
 
     <script th:inline="javascript">
         /*<![CDATA[*/
-        var locoPercentage = /*[[ ${locoPercentage} ]]*/ [];
+        var locoPercentage = /*[[ ${locoPercentage} ]]*/ [{'locoName':'L001dp    ','locoPortion':42.857142857142854},{'locoName':'L001kv    ','locoPortion':14.285714285714286},{'locoName':'L001zp    ','locoPortion':14.285714285714286},{'locoName':'L002dp    ','locoPortion':14.285714285714286},{'locoName':'L003lv    ','locoPortion':14.285714285714286}];
         var pieData = new Array();
         $.each(locoPercentage, function(index, value) {
             pieData.push(new Array(value.locoName, value.locoPortion))
