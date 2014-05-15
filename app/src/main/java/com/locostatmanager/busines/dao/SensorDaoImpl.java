@@ -64,10 +64,14 @@ public class SensorDaoImpl extends JdbcDaoSupport implements SensorDao {
         public SensorEntity mapRow(ResultSet rs, int i) throws SQLException {
 
             SensorEntity sensorEntity = new SensorEntity();
-            sensorEntity.setName(rs.getString("NAME"));
-            sensorEntity.setDescription(rs.getString("DESCRIPTION"));
-            sensorEntity.setUnitOfMeasure(rs.getString("UNIT_OF_MEASURE"));
+            sensorEntity.setName(trim(rs.getString("NAME")));
+            sensorEntity.setDescription(trim(rs.getString("DESCRIPTION")));
+            sensorEntity.setUnitOfMeasure(trim(rs.getString("UNIT_OF_MEASURE")));
             return sensorEntity;
         }
+    }
+
+    private String trim(String str){
+        return str == null ? null : str.trim();
     }
 }

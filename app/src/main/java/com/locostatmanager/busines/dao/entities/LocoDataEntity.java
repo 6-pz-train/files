@@ -1,58 +1,106 @@
 package com.locostatmanager.busines.dao.entities;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import java.sql.Timestamp;
 
 /**
  * Created by anatoliy on 22.04.14.
  */
 public class LocoDataEntity {
-
+    @JsonProperty("ID_LOCO_DATA")
     private long idLocoData;
+    @JsonProperty("ID_LOCO")
     private String idLoco;
+    @JsonProperty("RECORD_TIME_LOCO_DATA")
     private Timestamp recordTimeLocoData;
+    @JsonProperty("NAPR_ACCUM_BATR_SEC_A")
     private Byte naprAccumBatrSecA;
+    @JsonProperty("NAPR_ACCUM_BATR_SEC_B")
     private Byte naprAccumBatrSecB;
+    @JsonProperty("TOK_ACCUM_BATR_SEC_A")
     private Byte tokAccumBatrSecA;
+    @JsonProperty("TOK_ACCUM_BATR_SEC_B")
     private Byte tokAccumBatrSecB;
+    @JsonProperty("TOK_VOZ_TED_SEC_A")
     private Short tokVozTedSecA;
+    @JsonProperty("TOK_VOZ_TED_SEC_B")
     private Short tokVozTedSecB;
+    @JsonProperty("TOK_YAK_TED12_SEC_A")
     private Short tokYakTed12SecA;
+    @JsonProperty("TOK_YAK_TED12_SEC_B")
     private Short tokYakTed12SecB;
+    @JsonProperty("TOK_YAK_TED34_SEC_A")
     private Short tokYakTed34SecA;
+    @JsonProperty("TOK_YAK_TED34_SEC_B")
     private Short tokYakTed34SecB;
+    @JsonProperty("NAPR_CONT_SET_SEC_A")
     private Short naprContSetSecA;
+    @JsonProperty("NAPR_CONT_SET_SEC_B")
     private Short naprContSetSecB;
+    @JsonProperty("TEMPR_BUKS1_STOR_MASH_SEC_A")
     private Byte temprBuks1StorMashSecA;
+    @JsonProperty("TEMPR_BUKS1_STOR_POM_MASH_SEC_A")
     private Byte temprBuks1StorPomMashSecA;
+    @JsonProperty("TEMPR_BUKS2_STOR_MASH_SEC_A")
     private Byte temprBuks2StorMashSecA;
+    @JsonProperty("TEMPR_BUKS2_STOR_POM_MASH_SEC_A")
     private Byte temprBuks2StorPomMashSecA;
+    @JsonProperty("TEMPR_BUKS3_STOR_MASH_SEC_A")
     private Byte temprBuks3StorMashSecA;
+    @JsonProperty("TEMPR_BUKS3_STOR_POM_MASH_SEC_A")
     private Byte temprBuks3StorPomMashSecA;
+    @JsonProperty("TEMPR_BUKS4_STOR_MASH_SEC_A")
     private Byte temprBuks4StorMashSecA;
+    @JsonProperty("TEMPR_BUKS4_STOR_POM_MASH_SEC_A")
     private Byte temprBuks4StorPomMashSecA;
+    @JsonProperty("TEMPR_BUKS4_STOR_POM_MASH_SEC_B")
     private Byte temprBuks4StorPomMashSecB;
+    @JsonProperty("TEMPR_BUKS4_STOR_MASH_SEC_B")
     private Byte temprBuks4StorMashSecB;
+    @JsonProperty("TEMPR_BUKS3_STOR_POM_MASH_SEC_B")
     private Byte temprBuks3StorPomMashSecB;
+    @JsonProperty("TEMPR_BUKS3_STOR_MASH_SEC_B")
     private Byte temprBuks3StorMashSecB;
+    @JsonProperty("TEMPR_BUKS2_STOR_POM_MASH_SEC_B")
     private Byte temprBuks2StorPomMashSecB;
+    @JsonProperty("TEMPR_BUKS2_STOR_MASH_SEC_B")
     private Byte temprBuks2StorMashSecB;
+    @JsonProperty("TEMPR_BUKS1_STOR_POM_MASH_SEC_B")
     private Byte temprBuks1StorPomMashSecB;
+    @JsonProperty("TEMPR_BUKS1_STOR_MASH_SEC_B")
     private Byte temprBuks1StorMashSecB;
+    @JsonProperty("TEMPR_VHOD_TED_SEC_A1")
     private Byte temprVhodTedSecA1;
+    @JsonProperty("TEMPR_VHOD_TED_SEC_A2")
     private Byte temprVhodTedSecA2;
+    @JsonProperty("TEMPR_VHOD_TED_SEC_B1")
     private Byte temprVhodTedSecB1;
+    @JsonProperty("TEMPR_VHOD_TED_SEC_B2")
     private Byte temprVhodTedSecB2;
+    @JsonProperty("TEMPR_VIHOD_TED1_SEC_A")
     private Byte temprVihodTed1SecA;
+    @JsonProperty("TEMPR_VIHOD_TED2_SEC_A")
     private Byte temprVihodTed2SecA;
+    @JsonProperty("TEMPR_VIHOD_TED3_SEC_A")
     private Byte temprVihodTed3SecA;
+    @JsonProperty("TEMPR_VIHOD_TED4_SEC_A")
     private Byte temprVihodTed4SecA;
+    @JsonProperty("TEMPR_VIHOD_TED1_SEC_B")
     private Byte temprVihodTed1SecB;
+    @JsonProperty("TEMPR_VIHOD_TED2_SEC_B")
     private Byte temprVihodTed2SecB;
+    @JsonProperty("TEMPR_VIHOD_TED3_SEC_B")
     private Byte temprVihodTed3SecB;
+    @JsonProperty("TEMPR_VIHOD_TED4_SEC_B")
     private Byte temprVihodTed4SecB;
+    @JsonProperty("TEMPR_BPTR1_SEC_A")
     private Short temprBptr1SecA;
+    @JsonProperty("TEMPR_BPTR2_SEC_A")
     private Short temprBptr2SecA;
+    @JsonProperty("TEMPR_BPTR1_SEC_B")
     private Short temprBptr1SecB;
+    @JsonProperty("TEMPR_BPTR2_SEC_B")
     private Short temprBptr2SecB;
 
     public long getIdLocoData() {

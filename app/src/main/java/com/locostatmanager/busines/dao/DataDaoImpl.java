@@ -193,11 +193,11 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
     }
 
     @Override
-    public List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate, LocoEntity entity) throws DataAccessException {
+    public List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate, String idLoco) throws DataAccessException {
 
         try {
             return getJdbcTemplate().query("SELECT * FROM LOCO_DATA WHERE RECORD_TIME_LOCO_DATA > ? AND RECORD_TIME_LOCO_DATA < ? AND ID_LOCO = ?",
-                    new Object[]{startDate, endDate, entity.getIdLoco()},
+                    new Object[]{startDate, endDate, idLoco},
                     new LocoDataRowMapper());
         } catch (Exception e) {
             throw new DataAccessException(e);
@@ -260,7 +260,7 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
 
             LocoDataEntity dataEntity = new LocoDataEntity();
             dataEntity.setIdLocoData(rs.getLong("ID_LOCO_DATA"));
-            dataEntity.setIdLoco(rs.getString("ID_LOCO"));
+            dataEntity.setIdLoco(trim(rs.getString("ID_LOCO")));
             dataEntity.setRecordTimeLocoData(rs.getTimestamp("RECORD_TIME_LOCO_DATA"));
             dataEntity.setNaprAccumBatrSecA(rs.getByte("NAPR_ACCUM_BATR_SEC_A"));
             dataEntity.setNaprAccumBatrSecB(rs.getByte("NAPR_ACCUM_BATR_SEC_B"));
@@ -308,5 +308,9 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
             dataEntity.setTemprBptr2SecB(rs.getShort("TEMPR_BPTR2_SEC_B"));
             return dataEntity;
         }
+    }
+
+    private String trim(String str){
+        return str == null ? null : str.trim();
     }
 }

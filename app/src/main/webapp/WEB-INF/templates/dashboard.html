@@ -263,6 +263,17 @@
     /*]]>*/
 </script>
 
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+        $('#updateChart').submit(function (e) {
+            e.preventDefault();
+
+        })
+    });
+    /*]]>*/
+</script>
+
 </head>
 
 <body>
@@ -354,7 +365,7 @@
                     <div style="overflow-y: auto; height: 130px">
                         <div class="checkbox" th:each="item : ${osnov}">
                             <label>
-                                <input type="checkbox" value="" th:text="${item.description}">
+                                <input name="sensor" type="checkbox" th:text="${item.description}" th:data="${item.name}" th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
                                 Напряжение 1
                                 </input>
                             </label>
@@ -376,7 +387,7 @@
                     <div style="overflow-y: auto; height: 130px">
                         <div class="checkbox" th:each="item : ${buks}">
                             <label>
-                                <input type="checkbox" value="" th:text="${item.description}">
+                                <input type="checkbox" value="" th:text="${item.description}" th:data="${item.name}" th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
                                 Напряжение 1
                                 </input>
                             </label>
@@ -398,7 +409,7 @@
                     <div style="overflow-y: auto; height: 130px">
                         <div class="checkbox" th:each="item : ${tdvig}">
                             <label>
-                                <input type="checkbox" value="" th:text="${item.description}">
+                                <input type="checkbox" value="" th:text="${item.description}" th:data="${item.name}" th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
                                 Напряжение 1
                                 </input>
                             </label>
@@ -419,7 +430,7 @@
                 <div class="form-group">
                     <div class="checkbox" th:each="item : ${ptres}">
                         <label>
-                            <input type="checkbox" value="" th:text="${item.description}">
+                            <input type="checkbox" value="" th:text="${item.description}" th:data="${item.name}" th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
                             Напряжение 1
                             </input>
                         </label>
@@ -499,7 +510,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <button type="submit" class="btn btn-primary center-block" onclick="update()">Оновити
+                                <button id="updateChart" type="submit" class="btn btn-primary center-block" onclick="update()">Оновити
                                     графік
                                 </button>
                             </div>

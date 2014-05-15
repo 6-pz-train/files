@@ -76,9 +76,13 @@ public class LocomotiveDaoImpl extends JdbcDaoSupport implements LocomotiveDao {
         public LocoEntity mapRow(ResultSet rs, int i) throws SQLException {
 
             LocoEntity locoEntity = new LocoEntity();
-            locoEntity.setIdLoco(rs.getString("ID_LOCO"));
-            locoEntity.setTitleLoco(rs.getString("TITLE_LOCO"));
+            locoEntity.setIdLoco(trim(rs.getString("ID_LOCO")));
+            locoEntity.setTitleLoco(trim(rs.getString("TITLE_LOCO")));
             return locoEntity;
         }
+    }
+
+    private String trim(String str){
+        return str == null ? null : str.trim();
     }
 }

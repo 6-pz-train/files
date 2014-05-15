@@ -6,6 +6,8 @@ import com.locostatmanager.busines.dao.entities.LocoEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
 import com.locostatmanager.busines.message.LocomotiveStatistic;
+
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -71,12 +73,6 @@ public class StatisticServiceImpl implements StatisticService {
     }
 
     @Transactional
-    public List<LocoDataEntity> getBetween(Timestamp startDate, Timestamp endDate, LocoEntity entity) throws DataAccessException, ValidationException {
-
-        return dataDao.getBetween(startDate, endDate, entity);
-    }
-
-    @Transactional
     public List<LocoDataEntity> getByLocomotive(LocoEntity entity) throws DataAccessException, ValidationException {
 
         return dataDao.getByLocomotive(entity);
@@ -89,10 +85,13 @@ public class StatisticServiceImpl implements StatisticService {
 
     public List<LocoDataEntity> getBetween(String startDate, String endDate, String locomotiveId) throws DataAccessException, ValidationException {
 
+        Timestamp start = null;
+        Timestamp end = null;
+
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
-            dateFormat.parse(startDate);
-            dateFormat.parse(endDate);
+            start = new Timestamp(dateFormat.parse(startDate).getTime());
+            end = new Timestamp(dateFormat.parse(endDate).getTime());
         } catch (ParseException e) {
             throw new ValidationException(e);
         }
@@ -100,7 +99,7 @@ public class StatisticServiceImpl implements StatisticService {
         if (null == locomotiveId || "".equals(locomotiveId)) {
             throw new ValidationException(new Exception("not valid locomotive id"));
         }
-        return dataDao.getBetween(startDate, endDate, locomotiveId);
+        return dataDao.getBetween(start, end, locomotiveId);
     }
 
     public int getCount() throws DataAccessException, ValidationException {
