@@ -18,6 +18,8 @@
 <!-- JavaScript -->
 <!--<script type="text/javascript" src="../../js/jquery/1.8.2/jquery.min.js"></script>-->
 <script src="../../js/jquery/1.10.2/jquery-1.10.2.js" th:src="@{/js/jquery/1.10.2/jquery-1.10.2.js}"></script>
+<script src="../../js/jqueryui/1.10.0/jquery-ui.min.js" th:src="@{/js/jqueryui/1.10.0/jquery-ui.min.js}"></script>
+<script src="../../js/simpledateformat.js" th:src="@{/js/simpledateformat.js}"></script>
 <script src="../../js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
 
 <!--Calendar-->
@@ -63,216 +65,162 @@
 
 <script type="text/javascript">
     /*<![CDATA[*/
-    $(function () {
-        $('.testChart').each(function () {
-            $(this).highcharts({
-                chart: {
-                    zoomType: 'xy'
+    var defaultChart = {
+        chart: {
+            zoomType: 'xy'
 
-                },
-                title: {
-                    text: 'Snow depth at Vikjafjellet, Norway'
-                },
-                subtitle: {
-                    text: 'Irregular time data in Highcharts JS'
-                },
-                xAxis: {
-                    type: 'datetime',
-                    dateTimeLabelFormats: { // don't display the dummy year
-                        month: '%e. %b',
-                        year: '%b'
-                    },
-                    title: {
-                        text: 'Date'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Snow depth (m)'
-                    },
-                    min: 0
-                },
-                tooltip: {
-                    headerFormat: '<b>{series.name}</b><br>',
-                    pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
-                },
-
-                series: [
-                    {
-                        name: 'Winter 2007-2008',
-                        // Define the data points. All series have a dummy year
-                        // of 1970/71 in order to be compared on the same x axis. Note
-                        // that in JavaScript, months start at 0 for January, 1 for February etc.
-                        data: [
-                            [Date.UTC(1970, 9, 27), 0   ],
-                            [Date.UTC(1970, 10, 10), 0.6 ],
-                            [Date.UTC(1970, 10, 18), 0.7 ],
-                            [Date.UTC(1970, 11, 2), 0.8 ],
-                            [Date.UTC(1970, 11, 9), 0.6 ],
-                            [Date.UTC(1970, 11, 16), 0.6 ],
-                            [Date.UTC(1970, 11, 28), 0.67],
-                            [Date.UTC(1971, 0, 1), 0.81],
-                            [Date.UTC(1971, 0, 8), 0.78],
-                            [Date.UTC(1971, 0, 12), 0.98],
-                            [Date.UTC(1971, 0, 27), 1.84],
-                            [Date.UTC(1971, 1, 10), 1.80],
-                            [Date.UTC(1971, 1, 18), 1.80],
-                            [Date.UTC(1971, 1, 24), 1.92],
-                            [Date.UTC(1971, 2, 4), 2.49],
-                            [Date.UTC(1971, 2, 11), 2.79],
-                            [Date.UTC(1971, 2, 15), 2.73],
-                            [Date.UTC(1971, 2, 25), 2.61],
-                            [Date.UTC(1971, 3, 2), 2.76],
-                            [Date.UTC(1971, 3, 6), 2.82],
-                            [Date.UTC(1971, 3, 13), 2.8 ],
-                            [Date.UTC(1971, 4, 3), 2.1 ],
-                            [Date.UTC(1971, 4, 26), 1.1 ],
-                            [Date.UTC(1971, 5, 9), 0.25],
-                            [Date.UTC(1971, 5, 12), 0   ]
-                        ]
-                    },
-                    {
-                        name: 'Winter 2008-2009',
-                        data: [
-                            [Date.UTC(1970, 9, 18), 0   ],
-                            [Date.UTC(1970, 9, 26), 0.2 ],
-                            [Date.UTC(1970, 11, 1), 0.47],
-                            [Date.UTC(1970, 11, 11), 0.55],
-                            [Date.UTC(1970, 11, 25), 1.38],
-                            [Date.UTC(1971, 0, 8), 1.38],
-                            [Date.UTC(1971, 0, 15), 1.38],
-                            [Date.UTC(1971, 1, 1), 1.38],
-                            [Date.UTC(1971, 1, 8), 1.48],
-                            [Date.UTC(1971, 1, 21), 1.5 ],
-                            [Date.UTC(1971, 2, 12), 1.89],
-                            [Date.UTC(1971, 2, 25), 2.0 ],
-                            [Date.UTC(1971, 3, 4), 1.94],
-                            [Date.UTC(1971, 3, 9), 1.91],
-                            [Date.UTC(1971, 3, 13), 1.75],
-                            [Date.UTC(1971, 3, 19), 1.6 ],
-                            [Date.UTC(1971, 4, 25), 0.6 ],
-                            [Date.UTC(1971, 4, 31), 0.35],
-                            [Date.UTC(1971, 5, 7), 0   ]
-                        ]
-                    },
-                    {
-                        name: 'Winter 2009-2010',
-                        data: [
-                            [Date.UTC(1970, 9, 9), 0   ],
-                            [Date.UTC(1970, 9, 14), 0.15],
-                            [Date.UTC(1970, 10, 28), 0.35],
-                            [Date.UTC(1970, 11, 12), 0.46],
-                            [Date.UTC(1971, 0, 1), 0.59],
-                            [Date.UTC(1971, 0, 24), 0.58],
-                            [Date.UTC(1971, 1, 1), 0.62],
-                            [Date.UTC(1971, 1, 7), 0.65],
-                            [Date.UTC(1971, 1, 23), 0.77],
-                            [Date.UTC(1971, 2, 8), 0.77],
-                            [Date.UTC(1971, 2, 14), 0.79],
-                            [Date.UTC(1971, 2, 24), 0.86],
-                            [Date.UTC(1971, 3, 4), 0.8 ],
-                            [Date.UTC(1971, 3, 18), 0.94],
-                            [Date.UTC(1971, 3, 24), 0.9 ],
-                            [Date.UTC(1971, 4, 16), 0.39],
-                            [Date.UTC(1971, 4, 21), 0   ]
-                        ]
-                    }
-                ]
-            });
-        })
-    });
-    /*]]>*/
-</script>
-
-<script type="text/javascript">
-    /*<![CDATA[*/
-    function update() {
-        $(function () {
-            $('.testChart').highcharts({
-                chart: {
-                    type: 'spline',
-                    zoomType: 'xy'
-                },
-                title: {
-                    text: 'Snow depth at Vikjafjellet, Norway'
-                },
-                subtitle: {
-                    text: 'Irregular time data in Highcharts JS'
-                },
-                xAxis: {
-                    type: 'datetime',
-                    dateTimeLabelFormats: { // don't display the dummy year
-                        month: '%e. %b',
-                        year: '%b'
-                    },
-                    title: {
-                        text: 'Date'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Snow depth (m)'
-                    },
-                    min: 0
-                },
-                tooltip: {
-                    headerFormat: '<b>{series.name}</b><br>',
-                    pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
-                },
-
-                series: [
-                    {
-                        name: 'Winter 2007-2008',
-                        // Define the data points. All series have a dummy year
-                        // of 1970/71 in order to be compared on the same x axis. Note
-                        // that in JavaScript, months start at 0 for January, 1 for February etc.
-                        data: [
-                            [Date.UTC(1970, 9, 27, 12, 5), 0   ],
-                            [Date.UTC(1970, 9, 27, 12, 10), 50   ],
-                            [Date.UTC(1970, 9, 27, 12, 30), 30   ]
-                        ]
-                    },
-                    {
-                        name: 'Winter 2008-2009',
-                        data: [
-                            [Date.UTC(1970, 9, 27, 12, 15), 15   ],
-                            [Date.UTC(1970, 9, 27, 12, 16), 55   ],
-                            [Date.UTC(1970, 9, 27, 12, 30), 66   ]
-                        ]
-                    },
-                    {
-                        name: 'Winter 2009-2010',
-                        data: [
-                            [Date.UTC(1970, 9, 27, 12, 32), 30   ],
-                            [Date.UTC(1970, 9, 27, 12, 44), 15   ],
-                            [Date.UTC(1970, 9, 27, 12, 55), 20   ]
-                        ]
-                    },
-                    {
-                        name: 'Winter2 2009-2010',
-                        data: [
-                            [Date.UTC(1970, 9, 27, 12, 32), 12   ],
-                            [Date.UTC(1970, 9, 27, 12, 44), 30   ],
-                            [Date.UTC(1970, 9, 27, 12, 55), 54   ]
-                        ]
-                    }
-                ]
-            });
-        });
+        },
+        title: {
+            text: 'Загальний графік'
+        },
+        subtitle: {
+            text: 'Статистичні данні за локомотивами та вузлами'
+        },
+        xAxis: {
+            startOnTick: true,
+            type: 'datetime',
+            dateTimeLabelFormats: {
+                second: '%Y-%m-%d<br/>%H:%M:%S',
+                minute: '%Y-%m-%d<br/>%H:%M',
+                hour: '%Y-%m-%d<br/>%H:%M',
+                day: '%Y<br/>%m-%d',
+                week: '%Y<br/>%m-%d',
+                month: '%Y-%m',
+                year: '%Y'
+            }
+        },
+        yAxis: {
+            title: {
+                text: ''
+            }
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br>',
+            pointFormat: 'Дата: {point.x:%Y-%m-%d %H:%M:%S} <br/> Значення: {point.y:.2f}'
+        }
     }
-    /*]]>*/
-</script>
 
-<script type="text/javascript">
-    /*<![CDATA[*/
+
     $(document).ready(function () {
-        $('#updateChart').submit(function (e) {
+
+        $('.testChart').each(function () {
+            $(this).highcharts(defaultChart);
+        })
+
+        $('#formDate').submit(function (e) {
             e.preventDefault();
 
+            //clear chart
+            var chart = $('.testChart').highcharts(defaultChart);
+            //clear table
+
+            $("#dataTable").find("tr:gt(0)").remove();
+            //update sort table
+            //$("#dataTable").tablesorter();
+            $("#dataTable").trigger("update");
+
+            //Create train checked array
+            var checkedTrains = new Array();
+            $("input[name='train']:checked:enabled").each(function () {
+                checkedTrains.push({
+                    name: $(this).attr('value'),
+                    desc: $(this).attr('data')
+                });
+            });
+
+            for (var i = 0; i < checkedTrains.length; i++) {
+                printTrain(checkedTrains[i].name, checkedTrains[i].desc)
+            }
+
+
+            function printTrain(trainName, trainDescr) {
+                $.ajax({
+                    type: 'GET',
+                    url: $("#formDate").attr("action"),
+                    data: 'sdate=' + $("#inputDate1").val() + '&edate=' + $("#inputDate2").val() + "&id=" + trainName,
+                    success: function (data) {
+                        //if error
+                        if (data.status == "error") {
+                            showErrorDialog(data.message, JSON.stringify(data));
+                            return;
+                        }
+                        //if result ok
+
+                        //Create sensor checked array
+                        var checkedSensors = new Array();
+                        $("input[name='sensor']:checked:enabled").each(function () {
+                            checkedSensors.push({
+                                name: $(this).attr('data'),
+                                desc: $(this).attr('value'),
+                                unit: $(this).attr('unit')
+                            });
+                        });
+
+                        //loop checked sensors
+                        for (var i = 0; i < checkedSensors.length; i++) {
+                            addSeries(checkedSensors[i].name, checkedSensors[i].desc, checkedSensors[i].unit, trainName);
+                        }
+
+                        //addRow loop
+                        for (var i = 0; i < data.length; i++) {
+                            for (var j = 0; j < checkedSensors.length; j++) {
+                                addRow(trainName,
+                                        new SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(new Date(data[i].RECORD_TIME_LOCO_DATA)),
+                                        checkedSensors[j].desc,
+                                        data[i][checkedSensors[j].name],
+                                        checkedSensors[j].unit);
+                            }
+                        }
+
+                        //update sort table
+                        $("#dataTable").trigger("update");
+
+                        //add series
+                        function addSeries(name, desc, unit, train) {
+
+                            var seriesData = new Array();
+                            for (var i = 0; i < data.length; i++) {
+                                var obj = data[i];
+                                seriesData.push(new Array(obj.RECORD_TIME_LOCO_DATA, obj[name]));
+                            }
+                            console.log(seriesData);
+
+                            var chart = $('.testChart').highcharts();
+                            chart.addAxis({ // Secondary yAxis
+                                id: 'sensor-axis',
+                                title: {
+                                    text: "<b>" + train + "</b> " + desc + " (" + unit + ")"
+                                },
+                                lineWidth: 2,
+                                opposite: false
+                            });
+                            chart.addSeries({
+                                name: "<b>" + train + "</b> " + desc + " (" + unit + ")",
+                                type: 'spline',
+                                yAxis: 'sensor-axis',
+                                data: seriesData
+                            });
+                        }
+                        //add row
+                        function addRow(locoId, date, sensor, value, unit){
+                            var n = $('#dataTable tr').length;
+                            $('#dataTable > tbody:last').append('<tr><td>'+n+'</td><td>'+locoId+'</td><td>'+date+'</td><td>'+sensor+'</td><td>'+value+'</td><td>'+unit+'</td></tr>');
+                        }
+
+                    },
+                    error: function (xhr, status, error) {
+                        var err = xhr.status + " " + xhr.statusText + " " + xhr.responseText;
+                        showErrorDialog(err);
+                    }
+                });
+            }
         })
+
     });
+
     /*]]>*/
 </script>
+
 
 </head>
 
@@ -365,7 +313,9 @@
                     <div style="overflow-y: auto; height: 130px">
                         <div class="checkbox" th:each="item : ${osnov}">
                             <label>
-                                <input name="sensor" type="checkbox" th:text="${item.description}" th:data="${item.name}" th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
+                                <input value="TEST_VALUE" th:value="${item.description}" name="sensor" type="checkbox"
+                                       th:text="${item.description}" th:data="${item.name}"
+                                       th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
                                 Напряжение 1
                                 </input>
                             </label>
@@ -387,7 +337,9 @@
                     <div style="overflow-y: auto; height: 130px">
                         <div class="checkbox" th:each="item : ${buks}">
                             <label>
-                                <input type="checkbox" value="" th:text="${item.description}" th:data="${item.name}" th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
+                                <input value="TEST_VALUE" th:value="${item.description}" name="sensor" type="checkbox"
+                                       th:text="${item.description}" th:data="${item.name}"
+                                       th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
                                 Напряжение 1
                                 </input>
                             </label>
@@ -409,7 +361,9 @@
                     <div style="overflow-y: auto; height: 130px">
                         <div class="checkbox" th:each="item : ${tdvig}">
                             <label>
-                                <input type="checkbox" value="" th:text="${item.description}" th:data="${item.name}" th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
+                                <input value="TEST_VALUE" th:value="${item.description}" name="sensor" type="checkbox"
+                                       th:text="${item.description}" th:data="${item.name}"
+                                       th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
                                 Напряжение 1
                                 </input>
                             </label>
@@ -430,7 +384,9 @@
                 <div class="form-group">
                     <div class="checkbox" th:each="item : ${ptres}">
                         <label>
-                            <input type="checkbox" value="" th:text="${item.description}" th:data="${item.name}" th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
+                            <input value="TEST_VALUE" th:value="${item.description}" name="sensor" type="checkbox"
+                                   th:text="${item.description}" th:data="${item.name}"
+                                   th:attr="unit=${item.unitOfMeasure}" data="TEST_DATA" unit="C">
                             Напряжение 1
                             </input>
                         </label>
@@ -464,7 +420,8 @@
                     <div style="overflow-y: auto; height: 200px">
                         <div class="checkbox" th:each="item : ${locomotives}">
                             <label>
-                                <input type="checkbox" value="" th:text="${item.idLoco}">
+                                <input name="train" type="checkbox" data="test" th:data="${item.titleLoco}" value=""
+                                       th:text="${item.idLoco} + ' ' + ${item.titleLoco}" th:value="${item.idLoco}">
                                 Напряжение 1
                                 </input>
                             </label>
@@ -482,7 +439,8 @@
             <div class="panel-body">
                 <div>
                     <div class="col-lg-12">
-                        <form data-toggle="validator" role="form" id="formDate">
+                        <form data-toggle="validator" role="form" id="formDate" action="/statistic/locoStat.json"
+                              th:action="@{/statistic/locoStat.json}">
                             <div class='col-lg-12'>
                                 <div class="form-group">
                                     <label for="inputDate1"> Від: </label>
@@ -510,7 +468,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-12">
-                                <button id="updateChart" type="submit" class="btn btn-primary center-block" onclick="update()">Оновити
+                                <button id="updateChart" type="submit" class="btn btn-primary center-block" onclick="">
+                                    Оновити
                                     графік
                                 </button>
                             </div>
@@ -546,66 +505,18 @@
             </div>
             <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 500px">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover table-striped tablesorter">
+                    <table id="dataTable" class="table table-bordered table-hover table-striped tablesorter">
                         <thead>
                         <tr>
-                            <th class="header headerSortDown">Order # <i class="fa fa-sort"></i></th>
-                            <th class="header">Order Date <i class="fa fa-sort"></i></th>
-                            <th class="header">Order Time <i class="fa fa-sort"></i></th>
-                            <th class="header">Amount (USD) <i class="fa fa-sort"></i></th>
+                            <th class="header headerSortDown"># <i class="fa fa-sort"></i></th>
+                            <th class="header">Локомотив <i class="fa fa-sort"></i></th>
+                            <th class="header">Дата <i class="fa fa-sort"></i></th>
+                            <th class="header">Датчик <i class="fa fa-sort"></i></th>
+                            <th class="header">Значення <i class="fa fa-sort"></i></th>
+                            <th class="header">Од. Вим. <i class="fa fa-sort"></i></th>
                         </tr>
                         </thead>
                         <tbody>
-
-
-                        <tr>
-                            <td>3319</td>
-                            <td>10/21/2013</td>
-                            <td>2:13 PM</td>
-                            <td>$943.45</td>
-                        </tr>
-                        <tr>
-                            <td>3320</td>
-                            <td>10/21/2013</td>
-                            <td>2:15 PM</td>
-                            <td>$5663.54</td>
-                        </tr>
-                        <tr>
-                            <td>3321</td>
-                            <td>10/21/2013</td>
-                            <td>2:23 PM</td>
-                            <td>$245.12</td>
-                        </tr>
-                        <tr>
-                            <td>3322</td>
-                            <td>10/21/2013</td>
-                            <td>2:49 PM</td>
-                            <td>$8345.23</td>
-                        </tr>
-                        <tr>
-                            <td>3323</td>
-                            <td>10/21/2013</td>
-                            <td>3:00 PM</td>
-                            <td>$23.71</td>
-                        </tr>
-                        <tr>
-                            <td>3324</td>
-                            <td>10/21/2013</td>
-                            <td>3:03 PM</td>
-                            <td>$724.17</td>
-                        </tr>
-                        <tr>
-                            <td>3325</td>
-                            <td>10/21/2013</td>
-                            <td>3:20 PM</td>
-                            <td>$234.34</td>
-                        </tr>
-                        <tr>
-                            <td>3326</td>
-                            <td>10/21/2013</td>
-                            <td>3:29 PM</td>
-                            <td>$321.33</td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
