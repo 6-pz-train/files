@@ -113,6 +113,10 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
     
+    <bean id="fileStructureInfoDao" class="com.locostatmanager.busines.dao.FileStructureInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    
     <!-- **************************************************************** -->
     <!--  SPRING QUARTZ CONFIGURATION                                     -->
     <!--  FOR LOAD LOCOMOTIVES DATA                                       -->
