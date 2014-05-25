@@ -9,6 +9,15 @@ public class FileStructureInfo {
     private Long id; 
     private Integer recordsStartIndex;
     private Integer recordLength;
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public Long getId() {
         return id;

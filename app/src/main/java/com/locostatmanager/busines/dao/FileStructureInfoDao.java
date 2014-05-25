@@ -1,6 +1,8 @@
 package com.locostatmanager.busines.dao;
 
 import com.locostatmanager.busines.dao.entities.FileStructureInfo;
+import com.locostatmanager.busines.exceptions.DataAccessException;
+import java.util.List;
 
 /**
  *
@@ -8,5 +10,6 @@ import com.locostatmanager.busines.dao.entities.FileStructureInfo;
  */
 public interface FileStructureInfoDao {
     
-    FileStructureInfo get();
+    FileStructureInfo get() throws DataAccessException;
+    List<FileStructureInfo> getAll() throws DataAccessException;
 }
