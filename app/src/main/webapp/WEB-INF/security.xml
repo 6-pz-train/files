@@ -9,6 +9,7 @@
 
     <http access-denied-page="/error403.jsp" use-expressions="true">
         <intercept-url pattern="/login.htm" access="permitAll"/>
+        <!--<intercept-url pattern="/downloadData.htm" access="hasRole('ROLE_ADMIN')"/>-->
         <intercept-url pattern="/*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <form-login login-page="/login.htm" default-target-url="/index.htm" authentication-failure-url="/login.htm?error=true"/>
         <logout logout-url="/logout.htm" logout-success-url="/login.htm"/>

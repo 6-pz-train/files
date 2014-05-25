@@ -116,6 +116,12 @@
             <version>${thymeleaf.version}</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity3</artifactId>
+            <version>${thymeleaf.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
 
         <dependency>

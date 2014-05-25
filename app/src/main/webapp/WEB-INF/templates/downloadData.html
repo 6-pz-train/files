@@ -10,6 +10,7 @@
 
     <!-- Add custom CSS here -->
     <link href="../../css/sb-admin.css" rel="stylesheet" th:href="@{/css/sb-admin.css}"/>
+    <link href="../../css/fileinput.css" rel="stylesheet" th:href="@{/css/fileinput.css}"/>
     <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css"
           th:href="@{/font-awesome/css/font-awesome.min.css}"/>
     <!--Calendar-->
@@ -17,9 +18,9 @@
           th:href="@{/css/bootstrap-datetimepicker.css}"/>
 
     <!-- JavaScript -->
-    <!--<script type="text/javascript" src="../../js/jquery/1.8.2/jquery.min.js"></script>-->
     <script src="../../js/jquery/1.10.2/jquery-1.10.2.js" th:src="@{/js/jquery/1.10.2/jquery-1.10.2.js}"></script>
     <script src="../../js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+    <script src="../../js/fileinput.js" th:src="@{/js/fileinput.js}"></script>
 
     <!--Calendar-->
     <script src="../../js/moment.js" th:src="@{/js/moment.js}"></script>
@@ -42,6 +43,28 @@
     <!--Validation form-->
     <script src="../../js/validation/validator.min.js" th:src="@{/js/validation/validator.min.js}"></script>
 
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function () {
+            $("#inputFiles").fileinput({
+                showUpload: false,
+                browseLabel: 'Обрати файли',
+                removeLabel: 'Видалити',
+                msgSelected: '{n} обрано файлів',
+                mainTemplate: "{preview}" +
+                        "<div class='input-group {class}'>" +
+                        "   <div class='input-group-btn'>" +
+                        "       {browse}" +
+                        "       {upload}" +
+                        "       {remove}" +
+                        "   </div>" +
+                        "   {caption}" +
+                        "</div>"
+            });
+        });
+        /*]]>*/
+    </script>
+
 </head>
 
 <body>
@@ -62,18 +85,20 @@
             </button>
             <a class="navbar-brand" href="index.html" th:href="@{index.htm}">Locomotive Statistics Manager</a>
         </div>
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
                 <li><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
                 <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a>
                 </li>
-                <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i> Керування локомотивами
-                </a></li>
-                <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i>
+                <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i>
+                    Керування локомотивами </a></li>
+                <li class="active"><a href="downloadData.html" th:href="@{downloadData.htm}"><i
+                        class="fa fa-download"></i>
                     Завантаження даних </a></li>
-                <li class="active"><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i>
-                    Інформація про базу</a></li>
+                <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
+                    базу</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
                 <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
             </ul>
@@ -100,60 +125,62 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>Інформація про базу
-                    <small>Перегляд інформації про базу даних</small>
+                <h1>Завантаження даних
+                    <small>Завантаження файлів з діагностичними даними</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li class="active"><a href="index.htm"><i class="fa fa-desktop"></i> Головна панель</a></li>
-                    <li class="active"><i class="fa fa-hdd-o"></i> Інформація про базу</li>
+                    <li class="active"><i class="fa fa-download"></i> Завантаження даних</li>
                 </ol>
             </div>
         </div>
         <!-- /.row -->
 
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="well well-sm text-center">
-                    <strong>Інформація</strong>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <div class="row">
+        <!--Форма добавления файла-->
+        <div sec:authorize="hasRole('ROLE_ADMIN')" class="row">
             <div class="col-lg-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-table"></i> Загальна інформація про таблиці</h3>
+                        <h3 class="panel-title"><i class="fa fa-download"></i> </h3>
                     </div>
-                    <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 800px">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped tablesorter">
-                                <tbody>
-                                <tr>
-                                    <td>Розмір бази даних</td>
-                                    <td th:text="${dbSize}">15 МБ</td>
-                                </tr>
-                                <tr>
-                                    <td>Кількість записів у таблиці Локомотиви</td>
-                                    <td th:text="${locosCount}">5</td>
-                                </tr>
-                                <tr>
-                                    <td>Кількість записів у таблиці Датчики</td>
-                                    <td th:text="${sensorsCount}">48</td>
-                                </tr>
-                                <tr>
-                                    <td>Кількість записів у таблиці Інформація про локомотив</td>
-                                    <td th:text="${statCount}">1524</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="panel-body">
+
+                        <form data-toggle="validator" role="form" class="form-group" method="post">
+                            <div class="form-group">
+                                <label>Локомотив</label>
+                                <select name="locoId" class="form-control">
+                                    <options th:each="item : ${locomotives}">
+                                        <option th:text="${item.idLoco} + ' ' + ${item.description}">865 ЛК</option>
+                                    </options>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Тип файлу</label>
+                                <select name="fileType" class="form-control">
+                                    <options th:each="item : ${fileTypes}">
+                                        <option th:text="${item.name}">Тип файлу 1</option>
+                                    </options>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input name="files" id="inputFiles" type="file" multiple="true" required="true"/>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary center-block" disabled="disabled">
+                                    Завантажити
+                                </button>
+                            </div>
+
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- /.row -->
 
 
