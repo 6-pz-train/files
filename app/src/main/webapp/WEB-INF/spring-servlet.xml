@@ -59,6 +59,11 @@
     <bean id="templateEngine"
           class="org.thymeleaf.spring3.SpringTemplateEngine">
         <property name="templateResolver" ref="templateResolver"/>
+        <property name="additionalDialects">
+            <set>
+                <bean class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect"/>
+            </set>
+        </property>
     </bean>
 
     <bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
@@ -99,7 +104,7 @@
 
     <!-- **************************************************************** -->
     <!--  Data Object Access classes                                      -->
-    <!--  Injecting datasourc                                             -->
+    <!--  Injecting data source                                           -->
     <!-- **************************************************************** -->
     <bean id="locomotiveDao" class="com.locostatmanager.busines.dao.LocomotiveDaoImpl">
         <property name="dataSource" ref="dataSource"/>
@@ -114,6 +119,10 @@
     </bean>
     
     <bean id="fileStructureInfoDao" class="com.locostatmanager.busines.dao.FileStructureInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="recordStructureInfoDao" class="com.locostatmanager.busines.dao.RecordStructureInfoDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
     
