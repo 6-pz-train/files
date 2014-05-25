@@ -99,7 +99,7 @@
 
     <!-- **************************************************************** -->
     <!--  Data Object Access classes                                      -->
-    <!--  Injecting datasourc                                             -->
+    <!--  Injecting data source                                           -->
     <!-- **************************************************************** -->
     <bean id="locomotiveDao" class="com.locostatmanager.busines.dao.LocomotiveDaoImpl">
         <property name="dataSource" ref="dataSource"/>
@@ -114,6 +114,10 @@
     </bean>
     
     <bean id="fileStructureInfoDao" class="com.locostatmanager.busines.dao.FileStructureInfoDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="recordStructureInfoDao" class="com.locostatmanager.busines.dao.RecordStructureInfoDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
     

@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author dmitry
  */
 @Controller
-@RequestMapping(value = {"/", "index.htm"})
+@RequestMapping(value = {"/", "/index.htm"})
 public class IndexController {
 
     @Autowired
