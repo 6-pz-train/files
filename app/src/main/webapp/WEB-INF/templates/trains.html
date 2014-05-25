@@ -44,6 +44,67 @@
 
 </head>
 
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+
+        $('#addLocoForm').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: $("#addLocoForm").attr("action"),
+                data: 'id=' + $("#addLocoId").val() + '&title=' + $("#addLocoTitle").val(),
+                success: function (data) {
+                    //if error
+                    if (data.status == "error") {
+                        showErrorDialog(data.message, JSON.stringify(data));
+                        return;
+                    }
+                    if (data.status == "success") {
+                        bootbox.alert('Локомотив успішно доданий', function(){
+                            location.reload();
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    var err = xhr.status + " " + xhr.statusText + " " + xhr.responseText;
+                    showErrorDialog(err);
+                }
+            });
+        });
+
+
+        $('#deleteLocoForm').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: $("#deleteLocoForm").attr("action"),
+                data: 'id=' + $("select[name='deleteLocoId']").find('option:selected').text(),
+                success: function (data) {
+                    //if error
+                    if (data.status == "error") {
+                        showErrorDialog(data.message, JSON.stringify(data));
+                        return;
+                    }
+                    if (data.status == "success") {
+                        bootbox.alert('Локомотив успішно видалений', function(){
+                            location.reload();
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    var err = xhr.status + " " + xhr.statusText + " " + xhr.responseText;
+                    showErrorDialog(err);
+                }
+            });
+        });
+
+
+
+    })
+    /*]]>*/
+</script>
+
 <body>
 
 <div id="wrapper">
@@ -74,7 +135,8 @@
                 Завантаження даних </a></li>
             <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
                 базу</a></li>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i
+                    class="fa fa-users"></i> Користувачі </a></li>
             <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
         </ul>
 
@@ -127,14 +189,14 @@
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-table"></i> Таблиця Локомотиви</h3>
                 </div>
-                <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 800px">
+                <div class="panel-body" style="overflow-y: auto; overflow-x: auto; max-height: 400px">
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover table-striped tablesorter">
                             <thead>
                             <tr>
-                                <th class="header headerSortDown">№<i class="fa fa-sort"></i></th>
+                                <th class="header headerSortDown">№ <i class="fa fa-sort"></i></th>
                                 <th class="header">Номер локомотива <i class="fa fa-sort"></i></th>
-                                <th class="header">Додаткова інформація<i class="fa fa-sort"></i></th>
+                                <th class="header">Додаткова інформація <i class="fa fa-sort"></i></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -173,21 +235,23 @@
                         </div>
                         <div class="panel-body">
 
-                            <form data-toggle="validator" role="form" class="form-group">
+                            <form id="addLocoForm" data-toggle="validator" role="form" class="form-group" action="/statistic/addLoco" th:action="@{/statistic/addLoco}">
                                 <div class="form-group">
-                                    <label class="control-label" for="trainNumber">Номер локомотива</label>
+                                    <label class="control-label" for="addLocoId">Номер локомотива</label>
 
                                     <div class="controls">
-                                        <input class="form-control" required="true" type="text" maxlength="10"
-                                               id="trainNumber"/>
+                                        <input id="addLocoId" class="form-control" required="true" type="text"
+                                               maxlength="10"
+                                                />
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label" for="trainDescription">Додаткова інформація</label>
+                                    <label class="control-label" for="addLocoTitle">Додаткова
+                                        інформація</label>
 
                                     <div class="controls">
-                                        <input class="form-control" type="text" id="trainDescription"/>
+                                        <input class="form-control" type="text" id="addLocoTitle"/>
                                     </div>
                                 </div>
 
@@ -222,10 +286,10 @@
                         </div>
                         <div class="panel-body">
 
-                            <form data-toggle="validator" role="form" class="form-group">
+                            <form id="deleteLocoForm" data-toggle="validator" role="form" class="form-group" action="/statistic/deleteLoco" th:action="@{/statistic/deleteLoco}">
                                 <div class="form-group">
                                     <label>Номер локомотива</label>
-                                    <select class="form-control">
+                                    <select name="deleteLocoId" class="form-control">
                                         <options th:each="item : ${locomotives}">
                                             <option th:text="${item.idLoco}">865 ЛК</option>
                                         </options>
