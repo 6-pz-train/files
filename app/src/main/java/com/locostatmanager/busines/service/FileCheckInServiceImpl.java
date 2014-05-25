@@ -6,6 +6,7 @@ import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -17,6 +18,7 @@ public class FileCheckInServiceImpl implements FileCheckInService {
     @Autowired
     private FileInfoDao fileInfoDao;
 
+    @Transactional
     public void checkIn(String fileName, Integer size) throws DataAccessException, ValidationException {
 
         FileInfo fileInfo = fileInfoDao.get(fileName, size);

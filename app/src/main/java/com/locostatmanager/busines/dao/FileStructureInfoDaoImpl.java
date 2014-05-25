@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -19,6 +20,7 @@ public class FileStructureInfoDaoImpl extends JdbcDaoSupport implements FileStru
         return getJdbcTemplate().queryForObject("SELECT * FROM FILE_STRUCTURE_INFO", new FileStructureInfoMapper());
     }
 
+    @Transactional
     public List<FileStructureInfo> getAll() throws DataAccessException {
 
         try {
