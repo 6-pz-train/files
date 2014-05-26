@@ -146,12 +146,12 @@
                     </div>
                     <div class="panel-body">
 
-                        <form data-toggle="validator" role="form" class="form-group" method="post">
+                        <form data-toggle="validator" role="form" class="form-group" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Локомотив</label>
                                 <select name="locoId" class="form-control">
                                     <options th:each="item : ${locomotives}">
-                                        <option th:text="${item.idLoco} + ' ' + ${item.description}">865 ЛК</option>
+                                        <option th:text="${item.idLoco} + ' ' + ${item.titleLoco}">865 ЛК</option>
                                     </options>
                                 </select>
                             </div>
@@ -160,7 +160,7 @@
                                 <label>Тип файлу</label>
                                 <select name="fileType" class="form-control">
                                     <options th:each="item : ${fileTypes}">
-                                        <option th:text="${item.name}">Тип файлу 1</option>
+                                        <option th:text="${item.type}">Тип файлу 1</option>
                                     </options>
                                 </select>
                             </div>

@@ -6,13 +6,20 @@ import com.locostatmanager.busines.dao.entities.LocoEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
 import com.locostatmanager.busines.service.LocomotiveService;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
  *
@@ -27,22 +34,30 @@ public class DownloadDataController {
     @Autowired
     private FileStructureInfoDao fileStructureInfoDao;
 
+    @RequestMapping(method = RequestMethod.GET)
     public String getPage(Model model) {
         return "downloadData";
     }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String uploadFiles(MultipartHttpServletRequest request) throws IOException {
+
+        Map<String, MultipartFile> fileMap = request.getFileMap();
+
+        MultipartFile next = fileMap.values().iterator().next();
+
+        return "downloadData";
+    }
+
+
 
     @ModelAttribute("locomotives")
     public List<LocoEntity> getLocomotives() throws ValidationException, DataAccessException {
         return locomotiveService.getAll();
     }
 
-    @ModelAttribute("fileNames")
-    public List<String> getFileNames() throws DataAccessException {
-        List<String> fileNames = new ArrayList<String>();
-        
-        for (FileStructureInfo fileStructureInfo : fileStructureInfoDao.getAll()) {
-            fileNames.add(fileStructureInfo.getType());
-        }
-        return fileNames;
+    @ModelAttribute("fileTypes")
+    public List<FileStructureInfo> getFileNames() throws DataAccessException {
+        return fileStructureInfoDao.getAll();
     }
 }

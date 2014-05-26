@@ -158,6 +158,14 @@
             </list>  
         </property>  
     </bean>
+
+    <!-- **************************************************************** -->
+    <!--  UPLOAD FILES                                                    -->
+    <!-- **************************************************************** -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="300000000"/>
+    </bean>
     
     <!-- **************************************************************** -->
     <!--  Path to property                                                -->
