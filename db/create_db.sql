@@ -107,3 +107,14 @@ create table Sensor
    primary key (NAME)
 );
 
+/*==============================================================*/
+/* Table: User                                                  */
+/*==============================================================*/
+create table User
+(
+   USER_LOGIN           char(20) not null,
+   USER_PASSWORD        char(32),
+   USER_NAME            char(100),
+   USER_ROLE            char(20),
+   primary key (USER_LOGIN)
+);
