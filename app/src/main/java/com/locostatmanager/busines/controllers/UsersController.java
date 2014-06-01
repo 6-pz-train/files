@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author dmitry
  */
 @Controller()
-@RequestMapping("users.htm")
+@RequestMapping("/users.htm")
 public class UsersController {
 
     @RequestMapping(method = RequestMethod.GET)
