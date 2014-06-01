@@ -106,3 +106,12 @@ create unique index FILE_INFO_INDEX on FILE_INFO
    FILE_NAME,
    FILE_SIZE
 );
+
+create table User
+(
+   LOGIN           char(20) not null,
+   PASSWORD        char(32) not null,
+   NAME            char(100) not null,
+   ROLE            char(20) not null,
+   primary key (LOGIN)
+);

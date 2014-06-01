@@ -112,9 +112,9 @@ create table Sensor
 /*==============================================================*/
 create table User
 (
-   USER_LOGIN           char(20) not null,
-   USER_PASSWORD        char(32),
-   USER_NAME            char(100),
-   USER_ROLE            char(20),
-   primary key (USER_LOGIN)
+   LOGIN           char(20) not null,
+   PASSWORD        char(32) not null,
+   NAME            char(100) not null,
+   ROLE            char(20) not null,
+   primary key (LOGIN)
 );

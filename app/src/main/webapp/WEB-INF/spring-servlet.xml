@@ -129,6 +129,10 @@
     <bean id="fileInfoDao" class="com.locostatmanager.busines.dao.FileInfoDaoImpl">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+
+    <bean id="userDao" class="com.locostatmanager.busines.dao.UserDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
     
     <!-- **************************************************************** -->
     <!--  SPRING QUARTZ CONFIGURATION                                     -->
@@ -166,6 +170,11 @@
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="300000000"/>
     </bean>
+
+    <!-- **************************************************************** -->
+    <!--  Validation                                                      -->
+    <!-- **************************************************************** -->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
     
     <!-- **************************************************************** -->
     <!--  Path to property                                                -->

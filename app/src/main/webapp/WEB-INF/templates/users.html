@@ -44,6 +44,95 @@
 
 </head>
 
+<script type="text/javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+
+        $('#addUserForm').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: $("#addUserForm").attr("action"),
+                data: 'login=' + $("#userLogin").val() + '&name=' + $("#userName").val()
+                        + '&password=' + $("#userPassword").val()
+                        + '&role=' + $("#addUserForm input[type='radio']:checked").val(),
+                success: function (data) {
+                    //if error
+                    if (data.status == "error") {
+                        showErrorDialog(data.message, JSON.stringify(data));
+                        return;
+                    }
+                    if (data.status == "success") {
+                        bootbox.alert('Користувач успішно доданий', function(){
+                            location.reload();
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    var err = xhr.status + " " + xhr.statusText + " " + xhr.responseText;
+                    showErrorDialog(err);
+                }
+            });
+        });
+
+        $('#changePassForm').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: $("#changePassForm").attr("action"),
+                data: 'login=' + $("select[name='userLoginPass']").find('option:selected').text()
+                        +'&newPassword=' + $("#inputResetPassword").val(),
+                success: function (data) {
+                    //if error
+                    if (data.status == "error") {
+                        showErrorDialog(data.message, JSON.stringify(data));
+                        return;
+                    }
+                    if (data.status == "success") {
+                        bootbox.alert('Пароль користувача успішно змінений', function(){
+                            location.reload();
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    var err = xhr.status + " " + xhr.statusText + " " + xhr.responseText;
+                    showErrorDialog(err);
+                }
+            });
+        });
+
+        $('#deleteUserForm').submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: $("#deleteUserForm").attr("action"),
+                data: 'login=' + $("select[name='userLoginPass']").find('option:selected').text()
+                        + '&newPassword=' + $("#inputResetPassword").val(),
+                success: function (data) {
+                    //if error
+                    if (data.status == "error") {
+                        showErrorDialog(data.message, JSON.stringify(data));
+                        return;
+                    }
+                    if (data.status == "success") {
+                        bootbox.alert('Користувач успішно видалений', function(){
+                            location.reload();
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    var err = xhr.status + " " + xhr.statusText + " " + xhr.responseText;
+                    showErrorDialog(err);
+                }
+            });
+        });
+
+
+
+    })
+    /*]]>*/
+</script>
+
 <body>
 
 <div id="wrapper">
@@ -68,13 +157,13 @@
             <li><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
             <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a>
             </li>
-            <li class="active"><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i>
+            <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i>
                 Керування локомотивами </a></li>
             <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i>
                 Завантаження даних </a></li>
             <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
                 базу</a></li>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
+            <li class="active" sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
             <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
         </ul>
 
@@ -173,23 +262,23 @@
                         </div>
                         <div class="panel-body">
 
-                            <form data-toggle="validator" role="form" class="form-group">
+                            <form id="addUserForm" data-toggle="validator" role="form" class="form-group" action="" th:action="@{/userManager/add.json}">
                                 <div class="form-group">
                                     <label class="control-label" for="userLogin">Логін</label>
 
                                     <div class="controls">
-                                        <input class="form-control" required="true" type="text" id="userLogin" name="userLogin"/>
+                                        <input class="form-control" required="true" type="text" id="userLogin" name="login"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputPassword" class="control-label">Пароль</label>
+                                    <label for="userPassword" class="control-label">Пароль</label>
                                     <div class="form-inline row">
                                         <div class="form-group col-sm-6">
-                                            <input style="width: 100%" type="password" data-toggle="validator" class="form-control" id="inputPassword" placeholder="Пароль" required="true"/>
+                                            <input name="password" style="width: 100%" type="password" data-toggle="validator" class="form-control" id="userPassword" placeholder="Пароль" required="true"/>
                                         </div>
                                         <div class="form-group col-sm-6">
-                                            <input style="width: 100%" type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Паролі не співпадають!" placeholder="Пароль ще раз" required="true"/>
+                                            <input style="width: 100%" type="password" class="form-control" id="inputPasswordConfirm" data-match="#userPassword" data-match-error="Паролі не співпадають!" placeholder="Пароль ще раз" required="true"/>
                                         </div>
                                     </div>
                                 </div>
@@ -197,20 +286,20 @@
                                 <div class="form-group">
                                     <label class="control-label" for="userName">Ім'я</label>
                                     <div class="controls">
-                                        <input class="form-control" required="true" type="text" id="userName" name="userName"/>
+                                        <input class="form-control" required="true" type="text" id="userName" name="name"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="role" required="true"/>
+                                            <input value="ROLE_USER" type="radio" name="role" required="true"/>
                                             Користувач
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" name="role" required="true"/>
+                                            <input value="ROLE_ADMIN" type="radio" name="role" required="true"/>
                                             Адміністратор
                                         </label>
                                     </div>
@@ -247,10 +336,10 @@
                         </div>
                         <div class="panel-body">
 
-                            <form data-toggle="validator" role="form" class="form-group">
+                            <form id="changePassForm" data-toggle="validator" role="form" class="form-group" action="" th:action="@{/userManager/updatePassword.json}">
                                 <div class="form-group">
                                     <label>Логін</label>
-                                    <select class="form-control">
+                                    <select name="userLoginPass" class="form-control">
                                         <options th:each="item : ${users}">
                                             <option th:text="${item.login}">vpupkin</option>
                                         </options>
@@ -291,10 +380,10 @@
                         </div>
                         <div class="panel-body">
 
-                            <form data-toggle="validator" role="form" class="form-group">
+                            <form id="deleteUserForm" data-toggle="validator" role="form" class="form-group" action="" th:action="@{/userManager/delete.json}">
                                 <div class="form-group">
                                     <label>Логін</label>
-                                    <select class="form-control">
+                                    <select name="userLoginDelete" class="form-control">
                                         <options th:each="item : ${users}">
                                             <option th:text="${item.login}">vpupkin</option>
                                         </options>
