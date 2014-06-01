@@ -41,7 +41,7 @@ public class DownloadDataController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String uploadFiles(MultipartHttpServletRequest request, @RequestParam String fileType) throws IOException {
+    public String uploadFiles(MultipartHttpServletRequest request, @RequestParam String fileType, @RequestParam String locoId) throws IOException {
 
         Map<String, MultipartFile> fileMap = request.getFileMap();
 

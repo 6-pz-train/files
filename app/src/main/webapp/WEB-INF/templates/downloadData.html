@@ -151,7 +151,7 @@
                                 <label>Локомотив</label>
                                 <select name="locoId" class="form-control">
                                     <options th:each="item : ${locomotives}">
-                                        <option th:text="${item.idLoco} + ' ' + ${item.titleLoco}">865 ЛК</option>
+                                        <option th:text="${item.idLoco}">865 ЛК</option>
                                     </options>
                                 </select>
                             </div>
