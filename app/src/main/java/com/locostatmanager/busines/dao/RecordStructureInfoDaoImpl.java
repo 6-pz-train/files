@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.stereotype.Service;
 
 /**
  *
@@ -14,8 +13,8 @@ import org.springframework.stereotype.Service;
  */
 public class RecordStructureInfoDaoImpl extends JdbcDaoSupport implements RecordStructureInfoDao {
 
-    public List<RecordStructureInfo> getByFsiId(String fsiId) {
-        return getJdbcTemplate().query("SELECT * FROM RECORD_STRUCTURE_INFO WHERE FSI_ID = ?", new Object[]{fsiId}, new RecordStructureInfoMapper());
+    public List<RecordStructureInfo> getByFsiType(String fsiType) {
+        return getJdbcTemplate().query("SELECT * FROM RECORD_STRUCTURE_INFO WHERE FSI_TYPE = ?", new Object[]{fsiType}, new RecordStructureInfoMapper());
     }
     
     private class RecordStructureInfoMapper implements RowMapper<RecordStructureInfo>{
@@ -23,7 +22,7 @@ public class RecordStructureInfoDaoImpl extends JdbcDaoSupport implements Record
         public RecordStructureInfo mapRow(ResultSet rs, int i) throws SQLException {
             
             RecordStructureInfo recordStructureInfo = new RecordStructureInfo();
-            recordStructureInfo.setFsiId(rs.getInt("FSI_ID"));
+            recordStructureInfo.setFsiType(rs.getString("FSI_TYPE"));
             recordStructureInfo.setName(rs.getString("NAME"));
             recordStructureInfo.setIndex(rs.getInt("INDEx"));
             recordStructureInfo.setDelta(rs.getDouble("DELTA"));

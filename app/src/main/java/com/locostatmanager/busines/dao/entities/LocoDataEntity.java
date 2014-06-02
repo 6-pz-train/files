@@ -9,99 +9,99 @@ import java.sql.Timestamp;
  */
 public class LocoDataEntity {
     @JsonProperty("ID_LOCO_DATA")
-    private long idLocoData;
+    private long idLocoData=0;
     @JsonProperty("ID_LOCO")
     private String idLoco;
     @JsonProperty("RECORD_TIME_LOCO_DATA")
     private Timestamp recordTimeLocoData;
     @JsonProperty("NAPR_ACCUM_BATR_SEC_A")
-    private Byte naprAccumBatrSecA;
+    private Byte naprAccumBatrSecA=0;
     @JsonProperty("NAPR_ACCUM_BATR_SEC_B")
-    private Byte naprAccumBatrSecB;
+    private Byte naprAccumBatrSecB=0;
     @JsonProperty("TOK_ACCUM_BATR_SEC_A")
-    private Byte tokAccumBatrSecA;
+    private Byte tokAccumBatrSecA=0;
     @JsonProperty("TOK_ACCUM_BATR_SEC_B")
-    private Byte tokAccumBatrSecB;
+    private Byte tokAccumBatrSecB=0;
     @JsonProperty("TOK_VOZ_TED_SEC_A")
-    private Short tokVozTedSecA;
+    private Short tokVozTedSecA=0;
     @JsonProperty("TOK_VOZ_TED_SEC_B")
-    private Short tokVozTedSecB;
+    private Short tokVozTedSecB=0;
     @JsonProperty("TOK_YAK_TED12_SEC_A")
-    private Short tokYakTed12SecA;
+    private Short tokYakTed12SecA=0;
     @JsonProperty("TOK_YAK_TED12_SEC_B")
-    private Short tokYakTed12SecB;
+    private Short tokYakTed12SecB=0;
     @JsonProperty("TOK_YAK_TED34_SEC_A")
-    private Short tokYakTed34SecA;
+    private Short tokYakTed34SecA=0;
     @JsonProperty("TOK_YAK_TED34_SEC_B")
-    private Short tokYakTed34SecB;
+    private Short tokYakTed34SecB=0;
     @JsonProperty("NAPR_CONT_SET_SEC_A")
-    private Short naprContSetSecA;
+    private Short naprContSetSecA=0;
     @JsonProperty("NAPR_CONT_SET_SEC_B")
-    private Short naprContSetSecB;
+    private Short naprContSetSecB=0;
     @JsonProperty("TEMPR_BUKS1_STOR_MASH_SEC_A")
-    private Byte temprBuks1StorMashSecA;
+    private Byte temprBuks1StorMashSecA=0;
     @JsonProperty("TEMPR_BUKS1_STOR_POM_MASH_SEC_A")
-    private Byte temprBuks1StorPomMashSecA;
+    private Byte temprBuks1StorPomMashSecA=0;
     @JsonProperty("TEMPR_BUKS2_STOR_MASH_SEC_A")
-    private Byte temprBuks2StorMashSecA;
+    private Byte temprBuks2StorMashSecA=0;
     @JsonProperty("TEMPR_BUKS2_STOR_POM_MASH_SEC_A")
-    private Byte temprBuks2StorPomMashSecA;
+    private Byte temprBuks2StorPomMashSecA=0;
     @JsonProperty("TEMPR_BUKS3_STOR_MASH_SEC_A")
-    private Byte temprBuks3StorMashSecA;
+    private Byte temprBuks3StorMashSecA=0;
     @JsonProperty("TEMPR_BUKS3_STOR_POM_MASH_SEC_A")
-    private Byte temprBuks3StorPomMashSecA;
+    private Byte temprBuks3StorPomMashSecA=0;
     @JsonProperty("TEMPR_BUKS4_STOR_MASH_SEC_A")
-    private Byte temprBuks4StorMashSecA;
+    private Byte temprBuks4StorMashSecA=0;
     @JsonProperty("TEMPR_BUKS4_STOR_POM_MASH_SEC_A")
-    private Byte temprBuks4StorPomMashSecA;
+    private Byte temprBuks4StorPomMashSecA=0;
     @JsonProperty("TEMPR_BUKS4_STOR_POM_MASH_SEC_B")
-    private Byte temprBuks4StorPomMashSecB;
+    private Byte temprBuks4StorPomMashSecB=0;
     @JsonProperty("TEMPR_BUKS4_STOR_MASH_SEC_B")
-    private Byte temprBuks4StorMashSecB;
+    private Byte temprBuks4StorMashSecB=0;
     @JsonProperty("TEMPR_BUKS3_STOR_POM_MASH_SEC_B")
-    private Byte temprBuks3StorPomMashSecB;
+    private Byte temprBuks3StorPomMashSecB=0;
     @JsonProperty("TEMPR_BUKS3_STOR_MASH_SEC_B")
-    private Byte temprBuks3StorMashSecB;
+    private Byte temprBuks3StorMashSecB=0;
     @JsonProperty("TEMPR_BUKS2_STOR_POM_MASH_SEC_B")
-    private Byte temprBuks2StorPomMashSecB;
+    private Byte temprBuks2StorPomMashSecB=0;
     @JsonProperty("TEMPR_BUKS2_STOR_MASH_SEC_B")
-    private Byte temprBuks2StorMashSecB;
+    private Byte temprBuks2StorMashSecB=0;
     @JsonProperty("TEMPR_BUKS1_STOR_POM_MASH_SEC_B")
-    private Byte temprBuks1StorPomMashSecB;
+    private Byte temprBuks1StorPomMashSecB=0;
     @JsonProperty("TEMPR_BUKS1_STOR_MASH_SEC_B")
-    private Byte temprBuks1StorMashSecB;
+    private Byte temprBuks1StorMashSecB=0;
     @JsonProperty("TEMPR_VHOD_TED_SEC_A1")
-    private Byte temprVhodTedSecA1;
+    private Byte temprVhodTedSecA1=0;
     @JsonProperty("TEMPR_VHOD_TED_SEC_A2")
-    private Byte temprVhodTedSecA2;
+    private Byte temprVhodTedSecA2=0;
     @JsonProperty("TEMPR_VHOD_TED_SEC_B1")
-    private Byte temprVhodTedSecB1;
+    private Byte temprVhodTedSecB1=0;
     @JsonProperty("TEMPR_VHOD_TED_SEC_B2")
-    private Byte temprVhodTedSecB2;
+    private Byte temprVhodTedSecB2=0;
     @JsonProperty("TEMPR_VIHOD_TED1_SEC_A")
-    private Byte temprVihodTed1SecA;
+    private Byte temprVihodTed1SecA=0;
     @JsonProperty("TEMPR_VIHOD_TED2_SEC_A")
-    private Byte temprVihodTed2SecA;
+    private Byte temprVihodTed2SecA=0;
     @JsonProperty("TEMPR_VIHOD_TED3_SEC_A")
-    private Byte temprVihodTed3SecA;
+    private Byte temprVihodTed3SecA=0;
     @JsonProperty("TEMPR_VIHOD_TED4_SEC_A")
-    private Byte temprVihodTed4SecA;
+    private Byte temprVihodTed4SecA=0;
     @JsonProperty("TEMPR_VIHOD_TED1_SEC_B")
-    private Byte temprVihodTed1SecB;
+    private Byte temprVihodTed1SecB=0;
     @JsonProperty("TEMPR_VIHOD_TED2_SEC_B")
-    private Byte temprVihodTed2SecB;
+    private Byte temprVihodTed2SecB=0;
     @JsonProperty("TEMPR_VIHOD_TED3_SEC_B")
-    private Byte temprVihodTed3SecB;
+    private Byte temprVihodTed3SecB=0;
     @JsonProperty("TEMPR_VIHOD_TED4_SEC_B")
-    private Byte temprVihodTed4SecB;
+    private Byte temprVihodTed4SecB=0;
     @JsonProperty("TEMPR_BPTR1_SEC_A")
-    private Short temprBptr1SecA;
+    private Short temprBptr1SecA=0;
     @JsonProperty("TEMPR_BPTR2_SEC_A")
-    private Short temprBptr2SecA;
+    private Short temprBptr2SecA=0;
     @JsonProperty("TEMPR_BPTR1_SEC_B")
-    private Short temprBptr1SecB;
+    private Short temprBptr1SecB=0;
     @JsonProperty("TEMPR_BPTR2_SEC_B")
-    private Short temprBptr2SecB;
+    private Short temprBptr2SecB=0;
 
     public long getIdLocoData() {
         return idLocoData;

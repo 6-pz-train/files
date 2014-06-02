@@ -6,5 +6,5 @@ package com.locostatmanager.busines.service;
  */
 public interface DataLoadingService {
     
-    void loadData(byte[] file) throws Exception;
+    void loadData(byte[] file, String type) throws Exception;
 }

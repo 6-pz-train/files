@@ -19,10 +19,9 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
     @Override
     public void add(LocoDataEntity entity) throws DataAccessException {
 
-        try {
+       // try {
             getJdbcTemplate().update("INSERT INTO LOCO_DATA "
-                    + "(ID_LOCO_DATA,"
-                    + "ID_LOCO,"
+                    + "(ID_LOCO,"
                     + "RECORD_TIME_LOCO_DATA,"
                     + "NAPR_ACCUM_BATR_SEC_A,"
                     + "NAPR_ACCUM_BATR_SEC_B,"
@@ -68,9 +67,9 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
                     + "TEMPR_BPTR2_SEC_A,"
                     + "TEMPR_BPTR1_SEC_B,"
                     + "TEMPR_BPTR2_SEC_B) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?"
+                    + ")",
                     new Object[]{
-                        entity.getIdLocoData(),
                         entity.getIdLoco(),
                         entity.getRecordTimeLocoData(),
                         entity.getNaprAccumBatrSecA(),
@@ -83,6 +82,7 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
                         entity.getTokYakTed12SecB(),
                         entity.getTokYakTed34SecA(),
                         entity.getTokYakTed34SecB(),
+                        entity.getNaprContSetSecA(),
                         entity.getNaprContSetSecB(),
                         entity.getTemprBuks1StorMashSecA(),
                         entity.getTemprBuks1StorPomMashSecA(),
@@ -117,9 +117,9 @@ public class DataDaoImpl extends JdbcDaoSupport implements DataDao {
                         entity.getTemprBptr1SecB(),
                         entity.getTemprBptr2SecB()}
             );
-        } catch (Exception e) {
-            throw new DataAccessException(e);
-        }
+//        } catch (org.springframework.dao.DataAccessException e) {
+//            throw new DataAccessException(e);
+//        }
     }
 
     @Override

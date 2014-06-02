@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface FileStructureInfoDao {
     
-    FileStructureInfo get() throws DataAccessException;
+    FileStructureInfo get(String type) throws DataAccessException;
     List<FileStructureInfo> getAll() throws DataAccessException;
 }

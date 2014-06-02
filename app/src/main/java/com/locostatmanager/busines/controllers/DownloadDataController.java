@@ -5,6 +5,7 @@ import com.locostatmanager.busines.dao.entities.FileStructureInfo;
 import com.locostatmanager.busines.dao.entities.LocoEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
+import com.locostatmanager.busines.service.DataLoadingService;
 import com.locostatmanager.busines.service.LocomotiveService;
 
 import java.io.IOException;
@@ -34,6 +35,8 @@ public class DownloadDataController {
     private LocomotiveService locomotiveService;
     @Autowired
     private FileStructureInfoDao fileStructureInfoDao;
+    @Autowired
+    private DataLoadingService dataLoadingService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getPage(Model model) {
@@ -41,12 +44,13 @@ public class DownloadDataController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String uploadFiles(MultipartHttpServletRequest request, @RequestParam String fileType, @RequestParam String locoId) throws IOException {
+    public String uploadFiles(MultipartHttpServletRequest request, @RequestParam String fileType, @RequestParam String locoId) throws IOException, Exception {
 
         Map<String, MultipartFile> fileMap = request.getFileMap();
 
         MultipartFile next = fileMap.values().iterator().next();
-
+        dataLoadingService.loadData(next.getBytes(), fileType);
+        
         return "downloadData";
     }
 

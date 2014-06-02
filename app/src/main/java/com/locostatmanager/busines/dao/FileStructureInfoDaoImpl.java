@@ -15,9 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class FileStructureInfoDaoImpl extends JdbcDaoSupport implements FileStructureInfoDao {
 
-    public FileStructureInfo get() {
+    public FileStructureInfo get(String type) {
 
-        return getJdbcTemplate().queryForObject("SELECT * FROM FILE_STRUCTURE_INFO", new FileStructureInfoMapper());
+        return getJdbcTemplate().queryForObject("SELECT * FROM FILE_STRUCTURE_INFO WHERE TYPE = ?", new Object[]{type}, new FileStructureInfoMapper());
     }
 
     @Transactional

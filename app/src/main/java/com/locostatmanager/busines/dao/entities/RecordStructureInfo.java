@@ -9,7 +9,15 @@ public class RecordStructureInfo {
     private String name;
     private Integer index;
     private Double delta;
-    private Integer fsiId;
+    private String fsiType;
+
+    public String getFsiType() {
+        return fsiType;
+    }
+
+    public void setFsiType(String fsiType) {
+        this.fsiType = fsiType;
+    }
 
     public String getName() {
         return name;
@@ -33,13 +41,5 @@ public class RecordStructureInfo {
 
     public void setDelta(Double delta) {
         this.delta = delta;
-    }
-
-    public Integer getFsiId() {
-        return fsiId;
-    }
-
-    public void setFsiId(Integer fsiId) {
-        this.fsiId = fsiId;
     }
 }

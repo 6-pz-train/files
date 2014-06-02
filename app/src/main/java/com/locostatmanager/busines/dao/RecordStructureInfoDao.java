@@ -8,5 +8,5 @@ import java.util.List;
  * @author dmitry
  */
 public interface RecordStructureInfoDao {
-    List<RecordStructureInfo> getByFsiId(String fsiId);
+    List<RecordStructureInfo> getByFsiType(String fsiType);
 }
