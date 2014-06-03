@@ -183,44 +183,6 @@
     <!-- **************************************************************** -->
     <context:property-placeholder location="classpath*:jdbc.properties"/>
 
-
-
-    <security:http access-denied-page="/error403.jsp" use-expressions="true">
-        <security:intercept-url pattern="/login.htm" access="permitAll"/>
-        <!--<intercept-url pattern="/downloadData.htm" access="hasRole('ROLE_ADMIN')"/>-->
-        <security:intercept-url pattern="/*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
-        <security:form-login login-page="/login.htm" default-target-url="/index.htm" authentication-failure-url="/login.htm?error=true"/>
-        <security:logout logout-url="/logout.htm" logout-success-url="/login.htm"/>
-    </security:http>
-
-    <!--<authentication-manager>-->
-    <!--<authentication-provider>-->
-    <!--<user-service>-->
-    <!--<user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER"/>-->
-    <!--<user name="user1" password="1111" authorities="ROLE_USER"/>-->
-    <!--</user-service>-->
-    <!--</authentication-provider>-->
-    <!--</authentication-manager>-->
-
-    <bean name="userAuthManager" class="com.locostatmanager.busines.service.UserAuthManagerImpl"/>
-    <bean name="userDetailsService" class="com.locostatmanager.busines.service.CustomUserDetailsService"/>
-    <bean name="authenticationProvider" class="com.locostatmanager.busines.service.CustomAuthenticationProvider">
-        <property name="authManager" ref="userAuthManager"/>
-    </bean>
-    <!-- Declare an authentication-manager to use a custom userDetailsService -->
-    <security:authentication-manager alias="authenticationManager">
-        <security:authentication-provider ref="authenticationProvider"/>
-        <security:authentication-provider user-service-ref="userDetailsService"/>
-    </security:authentication-manager>
-
-    <!--
-    public interface AdminService {
-    @Secured("ROLE_ADMIN")
-    public Account editAccount(Account account);
-    }
-  -->
-    <security:global-method-security secured-annotations="enabled" />
-
 </beans>
 
 

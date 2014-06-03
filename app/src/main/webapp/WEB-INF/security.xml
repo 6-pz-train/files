@@ -9,40 +9,40 @@
                  http://www.springframework.org/schema/security/spring-security-3.2.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-    <!--<http access-denied-page="/error403.jsp" use-expressions="true">-->
-        <!--<intercept-url pattern="/login.htm" access="permitAll"/>-->
-        <!--&lt;!&ndash;<intercept-url pattern="/downloadData.htm" access="hasRole('ROLE_ADMIN')"/>&ndash;&gt;-->
-        <!--<intercept-url pattern="/*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>-->
-        <!--<form-login login-page="/login.htm" default-target-url="/index.htm" authentication-failure-url="/login.htm?error=true"/>-->
-        <!--<logout logout-url="/logout.htm" logout-success-url="/login.htm"/>-->
-    <!--</http>-->
+    <http access-denied-page="/error403.jsp" use-expressions="true">
+        <intercept-url pattern="/login.htm" access="permitAll"/>
+        <!--<intercept-url pattern="/downloadData.htm" access="hasRole('ROLE_ADMIN')"/>-->
+        <intercept-url pattern="/*" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <form-login login-page="/login.htm" default-target-url="/index.htm" authentication-failure-url="/login.htm?error=true"/>
+        <logout logout-url="/logout.htm" logout-success-url="/login.htm"/>
+    </http>
 
-    <!--&lt;!&ndash;<authentication-manager>&ndash;&gt;-->
-        <!--&lt;!&ndash;<authentication-provider>&ndash;&gt;-->
-            <!--&lt;!&ndash;<user-service>&ndash;&gt;-->
-                <!--&lt;!&ndash;<user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER"/>&ndash;&gt;-->
-                <!--&lt;!&ndash;<user name="user1" password="1111" authorities="ROLE_USER"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;</user-service>&ndash;&gt;-->
-        <!--&lt;!&ndash;</authentication-provider>&ndash;&gt;-->
-    <!--&lt;!&ndash;</authentication-manager>&ndash;&gt;-->
-
-    <!--<beans:bean name="userAuthManager" class="com.locostatmanager.busines.service.UserAuthManagerImpl"/>-->
-    <!--<beans:bean name="userDetailsService" class="com.locostatmanager.busines.service.CustomUserDetailsService"/>-->
-    <!--<beans:bean name="authenticationProvider" class="com.locostatmanager.busines.service.CustomAuthenticationProvider">-->
-        <!--<beans:property name="authManager" ref="userAuthManager"/>-->
-    <!--</beans:bean>-->
-    <!--&lt;!&ndash; Declare an authentication-manager to use a custom userDetailsService &ndash;&gt;-->
-    <!--<authentication-manager alias="authenticationManager">-->
-        <!--<authentication-provider ref="authenticationProvider"/>-->
-        <!--<authentication-provider user-service-ref="userDetailsService"/>-->
+    <!--<authentication-manager>-->
+        <!--<authentication-provider>-->
+            <!--<user-service>-->
+                <!--<user name="admin" password="pass" authorities="ROLE_ADMIN,ROLE_USER"/>-->
+                <!--<user name="user1" password="1111" authorities="ROLE_USER"/>-->
+            <!--</user-service>-->
+        <!--</authentication-provider>-->
     <!--</authentication-manager>-->
 
-    <!--&lt;!&ndash;-->
-    <!--public interface AdminService {-->
-    <!--@Secured("ROLE_ADMIN")-->
-    <!--public Account editAccount(Account account);-->
-    <!--}-->
-  <!--&ndash;&gt;-->
-    <!--<global-method-security secured-annotations="enabled" />-->
+    <beans:bean name="userAuthManager" class="com.locostatmanager.busines.service.UserAuthManagerImpl"/>
+    <beans:bean name="userDetailsService" class="com.locostatmanager.busines.service.CustomUserDetailsService"/>
+    <beans:bean name="authenticationProvider" class="com.locostatmanager.busines.service.CustomAuthenticationProvider">
+        <beans:property name="authManager" ref="userAuthManager"/>
+    </beans:bean>
+    <!-- Declare an authentication-manager to use a custom userDetailsService -->
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider ref="authenticationProvider"/>
+        <authentication-provider user-service-ref="userDetailsService"/>
+    </authentication-manager>
+
+    <!--
+    public interface AdminService {
+    @Secured("ROLE_ADMIN")
+    public Account editAccount(Account account);
+    }
+  -->
+    <global-method-security secured-annotations="enabled" />
 
 </beans:beans> 

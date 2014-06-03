@@ -13,6 +13,7 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
+            /WEB-INF/spring-servlet.xml,
             /WEB-INF/security.xml
         </param-value>
     </context-param>
@@ -26,6 +27,10 @@
     <servlet>
       <servlet-name>spring</servlet-name>
       <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value></param-value>
+        </init-param>
       <load-on-startup>1</load-on-startup>
     </servlet>
 
