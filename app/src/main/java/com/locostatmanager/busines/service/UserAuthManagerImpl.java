@@ -5,6 +5,7 @@ import com.locostatmanager.busines.dao.entities.UserEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
 import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +13,13 @@ import java.util.List;
 /**
  * Created by anatoliy on 01.06.14.
  */
-@Service
 public class UserAuthManagerImpl implements UserAuthManager {
 
     BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+
+    public UserAuthManagerImpl() {
+        System.out.println("afdasf");
+    }
 
     @Autowired
     private UserDao userDao;
@@ -57,5 +61,14 @@ public class UserAuthManagerImpl implements UserAuthManager {
 
     public void deleteUser(String login) throws DataAccessException {
         userDao.deleteUser(login);
+    }
+
+    public boolean checkPassword(UserEntity entity, String plainPass) {
+        return passwordEncryptor.checkPassword(plainPass, entity.getPassword());
+    }
+
+    public static void main(String[] args) {
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        System.out.println(passwordEncryptor.encryptPassword("pass"));
     }
 }
