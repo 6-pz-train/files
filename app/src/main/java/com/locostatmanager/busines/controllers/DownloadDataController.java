@@ -78,8 +78,7 @@ public class DownloadDataController {
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseBody
-    public ModelAndView onException(Exception e, Model model) {
+    public ModelAndView onException(Exception e) {
 
         ModelAndView mv = new ModelAndView("downloadData");
         mv.addObject("errMsg", e.getMessage());
