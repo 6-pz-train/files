@@ -99,7 +99,8 @@
                     Завантаження даних </a></li>
                 <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
                     базу</a></li>
-                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i
+                        class="fa fa-users"></i> Користувачі </a></li>
                 <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
             </ul>
 
@@ -129,13 +130,33 @@
                     <small>Завантаження файлів з діагностичними даними</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li class="active"><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель</a></li>
+                    <li class="active"><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна
+                        панель</a></li>
                     <li class="active"><i class="fa fa-download"></i> Завантаження даних</li>
                 </ol>
             </div>
         </div>
         <!-- /.row -->
 
+        <!--Алерт с ошибкой о загрузке файла-->
+        <div th:if="${errMsg}" class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Помилка!</strong> <span th:text="${errMsg}">Виникла помилка при завантаженні файлу.</span>
+                </div>
+            </div>
+        </div>
+
+        <!--Алерт с подтверждение успешной загрузки файла-->
+        <div th:if="${success}" class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Успіх!</strong> Файл успішно завантажено.
+                </div>
+            </div>
+        </div>
 
         <!--Форма добавления файла-->
         <div sec:authorize="hasRole('ROLE_ADMIN')" class="row">
@@ -146,7 +167,8 @@
                     </div>
                     <div class="panel-body">
 
-                        <form data-toggle="validator" role="form" class="form-group" method="post" enctype="multipart/form-data">
+                        <form data-toggle="validator" role="form" class="form-group" method="post"
+                              enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>Локомотив</label>
                                 <select name="locoId" class="form-control">

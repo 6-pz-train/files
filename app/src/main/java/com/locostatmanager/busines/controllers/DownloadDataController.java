@@ -44,13 +44,21 @@ public class DownloadDataController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String uploadFiles(MultipartHttpServletRequest request, @RequestParam String fileType, @RequestParam String locoId) throws IOException, Exception {
+    public String uploadFiles(
+            MultipartHttpServletRequest request,
+            @RequestParam String fileType,
+            @RequestParam String locoId,
+            Model model) throws IOException, Exception {
 
         Map<String, MultipartFile> fileMap = request.getFileMap();
 
         MultipartFile next = fileMap.values().iterator().next();
         dataLoadingService.loadData(next.getBytes(), fileType);
-        
+
+        for(MultipartFile file: fileMap.values()){
+            file.getOriginalFilename();
+        }
+        model.addAttribute("success", "Кількість завантаженіх записів, можливо");
         return "downloadData";
     }
 

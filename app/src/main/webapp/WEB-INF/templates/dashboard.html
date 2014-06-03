@@ -53,12 +53,12 @@
         $('#temperDataTime2').datetimepicker({
             language: 'ru'
         });
-        $("#temperDataTime1").on("dp.change", function (e) {
-            $('#temperDataTime2').data("DateTimePicker").setMinDate(e.date);
-        });
-        $("#temperDataTime2").on("dp.change", function (e) {
-            $('#temperDataTime1').data("DateTimePicker").setMaxDate(e.date);
-        });
+//        $("#temperDataTime1").on("dp.change", function (e) {
+//            $('#temperDataTime2').data("DateTimePicker").setMinDate(e.date);
+//        });
+//        $("#temperDataTime2").on("dp.change", function (e) {
+//            $('#temperDataTime1').data("DateTimePicker").setMaxDate(e.date);
+//        });
     });
     /*]]>*/
 </script>
@@ -201,10 +201,11 @@
                                 data: seriesData
                             });
                         }
+
                         //add row
-                        function addRow(locoId, date, sensor, value, unit){
+                        function addRow(locoId, date, sensor, value, unit) {
                             var n = $('#dataTable tr').length;
-                            $('#dataTable > tbody:last').append('<tr><td>'+n+'</td><td>'+locoId+'</td><td>'+date+'</td><td>'+sensor+'</td><td>'+value+'</td><td>'+unit+'</td></tr>');
+                            $('#dataTable > tbody:last').append('<tr><td>' + n + '</td><td>' + locoId + '</td><td>' + date + '</td><td>' + sensor + '</td><td>' + value + '</td><td>' + unit + '</td></tr>');
                         }
 
                     },
@@ -254,7 +255,8 @@
                 даних </a></li>
             <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
                 базу</a></li>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i
+                    class="fa fa-users"></i> Користувачі </a></li>
             <li><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
         </ul>
 
@@ -284,13 +286,111 @@
             <small>Перегляд статистичних даних</small>
         </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель</a></li>
+            <li class="active"><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель</a>
+            </li>
             <li class="active"><i class="fa fa-dashboard"></i> Статистика</li>
         </ol>
     </div>
 </div>
 <!-- /.row -->
 
+<!--График-->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Загальний графік </h3>
+            </div>
+            <div class="panel-body">
+                <div class="testChart" style="max-width: 98%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="well well-sm text-center">
+            <strong>Вибір локомотивів та періоду</strong>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
+
+<!--Панель локомотивов и периода-->
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel panel-primary" style="height: 250px">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-bullhorn"></i> Локомотиви</h3>
+            </div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <div style="overflow-y: auto; height: 180px">
+                        <div class="checkbox" th:each="item : ${locomotives}">
+                            <label>
+                                <input name="train" type="checkbox" data="test" th:data="${item.titleLoco}" value=""
+                                       th:text="${item.idLoco} + ' ' + ${item.titleLoco}" th:value="${item.idLoco}">
+                                Напряжение 1
+                                </input>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel panel-primary" style="height: 250px">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Період </h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div class="col-lg-12">
+                        <form data-toggle="validator" role="form" id="formDate" action="/statistic/locoStat.json"
+                              th:action="@{/statistic/locoStat.json}">
+                            <div class='col-lg-12'>
+                                <div class="form-group">
+                                    <label for="inputDate1"> Від: </label>
+
+                                    <div class='input-group date datetimepicker1' id='temperDataTime1'>
+                                        <input id="inputDate1" pattern="\d{2}.\d{2}.\d{4} \d{2}:\d{2}"
+                                               required="true" type='text' class="form-control"/>
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-lg-12'>
+                                <div class="form-group">
+                                    <label for="inputDate2"> До: </label>
+
+                                    <div class='input-group date datetimepicker2' id='temperDataTime2'>
+                                        <input id="inputDate2" pattern="\d{2}.\d{2}.\d{4} \d{2}:\d{2}"
+                                               required="true" type='text' class="form-control"/>
+                                           <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                     </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <button id="updateChart" type="submit" class="btn btn-primary center-block" onclick="">
+                                    Оновити
+                                    графік
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.row -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -398,104 +498,6 @@
     </div>
 </div>
 <!-- /.row -->
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="well well-sm text-center">
-            <strong>Вибір локомотивів та періоду</strong>
-        </div>
-    </div>
-</div>
-<!-- /.row -->
-
-<!--Панель локомотивов и периода-->
-<div class="row">
-    <div class="col-lg-6">
-        <div class="panel panel-primary" style="height: 250px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bullhorn"></i> Локомотиви</h3>
-            </div>
-            <div class="panel-body">
-
-                <div class="form-group">
-                    <div style="overflow-y: auto; height: 180px">
-                        <div class="checkbox" th:each="item : ${locomotives}">
-                            <label>
-                                <input name="train" type="checkbox" data="test" th:data="${item.titleLoco}" value=""
-                                       th:text="${item.idLoco} + ' ' + ${item.titleLoco}" th:value="${item.idLoco}">
-                                Напряжение 1
-                                </input>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="panel panel-primary" style="height: 250px">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="glyphicon glyphicon-calendar"></i> Період </h3>
-            </div>
-            <div class="panel-body">
-                <div>
-                    <div class="col-lg-12">
-                        <form data-toggle="validator" role="form" id="formDate" action="/statistic/locoStat.json"
-                              th:action="@{/statistic/locoStat.json}">
-                            <div class='col-lg-12'>
-                                <div class="form-group">
-                                    <label for="inputDate1"> Від: </label>
-
-                                    <div class='input-group date datetimepicker1' id='temperDataTime1'>
-                                        <input id="inputDate1" disabled="true" pattern="\d{2}.\d{2}.\d{4} \d{2}:\d{2}"
-                                               required="true" type='text' class="form-control"/>
-                        <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='col-lg-12'>
-                                <div class="form-group">
-                                    <label for="inputDate2"> До: </label>
-
-                                    <div class='input-group date datetimepicker2' id='temperDataTime2'>
-                                        <input id="inputDate2" disabled="true" pattern="\d{2}.\d{2}.\d{4} \d{2}:\d{2}"
-                                               required="true" type='text' class="form-control"/>
-                                           <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                     </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <button id="updateChart" type="submit" class="btn btn-primary center-block" onclick="">
-                                    Оновити
-                                    графік
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /.row -->
-
-<!--График-->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Загальний графік </h3>
-            </div>
-            <div class="panel-body">
-                <div class="testChart" style="max-width: 98%"></div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--Таблица-->
 <div class="row">
