@@ -10,4 +10,5 @@ import com.locostatmanager.busines.exceptions.DataAccessException;
 public interface FileInfoDao {
     
     FileInfo get(String fileName, Integer fileSize) throws DataAccessException;
+    void add(FileInfo fileInfo) throws DataAccessException;
 }

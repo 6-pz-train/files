@@ -77,11 +77,11 @@ public class DownloadDataController {
         return fileStructureInfoDao.getAll();
     }
 
-    @ExceptionHandler(Exception.class)
-    public ModelAndView onException(Exception e) {
-
-        ModelAndView mv = new ModelAndView("downloadData");
-        mv.addObject("errMsg", e.getMessage());
-        return mv;
-    }
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView onException(Exception e) {
+//
+//        ModelAndView mv = new ModelAndView("downloadData");
+//        mv.addObject("errMsg", e.getMessage());
+//        return mv;
+//    }
 }
