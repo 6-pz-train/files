@@ -8,6 +8,7 @@ import com.locostatmanager.busines.exceptions.ValidationException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -49,8 +50,11 @@ public class SensorServiceImpl implements SensorService {
         return sensorDao.getByUnitName(Units.TDVIG.toString());
     }
 
+    @Transactional
     public SensorEntity getByName(String name) throws DataAccessException, ValidationException {
-
+        if (null == name || "".equals(name)) {
+            throw new ValidationException("Incorrect parametr");
+        }
         return sensorDao.getByName(name);
     }
 

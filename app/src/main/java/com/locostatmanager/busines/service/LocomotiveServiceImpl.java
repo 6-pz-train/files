@@ -64,6 +64,7 @@ public class LocomotiveServiceImpl implements LocomotiveService {
         locomotiveDao.add(entity);
     }
 
+    @Transactional
     public void delete(String id) throws ValidationException, DataAccessException {
 
         if (null == id || "".equals(id)) {
