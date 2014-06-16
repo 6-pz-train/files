@@ -5,10 +5,14 @@ import com.locostatmanager.busines.exceptions.DataAccessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -28,8 +32,19 @@ public class FileInfoDaoImpl extends JdbcDaoSupport implements FileInfoDao {
 
     public void add(FileInfo fileInfo) throws DataAccessException {
         try {
-            getJdbcTemplate().update("INSERT INTO FILE_INFO (FILE_NAME, FILE_SIZE, LOADING_DATE) VALUES (?, ?, ?)",
-                    new Object[]{fileInfo.getFileName(), fileInfo.getFileSize(), new Timestamp(Calendar.getInstance().getTimeInMillis())});
+            getJdbcTemplate().update("INSERT INTO FILE_INFO (FILE_NAME, FILE_SIZE, LOADING_DATE, ID_LOCO, RECORDS_COUNT) VALUES (?, ?, ?, ?, ?)",
+                    new Object[]{fileInfo.getFileName(), fileInfo.getFileSize(), new Timestamp(Calendar.getInstance().getTimeInMillis()), fileInfo.getLocoId(), fileInfo.getRecordsCount()});
+        } catch (Exception e) {
+            throw new DataAccessException(e);
+        }
+    }
+
+    @Transactional
+    public List<FileInfo> getAll() throws DataAccessException {
+        try {
+            return getJdbcTemplate().query("SELECT * FROM FILE_INFO", new FileInfoMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return null;
         } catch (Exception e) {
             throw new DataAccessException(e);
         }
@@ -41,7 +56,10 @@ public class FileInfoDaoImpl extends JdbcDaoSupport implements FileInfoDao {
             FileInfo fileInfo = new FileInfo();
             fileInfo.setFileName(rs.getString("FILE_NAME"));
             fileInfo.setFileSize(rs.getInt("FILE_SIZE"));
-            fileInfo.setLoadingDate(rs.getTimestamp("LOADING_DATE"));
+            fileInfo.setLoadingDate(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(
+                    new Date(rs.getTimestamp("LOADING_DATE").getTime())));
+            fileInfo.setLocoId(rs.getString("ID_LOCO"));
+            fileInfo.setRecordsCount(rs.getInt("RECORDS_COUNT"));
             return fileInfo;
         }
     }

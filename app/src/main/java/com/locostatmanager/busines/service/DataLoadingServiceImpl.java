@@ -34,17 +34,21 @@ public class DataLoadingServiceImpl implements DataLoadingService {
     private RecordStructureInfoDao recordStructureInfoDao;
     @Autowired
     private DataDao dataDao;
+    @Autowired
+    private FileCheckInService checkInService;
 
     @Override
     @Transactional
-    public void loadData(byte[] file, String type) throws Exception {
+    public void loadData(String fileName, byte[] file, String type, String locoId) throws Exception {
 
         FileStructureInfo fileStructureInfo = fileStructureInfoDao.get(type);
         List<byte[]> recors = getRecordsFromFile(file, fileStructureInfo);
         List<RecordStructureInfo> recordsInfo = recordStructureInfoDao.getByFsiType(fileStructureInfo.getType());
         List<Map<String, Double>> values = getValuesFromRecords(recordsInfo, recors);
         List<LocoDataEntity> entitys = createEntities(values);
-        long i = 10;
+
+        checkInService.addFileInfo(fileName, file.length, locoId, entitys.size());
+        
         for (LocoDataEntity entity : entitys) {
             
             try {

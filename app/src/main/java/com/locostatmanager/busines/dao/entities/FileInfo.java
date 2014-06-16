@@ -10,8 +10,35 @@ public class FileInfo {
     
     private String fileName;
     private Integer fileSize;
-    private Timestamp loadingDate;
+    private String loadingDate;
+    private String locoId;
+    private Integer recordsCount;
 
+    public String getLoadingDate() {
+        return loadingDate;
+    }
+
+    public void setLoadingDate(String loadingDate) {
+        this.loadingDate = loadingDate;
+    }
+    
+
+    public String getLocoId() {
+        return locoId;
+    }
+
+    public void setLocoId(String locoId) {
+        this.locoId = locoId;
+    }
+
+    public Integer getRecordsCount() {
+        return recordsCount;
+    }
+
+    public void setRecordsCount(Integer recordsCount) {
+        this.recordsCount = recordsCount;
+    }
+    
     public String getFileName() {
         return fileName;
     }
@@ -28,11 +55,4 @@ public class FileInfo {
         this.fileSize = fileSize;
     }
 
-    public Timestamp getLoadingDate() {
-        return loadingDate;
-    }
-
-    public void setLoadingDate(Timestamp loadingDate) {
-        this.loadingDate = loadingDate;
-    }
 }

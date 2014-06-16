@@ -70,7 +70,9 @@ create table FILE_INFO
 (
     FILE_NAME           varchar(50) not null,
     FILE_SIZE           smallint not null,
-    LOADING_DATE        timestamp not null  
+    LOADING_DATE        timestamp not null,
+    ID_LOCO             char(10) not null,
+    RECORDS_COUNT       int not null
 );
 
 create table FILE_STRUCTURE_INFO

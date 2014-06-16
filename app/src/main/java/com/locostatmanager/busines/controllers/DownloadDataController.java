@@ -1,6 +1,8 @@
 package com.locostatmanager.busines.controllers;
 
+import com.locostatmanager.busines.dao.FileInfoDao;
 import com.locostatmanager.busines.dao.FileStructureInfoDao;
+import com.locostatmanager.busines.dao.entities.FileInfo;
 import com.locostatmanager.busines.dao.entities.FileStructureInfo;
 import com.locostatmanager.busines.dao.entities.LocoEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
@@ -40,6 +42,8 @@ public class DownloadDataController {
     private DataLoadingService dataLoadingService;
     @Autowired
     private FileCheckInService checkInService;
+    @Autowired
+    private FileInfoDao fileInfoDao;
 
     @RequestMapping(method = RequestMethod.GET)
     public String getPage(Model model) {
@@ -61,9 +65,10 @@ public class DownloadDataController {
                 throw new ValidationException("Файл має невірне розширення або покодженно!");
             }
             checkInService.checkIn(file.getOriginalFilename(), (int) file.getSize());
-            dataLoadingService.loadData(file.getBytes(), fileType);
+            dataLoadingService.loadData(file.getOriginalFilename(), file.getBytes(), fileType, locoId);
         }
         model.addAttribute("success", "We will rock you!");// сообщение пока не используется, нужно для красивой зеленой строчки
+        model.addAttribute("listDownloadInfo", fileInfoDao.getAll());
         return "downloadData";
     }
 
@@ -72,16 +77,23 @@ public class DownloadDataController {
         return locomotiveService.getAll();
     }
 
+    @ModelAttribute("listDownloadInfo")
+    public List<FileInfo> getDownloadInfo() throws ValidationException, DataAccessException {
+        return fileInfoDao.getAll();
+    }
+    
     @ModelAttribute("fileTypes")
     public List<FileStructureInfo> getFileNames() throws DataAccessException {
         return fileStructureInfoDao.getAll();
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public ModelAndView onException(Exception e) {
-//
-//        ModelAndView mv = new ModelAndView("downloadData");
-//        mv.addObject("errMsg", e.getMessage());
-//        return mv;
-//    }
+    @ExceptionHandler(Exception.class)
+    public ModelAndView onException(Exception e) throws DataAccessException, ValidationException {
+
+        ModelAndView mv = new ModelAndView("downloadData");
+        mv.addObject("errMsg", e.getMessage());
+        mv.addObject("locomotives", locomotiveService.getAll());
+        mv.addObject("fileTypes", fileStructureInfoDao.getAll());
+        return mv;
+    }
 }
