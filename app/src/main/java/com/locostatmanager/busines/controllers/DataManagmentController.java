@@ -1,11 +1,13 @@
 package com.locostatmanager.busines.controllers;
 
 import com.locostatmanager.busines.dao.entities.LocoDataEntity;
+import com.locostatmanager.busines.dao.entities.SensorEntity;
 import com.locostatmanager.busines.exceptions.DataAccessException;
 import com.locostatmanager.busines.exceptions.ValidationException;
 import com.locostatmanager.busines.message.ResponseError;
 import com.locostatmanager.busines.message.ResponseOK;
 import com.locostatmanager.busines.service.LocomotiveService;
+import com.locostatmanager.busines.service.SensorService;
 import com.locostatmanager.busines.service.StatisticService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,15 @@ public class DataManagmentController {
     private StatisticService statisticService;
     @Autowired
     private LocomotiveService locomotiveService;
+    @Autowired
+    private SensorService sensorService;
+
+    @RequestMapping(value = "/sensor", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public SensorEntity getSensor() throws DataAccessException, ValidationException {
+        SensorEntity entity = sensorService.getByName("NAPR_ACCUM_BATR_SEC_A");
+        return entity;
+    }
 
     @RequestMapping(value = "/locoStat.json", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -50,11 +61,11 @@ public class DataManagmentController {
         locomotiveService.delete(id);
         return new ResponseOK();
     }
-    
+
     @ExceptionHandler({ValidationException.class, DataAccessException.class, Exception.class})
     @ResponseBody
     public ResponseError onException(Exception e) {
-        
+
         return new ResponseError(e.getMessage());
     }
 }
