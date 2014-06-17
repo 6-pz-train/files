@@ -49,77 +49,92 @@
 
 <div id="wrapper">
 
-<!-- Sidebar -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.html" th:href="@{index.htm}">Locomotive Statistics Manager</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav side-nav">
-            <li><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
-            <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a>
-            </li>
-            <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i>
-                Керування локомотивами </a></li>
-            <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i>
-                Завантаження даних </a></li>
-            <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
-                базу</a></li>
-            <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i class="fa fa-users"></i> Користувачі </a></li>
-            <li class="active"><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму </a></li>
-        </ul>
-
-        <ul class="nav navbar-nav navbar-right navbar-user">
-            <li class="dropdown user-dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-                    <span sec:authentication="name">Василь Пупкін </span>
-                    <b
-                            class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i>
-                        Налаштування </a></li>
-                    <li class="divider"></li>
-                    <li><a href="login.html" th:href="@{logout.htm}"><i class="fa fa-power-off"></i> Вихід </a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-</nav>
-
-<div id="page-wrapper">
-
-    <div class="row">
-        <div class="col-lg-12">
-            <h1>Про програму
-            </h1>
-            <ol class="breadcrumb">
-                <li class="active"><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель</a></li>
-                <li class="active"><i class="fa fa-info"></i> Про програму</li>
-            </ol>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html" th:href="@{index.htm}">Locomotive Statistics Manager</a>
         </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна панель </a></li>
+                <li><a href="dashboard.html" th:href="@{dashboard.htm}"><i class="fa fa-dashboard"></i> Статистика </a>
+                </li>
+                <li><a href="trains.html" th:href="@{trains.htm}"><i class="fa fa-bullhorn"></i>
+                    Керування локомотивами </a></li>
+                <li><a href="downloadData.html" th:href="@{downloadData.htm}"><i class="fa fa-download"></i>
+                    Завантаження даних </a></li>
+                <li><a href="dataBaseInfo.html" th:href="@{dataBaseInfo.htm}"><i class="fa fa-hdd-o"></i> Інформація про
+                    базу</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="users.html" th:href="@{users.htm}"><i
+                        class="fa fa-users"></i> Користувачі </a></li>
+                <li class="active"><a href="about.html" th:href="@{about.htm}"><i class="fa fa-info"></i> Про програму
+                </a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right navbar-user">
+                <li class="dropdown user-dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
+                        <span sec:authentication="name">Василь Пупкін </span>
+                        <b
+                                class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="userSettings.html" th:href="@{userSettings.htm}"><i class="fa fa-gear"></i>
+                            Налаштування </a></li>
+                        <li class="divider"></li>
+                        <li><a href="login.html" th:href="@{logout.htm}"><i class="fa fa-power-off"></i> Вихід </a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+
+    <div id="page-wrapper">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Про програму
+                </h1>
+                <ol class="breadcrumb">
+                    <li class="active"><a href="index.html" th:href="@{index.htm}"><i class="fa fa-desktop"></i> Головна
+                        панель</a></li>
+                    <li class="active"><i class="fa fa-info"></i> Про програму</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-info">
+                <h4 class="text-center text-info lead">Функціональне призначення продукту полягає у наданні сервісу що дозволить
+                    перегляд статистики систем діагностування локомотивів.
+                    Сервіс повинен надавати можливість адмініструвати систему, виконувати пошук даних за період часу та
+                    відображати їх значення на діаграмі та таблицях.
+                    <br/>Аналіз роботи продукту дозволить уточнювати перелік контрольованих параметрів, удосконалювати
+                    алгоритми контролю, періодичність опитування датчиків
+                    контролюючих параметри вузлів і агрегатів локомотивів, а також використовувати інформацію при
+                    розробці й проектуванні вузлів локомотивів для забезпечення їх придатності до контролю.
+                </h4>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
     </div>
-    <!-- /.row -->
-
-
-    <div class="row">
-
-
-    </div>
-    <!-- /.row -->
-
-</div>
-<!-- /#page-wrapper -->
+    <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
