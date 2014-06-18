@@ -181,7 +181,7 @@
                             var seriesData = new Array();
                             for (var i = 0; i < data.length; i++) {
                                 var obj = data[i];
-                                seriesData.push(new Array(obj.RECORD_TIME_LOCO_DATA, obj[name]));
+                                seriesData.push(new Array(new Date(obj.RECORD_TIME_LOCO_DATA).getUTCTime(), obj[name]));
                             }
                             console.log(seriesData);
 

@@ -93,6 +93,7 @@
     <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath*:db_schema.sql"/>
         <jdbc:script location="classpath*:db_test_data.sql"/>
+        <jdbc:script location="classpath*:data.sql"/>
     </jdbc:initialize-database>
     
     <!-- **************************************************************** -->
