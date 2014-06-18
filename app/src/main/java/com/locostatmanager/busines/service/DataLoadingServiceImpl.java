@@ -45,7 +45,7 @@ public class DataLoadingServiceImpl implements DataLoadingService {
         List<byte[]> recors = getRecordsFromFile(file, fileStructureInfo);
         List<RecordStructureInfo> recordsInfo = recordStructureInfoDao.getByFsiType(fileStructureInfo.getType());
         List<Map<String, Double>> values = getValuesFromRecords(recordsInfo, recors);
-        List<LocoDataEntity> entitys = createEntities(values);
+        List<LocoDataEntity> entitys = createEntities(values, locoId);
 
         checkInService.addFileInfo(fileName, file.length, locoId, entitys.size());
         
@@ -90,14 +90,14 @@ public class DataLoadingServiceImpl implements DataLoadingService {
         return values;
     }
 
-    private List<LocoDataEntity> createEntities(List<Map<String, Double>> values) throws IOException {
+    private List<LocoDataEntity> createEntities(List<Map<String, Double>> values, String locoId) throws IOException {
 
         List<LocoDataEntity> entitys = new ArrayList<LocoDataEntity>();
         for (Map<String, Double> value : values) {
             ObjectMapper mapper = new ObjectMapper();
             String jsonEntity = mapper.writeValueAsString(value);
             LocoDataEntity entity = mapper.readValue(jsonEntity, LocoDataEntity.class);
-            entity.setIdLoco("L001dp");
+            entity.setIdLoco(locoId);
             entity.setRecordTimeLocoData(new Timestamp(Calendar.getInstance().getTimeInMillis()));
             entitys.add(entity);
         }
